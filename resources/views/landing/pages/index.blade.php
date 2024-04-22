@@ -4,13 +4,25 @@
 
 @section('content')
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contoh</title>
+    <style>
+        .enlarged-img {
+            max-width: 130%;
+            height: auto;
+        }
+    </style>
+</head>
+
     <section id="mu-hero">
         <div class="container">
             <div class="row">
 
-                <div class="col-md-6 col-sm-6 col-sm-push-6">
-                    <div class="mu-hero-right">
-                        {{-- <img src="{{ asset('landing/images/ebook.png') }}" alt="Ebook img"> --}}
+                <div class="col-md-6 col-sm-6 col-md-push-6">
+                    <div class="mu-hero-right text-right">
+                        <img class="img-fluid rounded-circle enlarged-img" src="https://smk.nusantara1.sch.id/wp-content/uploads/2021/12/IMG_1443-1536x1024.jpg" alt="Ebook img">
                     </div>
                 </div>
 

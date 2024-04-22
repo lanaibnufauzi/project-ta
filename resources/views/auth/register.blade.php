@@ -85,8 +85,13 @@
 <body>
     <div class="container-scroller">
         <div class="auth-form-wrapper text-left p-4">
-            <a class="brand-logo" href="/dashboard">Perpustakaan AM</a>
+            <a class="brand-logo" href="/dashboard"></a>
             <form class="pt-3" method="POST" action="{{ route('register.create') }}">
+                <div class="brand-logo text-center">
+                    <a class="navbar-brand" href="/dashboard">
+                        <img src="{{ asset('image/logosekolah.png') }}" >
+                    </a>
+                </div>
                 @csrf
                 @if (session('status') && session('message'))
                     <div class="alert alert-{{ session('status') }}">

@@ -89,7 +89,9 @@
         <div class="content-wrapper">
             <div class="auth-form-light">
                 <div class="brand-logo">
-                    <a class="navbar-brand" href="/dashboard">Perpustkaan AM</a>
+                    <a class="navbar-brand" href="/dashboard">
+                        <img src="{{ asset('image/logosekolah.png') }}" >
+                    </a>
                 </div>
                 <form class="pt-3" method="POST" action="{{ route('login') }}">
                     @csrf

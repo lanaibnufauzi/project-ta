@@ -71,37 +71,39 @@
                                         </div>
 
                                         <!-- Edit Modal -->
-                                        <div class="modal fade" id="editModal{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="editModal{{ $data->id }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="defaultModalLabel">Edit Table</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                                    <form action="/pengguna-edit/{{ $data->id }}" method="POST">
+                                                    <form action="/pengguna-edit/{{ $data->id }}" method="POST" enctype="multipart/form-data">
                                                         @csrf
                                                         @method('PUT')
                                                         <div class="modal-body">
                                                             <div class="form-group">
                                                                 <label for="recipient-nama" class="col-form-label">nama</label>
-                                                                <input type="text" value="{{ $data->nama }}" name="name" class="form-control" id="recipient-nama">
+                                                                <input type="text" value="{{ $data->nama }}" name="nama" class="form-control" id="recipient-nama">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="status" class="col-form-label">Status</label>
                                                                 <select name="status" class="form-control" id="status" required>
-                                                                    <option value="Tersedia" {{ $data->status == 'Pria' ? 'selected' : '' }}>Pria</option>
-                                                                    <option value="Dipinjam" {{ $data->status == 'Wanita' ? 'selected' : '' }}>Wanita</option>
+                                                                    <option value="Pria" {{ $data->status == 'Pria' ? 'selected' : '' }}>Pria</option>
+                                                                    <option value="Wanita" {{ $data->status == 'Wanita' ? 'selected' : '' }}>Wanita</option>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="recipient-telepon" class="col-form-label">No_handpone</label>
-                                                                <input type="text" value="{{ $data->telpon }}" name="no_handpone" class="form-control" id="recipient-telepon">
+                                                                <input type="text" value="{{ $data->telpon }}" name="telpon" class="form-control" id="recipient-telepon">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="recipient-alamat" class="col-form-label">Alamat</label>
-                                                                <input type="text" value="{{ $data->alamat }}" name="email" class="form-control" id="recipient-alamt">
+                                                                <input type="text" value="{{ $data->alamat }}" name="alamat" class="form-control" id="recipient-alamt">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="recipient-tempat_lahir" class="col-form-label">Tempat Lahir</label>
@@ -109,7 +111,7 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="recipient-tanggal_lahir" class="col-form-label">tamggal_lahir</label>
-                                                                <input type="text" value="{{ $data->tanggal_lahir }}" name="email" class="form-control" id="recipient-tanggal_lahir">
+                                                                <input type="text" value="{{ $data->tanggal_lahir }}" name="tanggal_lahir" class="form-control" id="recipient-tanggal_lahir">
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
@@ -131,8 +133,9 @@
     </div>
 
 <!-- Add Modal -->
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="defaultModalLabel">Tambah Data</h5>
@@ -143,55 +146,51 @@
         <form action="{{ url('/pengguna-add/') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('POST')
-            <div class="form-group">
-                <label for="nama" class="col-form-label">Nama</label>
-                <input type="text" value="{{ $data->nama}}"
-                    name="nama" class="form-control" id="nama"required>
-            </div>
-                <div class="form-group">
-                    <label for="status"
-                        class="col-form-label">Status</label>
-                    <select name="status" class="form-control"
-                        id="status" required>
-                        <option value="Tersedia"
-                            {{ $data->status == 'Tersedia' ? 'selected' : '' }}>
-                            Pria</option>
-                        <option value="Di Pinjam"
-                            {{ $data->status == 'Dipinjam' ? 'selected' : '' }}>
-                            Wanita</option>
-                    </select>
+            <div class="modal-body">
+               <div class="form-group">
+                    <label for="nama" class="col-form-label">Nama</label>
+                    <input type="text" value=""
+                        name="nama" class="form-control" id="nama"required>
                 </div>
-                <div class="form-group">
-                    <label for="alamat" class="col-form-label">Alamat</label>
-                    <input type="text" value="{{ $data->alamat}}"
-                        name="alamat" class="form-control" id="alamat"required>
+                    <div class="form-group">
+                        <label for="status"
+                            class="col-form-label">Status</label>
+                        <select name="status" class="form-control"
+                            id="status" required>
+                            <option selected disabled>Pilih Status</option>
+                           <option value="Pria">Pria</option>
+                           <option value="Wanita">Wanita</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat" class="col-form-label">Alamat</label>
+                        <input type="text" value=""
+                            name="alamat" class="form-control" id="alamat"required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telpon" class="col-form-label">No Handphone</label>
+                        <input type="text" value=""
+                            name="telpon" class="form-control" id="telpon"required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tempat_lahir" class="col-form-label">Tempat Lahir</label>
+                        <input type="text" value=""
+                            name="tempat_lahir" class="form-control" id="tempat_lahir"required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggal_lahir" class="col-form-label">Tanggal Lahir</label>
+                        <input type="date" id="tanggal_lahir" name="tanggal_lahir" class="form-control">
+                    </div>
                 </div>
-                <<div class="form-group">
-                    <label for="telpon" class="col-form-label">No Handphone</label>
-                    <input type="text" value="{{ $data->telpon}}"
-                        name="telpon" class="form-control" id="telpon"required>
+                <div class="modal-footer">
+                    <button type="button" class="btn mb-2 btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn mb-2 btn-success">Save</button>
                 </div>
-                <div class="form-group">
-                    <label for="tempat_lahir" class="col-form-label">Tempat Lahir</label>
-                    <input type="text" value="{{ $data->tempat_lahir}}"
-                        name="tempat_lahir" class="form-control" id="tempat_lahir"required>
-                </div>
-                <div class="form-group">
-                    <label for="tanggal_lahir" class="col-form-label">Tanggal Lahir</label>
-                    <input type="text" value="{{ $data->tanggal_lahir}}"
-                        name="tanggal_lahir" class="form-control" id="tanggal_lahir"required>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn mb-2 btn-danger" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn mb-2 btn-success">Save</button>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
     </div>
-    </div>
-    @endsection
-
+@endsection
 @section('script')
     <script>
         $(document).ready(function() {

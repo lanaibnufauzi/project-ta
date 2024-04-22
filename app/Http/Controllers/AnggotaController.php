@@ -63,7 +63,7 @@ class AnggotaController extends Controller
                     $anggota->save();
 
 
-            return redirect('/anggota')->with('success', 'Pengguna berhasil ditambahkan');
+            return redirect('/pengguna')->with('success', 'Pengguna berhasil ditambahkan');
         }
 
 
@@ -99,7 +99,7 @@ class AnggotaController extends Controller
     public function edit(Request $request, $id)
     {
         $request->validate([
-            'nama' => 'required|string',
+            'nama' => 'required',
             'status' => 'required',
             'alamat' => 'required',
             'telpon' => 'required',
@@ -108,15 +108,16 @@ class AnggotaController extends Controller
         ]);
 
         $anggota = Anggota::find($id);
-        $anggota->nama = $request->name;
+        $anggota->nama = $request->nama;
         $anggota->status = $request->status;
         $anggota->alamat = $request->alamat;
         $anggota->telpon = $request->telpon;
         $anggota->tempat_lahir = $request->tempat_lahir;
         $anggota->tanggal_lahir = $request->tanggal_lahir;
+
         $anggota->save();
 
-        return redirect('/anggota')->with('success', 'Pengguna berhasil diperbarui');
+        return redirect('/pengguna')->with('success', 'Pengguna berhasil diperbarui');
     }
 
 
@@ -143,7 +144,7 @@ class AnggotaController extends Controller
         {
             Anggota::find($id)->delete();
 
-            return redirect('/anggota')->with('success', 'Pengguna berhasil dihapus');
+            return redirect('/pengguna')->with('success', 'Pengguna berhasil dihapus');
         }
     }
 }

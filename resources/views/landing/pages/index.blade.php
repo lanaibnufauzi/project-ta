@@ -10,7 +10,7 @@
 
                 <div class="col-md-6 col-sm-6 col-sm-push-6">
                     <div class="mu-hero-right">
-                        <img src="{{ asset('landing/images/ebook.png') }}" alt="Ebook img">
+                        {{-- <img src="{{ asset('landing/images/ebook.png') }}" alt="Ebook img"> --}}
                     </div>
                 </div>
 

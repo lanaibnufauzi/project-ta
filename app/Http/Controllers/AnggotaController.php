@@ -25,34 +25,45 @@ class AnggotaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-        public function create(Request $request)
+        public function create(Request $request, $id = null)
         {
             $request->validate([
-                'name' => 'required|string',
+                'nama' => 'required|string',
                 'status' => 'required',
                 'alamat' => 'required',
                 'telpon' => 'required',
                 'tempat_lahir' => 'required',
                 'tanggal_lahir' => 'required',
             ], [
-                'name.required' => 'Nama tidak boleh kosong',
-                'name.string' => 'Nama harus berupa huruf',
+                'nama.required' => 'Nama tidak boleh kosong',
+                'nama.string' => 'Nama harus berupa huruf',
                 'status.required' => 'Status tidak boleh kosong',
                 'alamat.required' => 'Alamat tidak boleh kosong',
                 'telpon.required' => 'Nomor telepon tidak boleh kosong',
                 'tempat_lahir.required' => 'Tempat lahir tidak boleh kosong',
                 'tanggal_lahir.required' => 'Tanggal lahir tidak boleh kosong',
             ]);
-                Anggota::create([
-                    'name' => $request->name,
-                    'status' => $request->status,
-                    'alamat' => $request->alamat,
-                    'telpon' => $request->telpon,
-                    'tempat_lahir' => $request->tempat_lahir,
-                    'tanggal_lahir' => $request->tanggal_lahir,
-                ]);
 
-            return redirect('/pengguna')->with('success', 'Pengguna berhasil ditambahkan');
+            if ($id) {
+                $anggota = Anggota::find($id);
+                if (!$anggota) {
+                    return redirect('/anggota')->with('error', 'Buku tidak ditemukan');
+                }
+            } else {
+
+                $anggota = new Anggota();
+            }
+                    $anggota->nama = $request->nama;
+                    $anggota->status = $request->status;
+                    $anggota->alamat = $request->alamat;
+                    $anggota->telpon = $request->telpon;
+                    $anggota->tempat_lahir = $request->tempat_lahir;
+                    $anggota->tanggal_lahir = $request->tanggal_lahir;
+
+                    $anggota->save();
+
+
+            return redirect('/anggota')->with('success', 'Pengguna berhasil ditambahkan');
         }
 
 
@@ -88,7 +99,7 @@ class AnggotaController extends Controller
     public function edit(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string',
+            'nama' => 'required|string',
             'status' => 'required',
             'alamat' => 'required',
             'telpon' => 'required',
@@ -97,7 +108,7 @@ class AnggotaController extends Controller
         ]);
 
         $anggota = Anggota::find($id);
-        $anggota->name = $request->name;
+        $anggota->nama = $request->name;
         $anggota->status = $request->status;
         $anggota->alamat = $request->alamat;
         $anggota->telpon = $request->telpon;
@@ -105,7 +116,7 @@ class AnggotaController extends Controller
         $anggota->tanggal_lahir = $request->tanggal_lahir;
         $anggota->save();
 
-        return redirect('/pengguna')->with('success', 'Pengguna berhasil diperbarui');
+        return redirect('/anggota')->with('success', 'Pengguna berhasil diperbarui');
     }
 
 
@@ -132,7 +143,7 @@ class AnggotaController extends Controller
         {
             Anggota::find($id)->delete();
 
-            return redirect('/pengguna')->with('success', 'Pengguna berhasil dihapus');
+            return redirect('/anggota')->with('success', 'Pengguna berhasil dihapus');
         }
     }
 }

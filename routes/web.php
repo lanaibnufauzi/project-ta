@@ -34,7 +34,7 @@ Route::post('/register', [RegisterController::class, 'create'])->name('register.
 
 // Route::get('/', [LoginController::class, 'index'])->name('/');
 
-Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('forgot-password');
+// Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('forgot-password');
 
 Route::get('/pengguna', [AnggotaController::class, 'index'])->middleware('auth')->name('pengguna');
 Route::post('/pengguna-add', [AnggotaController::class, 'create'])->middleware('auth')->name('pengguna.create');

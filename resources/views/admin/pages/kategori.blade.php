@@ -35,6 +35,7 @@
                                                 data-target="#deleteModal{{ $data->id }}">Delete</button>
                                         </td>
                                     </tr>
+
                                     <!-- Delete Modal -->
                                     <div class="modal fade" id="deleteModal{{ $data->id }}" tabindex="-1" role="dialog"
                                         aria-labelledby="defaultModalLabel" aria-hidden="true">
@@ -64,25 +65,25 @@
                                     </div>
 
                                     <!-- Edit Modal -->
-                                    <div class="modal fade" id="editModal{{ $data->id }}" tabindex="-1" role="dialog"
-                                        aria-labelledby="defaultModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="editModal{{ $data->id }}" tabindex="-1"
+                                        role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="defaultModalLabel">Edit Modal</h5>
+                                                    <h5 class="modal-title" id="defaultModalLabel">Edit Table</h5>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <form action="{{ url('/kategori-edit/'.$data->id) }}" method="POST" enctype="multipart/form-data">
+                                                 <form action="{{ url('/kategori-edit/'.$data->id) }}" method="POST" enctype="multipart/form-data">
                                                     @csrf
                                                     @method('PUT')
                                                     <div class="modal-body">
                                                         <div class="form-group">
                                                             <label for="recipient-name" class="col-form-label">Nama Kategori</label>
-                                                            <input type="text" value="{{ $data->nama_kategori }}" name="nama"
-                                                                class="form-control" id="recipient-name">
+                                                            <input type="text" value="{{ $data->nama_kategori }}" name="nama_kategori"
+                                                                class="form-control" id="nama_kategori">
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
@@ -98,26 +99,26 @@
                                 </tbody>
                             </table>
                         </div>
-                        <!-- Add Modal -->
-                        <div class="modal fade" id="addModal" tabindex="-1" role="dialog"
-                            aria-labelledby="defaultModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="defaultModalLabel">Add Modal</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <form action="/kategori-store" method="POST">
-                                        @csrf
-                                        @method('POST')
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <label for="recipient-name" class="col-form-label">Nama</label>
-                                                <input type="text" value="" name="nama" class="form-control"
-                                                    id="recipient-name">
-                                            </div>
+
+                    <!-- Add Modal -->
+                    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="defaultModalLabel">Tambah Data</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="{{ url('/kategori-add/') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('POST')
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="nama_kategori" class="col-form-label">Nama Kategori</label>
+                                            <input type="text" value="{{ $data->nama_kategori }}" name="nama_kategori" class="form-control"
+                                                id="nama_kategori" required>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn mb-2 btn-danger"

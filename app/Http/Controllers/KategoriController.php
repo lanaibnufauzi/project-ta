@@ -23,7 +23,7 @@ class KategoriController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($request)
+    public function create(request $request)
     {
         $request->validate([
             'nama_kategori' => 'required',
@@ -31,7 +31,10 @@ class KategoriController extends Controller
             'nama_kategori.required' => 'Nama tidak boleh kosong',
         ]);
 
-        Kategori::create($request->all());
+        $kategori = new Kategori();
+        $kategori->nama_kategori = $request->nama_kategori;
+        $kategori->save();
+
 
         return redirect('/kategori')->with('success', 'Kategori berhasil ditambahkan');
     }
@@ -64,27 +67,25 @@ class KategoriController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request, $id)
-    {
-        // dd($request->all());
+{
+    $request->validate([
+        'nama_kategori' => 'required',
+    ], [
+        'nama_kategori.required' => 'Nama tidak boleh kosong',
+    ]);
 
-        $request->validate([
-            'name' => 'required|string',
-        ]);
+    $kategori = Kategori::find($id); // Menemukan kategori berdasarkan ID yang diberikan
 
-        $kategori = Kategori::find($id);
-
-        if (!$kategori) {
-            return redirect('/kategori')->with('error', 'Kategori tidak ditemukan');
-        }
-
-        $kategori->nama_kategori = $request->nama;
-
-        if ($kategori->save()) {
-            dd('Kategori berhasil diperbarui');
-        } else {
-            dd('Gagal menyimpan kategori');
-        }
+    if (!$kategori) {
+        return redirect('/kategori')->with('error', 'Kategori tidak ditemukan');
     }
+
+    $kategori->nama_kategori = $request->nama_kategori; // Memperbarui nama kategori
+
+    $kategori->save(); // Menyimpan perubahan
+
+    return redirect('/kategori')->with('success', 'Kategori berhasil diperbarui');
+}
 
 
 

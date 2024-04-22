@@ -3,6 +3,51 @@
 @section('title', 'Dashboard')
 
 @section('content')
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Counters</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .counter-container {
+            flex: 0 0 calc(25% - 20px);
+            color: #fff;
+            font-size: 16px;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #007bff;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .counter-container .fa {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .mu-counter-name {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .counter-value {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        @media(max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .counter-container {
+                flex: 0 0 calc(50% - 20px);
+            }
+        }
+    </style>
+</head>
+
     <div class="content-wrapper">
         <div class="row">
             <div class="col-md-12 grid-margin">
@@ -31,26 +76,32 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6 grid-margin stretch-card">
-                <div class="card tale-bg">
-                    <div class="card-people mt-auto">
-                        <img src="{{ asset('admin/images/dashboard/people.svg') }}" alt="people">
-                        <div class="weather-info">
-                            <div class="d-flex">
-                                <div>
-                                    <h2 class="mb-0 font-weight-normal"><i class="icon-sun mr-2"></i>31<sup>C</sup></h2>
-                                </div>
-                                <div class="ml-2">
-                                    <h4 class="location font-weight-normal">Bangalore</h4>
-                                    <h6 class="font-weight-normal">India</h6>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <div class="card tale-bg">
+                        <div class="card-people mt-auto">
+                            <img src="{{ asset('admin/images/dashboard/people.svg') }}" alt="people" class="img-fluid" style="max-width: 200px;">
+                            <div class="weather-info">
+                                <div class="d-flex">
+                                    <div>
+                                        <h2 class="mb-0 font-weight-normal"><i class="icon-sun mr-2"></i>31<sup>C</sup></h2>
+                                    </div>
+                                    <div class="ml-2">
+                                        <h4 class="location font-weight-normal">Jember</h4>
+                                        <h6 class="font-weight-normal">Indonesia</h6>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 grid-margin transparent">
+            </div>
+        </div>
+
+
+            {{-- <div class="col-md-6 grid-margin transparent">
                 <div class="row">
                     <div class="col-md-6 mb-4 stretch-card transparent">
                         <div class="card card-tale">
@@ -92,14 +143,76 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
+
+        <body>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="counter-container">
+                            <section class="mu-counter-area">
+                                <div class="mu-counter-block">
+                                    <div class="mu-single-counter">
+                                        <i class="fa fa-files-o" aria-hidden="true"></i>
+                                        <div class="counter-value" data-count="4">0</div>
+                                        <h5 class="mu-counter-name">Jenis Buku</h5>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="counter-container">
+                            <section class="mu-counter-area">
+                                <div class="mu-counter-block">
+                                    <div class="mu-single-counter">
+                                        <i class="fa fa-book" aria-hidden="true"></i>
+                                        <div class="counter-value" data-count="650">0</div>
+                                        <h5 class="mu-counter-name">Total Buku</h5>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="counter-container">
+                            <section class="mu-counter-area">
+                                <div class="mu-counter-block">
+                                    <div class="mu-single-counter">
+                                        <i class="fa fa-users" aria-hidden="true"></i>
+                                        <div class="counter-value" data-count="1055">0</div>
+                                        <h5 class="mu-counter-name">Online Users</h5>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="counter-container">
+                            <section class="mu-counter-area">
+                                <div class="mu-counter-block">
+                                    <div class="mu-single-counter">
+                                        <i class="fa fa-history" aria-hidden="true"></i>
+                                        <div class="counter-value" data-count="25">0</div>
+                                        <h5 class="mu-counter-name">History</h5>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </body>
+
+
         <div class="row">
             <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
                         <p class="card-title">Order Details</p>
-                        <p class="font-weight-500">The total number of sessions within the date range. It is the period time
-                            a user is actively engaged with your website, page or app, etc</p>
                         <div class="d-flex flex-wrap mb-5">
                             <div class="mr-5 mt-3">
                                 <p class="text-muted">Order value</p>
@@ -122,7 +235,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 grid-margin stretch-card">
+            {{-- <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
@@ -136,8 +249,72 @@
                     </div>
                 </div>
             </div>
+        </div> --}}
+
+
+        <div class="col-md-4 stretch-card grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-title">Notifications</p>
+                    <ul class="icon-data-list">
+                        <li>
+                            <div class="d-flex">
+                                <img src="{{ asset('admin/images/faces/face1.jpg') }}" alt="user">
+                                <div>
+                                    <p class="text-info mb-1">Isabella Becker</p>
+                                    <p class="mb-0">Sales dashboard have been created</p>
+                                    <small>9:30 am</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-flex">
+                                <img src="{{ asset('admin/images/faces/face2.jpg') }}" alt="user">
+                                <div>
+                                    <p class="text-info mb-1">Adam Warren</p>
+                                    <p class="mb-0">You have done a great job #TW111</p>
+                                    <small>10:30 am</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-flex">
+                                <img src="{{ asset('admin/images/faces/face3.jpg') }}" alt="user">
+                                <div>
+                                    <p class="text-info mb-1">Leonard Thornton</p>
+                                    <p class="mb-0">Sales dashboard have been created</p>
+                                    <small>11:30 am</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-flex">
+                                <img src="{{ asset('admin/images/faces/face4.jpg') }}" alt="user">
+                                <div>
+                                    <p class="text-info mb-1">George Morrison</p>
+                                    <p class="mb-0">Sales dashboard have been created</p>
+                                    <small>8:50 am</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-flex">
+                                <img src="{{ asset('admin/images/faces/face5.jpg') }}" alt="user">
+                                <div>
+                                    <p class="text-info mb-1">Ryan Cortez</p>
+                                    <p class="mb-0">Herbs are fun and easy to grow.</p>
+                                    <small>9:00 am</small>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="row">
+
+
+
+        {{-- <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card position-relative">
                     <div class="card-body">
@@ -750,5 +927,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection

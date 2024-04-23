@@ -15,12 +15,8 @@
         {
             Schema::create('anggota', function (Blueprint $table) {
                 $table->id();
-                $table->string('nama');
-                $table->enum('status', ['Pria', 'Wanita',]);
-                $table->string('telpon');
-                $table->string('alamat');
-                $table->string('tempat_lahir');
-                $table->date('tanggal_lahir');
+                $table->unsignedBigInteger('users_id');
+                $table->foreign('users_id')->references('id')->on('users');
                 $table->timestamps();
             });
         }

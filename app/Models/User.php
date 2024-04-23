@@ -24,6 +24,7 @@ class User extends Authenticatable
         'email',
         'password',
         'no_handpone',
+        'alamat',
     ];
 
     /**
@@ -48,5 +49,9 @@ class User extends Authenticatable
     public function Role()
     {
         return $this->belongsTo(Role::class, 'id_role', 'id');
+    }
+
+    public function anggota(){
+        return $this->hasMany(Anggota::class);
     }
 }

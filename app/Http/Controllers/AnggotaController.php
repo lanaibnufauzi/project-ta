@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Anggota;
+use App\Models\User;
 
 class AnggotaController extends Controller
 {
@@ -14,10 +15,12 @@ class AnggotaController extends Controller
      */
     public function index()
     {
-        $dataanggota = Anggota::all();
+        $anggota = Anggota::with('user')->get();
         return view('admin.pages.pengguna',[
-            'dataanggota' => $dataanggota,
+            'anggota' => $anggota
         ]);
+
+
     }
 
     /**
@@ -29,19 +32,21 @@ class AnggotaController extends Controller
         {
             $request->validate([
                 'nama' => 'required|string',
-                'status' => 'required',
+                // 'status' => 'required',
+                'email' => 'required',
                 'alamat' => 'required',
                 'telpon' => 'required',
-                'tempat_lahir' => 'required',
-                'tanggal_lahir' => 'required',
+                // 'tempat_lahir' => 'required',
+                // 'tanggal_lahir' => 'required',
             ], [
                 'nama.required' => 'Nama tidak boleh kosong',
                 'nama.string' => 'Nama harus berupa huruf',
-                'status.required' => 'Status tidak boleh kosong',
+                'email.required' => 'Status tidak boleh kosong',
+                // 'status.required' => 'Status tidak boleh kosong',
                 'alamat.required' => 'Alamat tidak boleh kosong',
                 'telpon.required' => 'Nomor telepon tidak boleh kosong',
-                'tempat_lahir.required' => 'Tempat lahir tidak boleh kosong',
-                'tanggal_lahir.required' => 'Tanggal lahir tidak boleh kosong',
+                // 'tempat_lahir.required' => 'Tempat lahir tidak boleh kosong',
+                // 'tanggal_lahir.required' => 'Tanggal lahir tidak boleh kosong',
             ]);
 
             if ($id) {
@@ -54,11 +59,12 @@ class AnggotaController extends Controller
                 $anggota = new Anggota();
             }
                     $anggota->nama = $request->nama;
-                    $anggota->status = $request->status;
+                    $anggota->email = $request->status;
+                    // $anggota->status = $request->status;
                     $anggota->alamat = $request->alamat;
                     $anggota->telpon = $request->telpon;
-                    $anggota->tempat_lahir = $request->tempat_lahir;
-                    $anggota->tanggal_lahir = $request->tanggal_lahir;
+                    // $anggota->tempat_lahir = $request->tempat_lahir;
+                    // $anggota->tanggal_lahir = $request->tanggal_lahir;
 
                     $anggota->save();
 
@@ -100,20 +106,22 @@ class AnggotaController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'status' => 'required',
+            // 'status' => 'required',
+            'email' => 'required',
             'alamat' => 'required',
             'telpon' => 'required',
-            'tempat_lahir' => 'required',
-            'tanggal_lahir' => 'required',
+            // 'tempat_lahir' => 'required',
+            // 'tanggal_lahir' => 'required',
         ]);
 
         $anggota = Anggota::find($id);
         $anggota->nama = $request->nama;
-        $anggota->status = $request->status;
+        $anggota->email = $request->name;
+        // $anggota->status = $request->status;
         $anggota->alamat = $request->alamat;
         $anggota->telpon = $request->telpon;
-        $anggota->tempat_lahir = $request->tempat_lahir;
-        $anggota->tanggal_lahir = $request->tanggal_lahir;
+        // $anggota->tempat_lahir = $request->tempat_lahir;
+        // $anggota->tanggal_lahir = $request->tanggal_lahir;
 
         $anggota->save();
 

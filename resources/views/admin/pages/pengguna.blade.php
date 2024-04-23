@@ -22,106 +22,31 @@
                                 <thead>
                                     <tr>
                                         <th>Nama</th>
-                                        <th>Status</th>
+                                        <th>Email</th>
                                         <th>Telephone</th>
                                         <th>Alamat</th>
-                                        <th>Tempat Lahir</th>
-                                        <th>Tanggal Lahir</th>
-                                        <th>Action</th>
+                                        {{-- <th>Tempat Lahir</th>
+                                        <th>Tanggal Lahir</th> --}}
+                                        {{-- <th>Action</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($dataanggota as $data)
+                                    @foreach($anggota as $data)
+
                                         <tr>
-                                            <td>{{ $data->nama }}</td>
-                                            <td>{{ $data->status }}</td>
-                                            <td>{{ $data->telpon }}</td>
-                                            <td>{{ $data->alamat }}</td>
-                                            <td>{{ $data->tempat_lahir }}</td>
-                                            <td>{{ $data->tanggal_lahir }}</td>
-                                            <td>
+                                            <td>{{ $data->user->name }}</td>
+                                            <td>{{ $data->user->email }}</td>
+                                            <td>{{ $data->user->no_handpone }}</td>
+                                            <td>{{ $data->user->alamat }}</td>
+                                            {{-- <td>{{ $data->tempat_lahir }}</td>
+                                            <td>{{ $data->tanggal_lahir }}</td> --}}
+                                            {{-- <td>
                                                 <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal{{ $data->id }}">Edit</button>
                                                 <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal{{ $data->id }}">Delete</button>
-                                            </td>
+                                            </td> --}}
                                         </tr>
 
-                                        <!-- Delete Modal -->
-                                        <div class="modal fade" id="deleteModal{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="defaultModalLabel">Delete Table</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Yakin Ingin Menghapus Data {{ $data->nama }}?
-                                                    </div>
-                                                    <form action="/pengguna-delete/{{ $data->id }}" method="post">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn mb-2 btn-success" data-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn mb-2 btn-danger">Delete</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                        <!-- Edit Modal -->
-                                        <div class="modal fade" id="editModal{{ $data->id }}" tabindex="-1"
-                                            role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="defaultModalLabel">Edit Table</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <form action="/pengguna-edit/{{ $data->id }}" method="POST" enctype="multipart/form-data">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <div class="modal-body">
-                                                            <div class="form-group">
-                                                                <label for="recipient-nama" class="col-form-label">nama</label>
-                                                                <input type="text" value="{{ $data->nama }}" name="nama" class="form-control" id="recipient-nama">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="status" class="col-form-label">Status</label>
-                                                                <select name="status" class="form-control" id="status" required>
-                                                                    <option value="Pria" {{ $data->status == 'Pria' ? 'selected' : '' }}>Pria</option>
-                                                                    <option value="Wanita" {{ $data->status == 'Wanita' ? 'selected' : '' }}>Wanita</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="recipient-telepon" class="col-form-label">No_handpone</label>
-                                                                <input type="text" value="{{ $data->telpon }}" name="telpon" class="form-control" id="recipient-telepon">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="recipient-alamat" class="col-form-label">Alamat</label>
-                                                                <input type="text" value="{{ $data->alamat }}" name="alamat" class="form-control" id="recipient-alamt">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="recipient-tempat_lahir" class="col-form-label">Tempat Lahir</label>
-                                                                <input type="text" value="{{ $data->tempat_lahir }}" name="tempat_lahir" class="form-control" id="recipient-tempat_lahir">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="recipient-tanggal_lahir" class="col-form-label">tamggal_lahir</label>
-                                                                <input type="text" value="{{ $data->tanggal_lahir }}" name="tanggal_lahir" class="form-control" id="recipient-tanggal_lahir">
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn mb-2 btn-danger" data-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn mb-2 btn-success">Save changes</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -150,9 +75,9 @@ aria-hidden="true">
                <div class="form-group">
                     <label for="nama" class="col-form-label">Nama</label>
                     <input type="text" value=""
-                        name="nama" class="form-control" id="nama"required>
+                        name="nama" class="form-control" id="name"required>
                 </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="status"
                             class="col-form-label">Status</label>
                         <select name="status" class="form-control"
@@ -161,11 +86,11 @@ aria-hidden="true">
                            <option value="Pria">Pria</option>
                            <option value="Wanita">Wanita</option>
                         </select>
-                    </div>
+                    </div> --}}
                     <div class="form-group">
-                        <label for="alamat" class="col-form-label">Alamat</label>
+                        <label for="alamat" class="col-form-label">Email</label>
                         <input type="text" value=""
-                            name="alamat" class="form-control" id="alamat"required>
+                            name="emiail" class="form-control" id="email"required>
                     </div>
                     <div class="form-group">
                         <label for="telpon" class="col-form-label">No Handphone</label>
@@ -173,25 +98,25 @@ aria-hidden="true">
                             name="telpon" class="form-control" id="telpon"required>
                     </div>
                     <div class="form-group">
-                        <label for="tempat_lahir" class="col-form-label">Tempat Lahir</label>
+                        <label for="tempat_lahir" class="col-form-label">Alamt</label>
                         <input type="text" value=""
-                            name="tempat_lahir" class="form-control" id="tempat_lahir"required>
+                            name="alamat" class="form-control" id="alamat"required>
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="tanggal_lahir" class="col-form-label">Tanggal Lahir</label>
                         <input type="date" id="tanggal_lahir" name="tanggal_lahir" class="form-control">
+                    </div> --}}
+                    <div class="modal-footer">
+                        <button type="button" class="btn mb-2 btn-danger" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn mb-2 btn-success">Save</button>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn mb-2 btn-danger" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn mb-2 btn-success">Save</button>
                 </div>
             </form>
         </div>
     </div>
     </div>
 @endsection
-@section('script')
+{{-- @section('script')
     <script>
         $(document).ready(function() {
             $('#dataTable-1').DataTable({
@@ -236,7 +161,7 @@ aria-hidden="true">
             });
         });
     </script>
-@endsection
+@endsection --}}
 
 @section('sweetalert')
 

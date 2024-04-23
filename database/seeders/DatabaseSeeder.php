@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Anggota;
 use App\Models\kategori;
 use Illuminate\Database\Seeder;
 use App\Models\User;
@@ -70,19 +71,30 @@ class DatabaseSeeder extends Seeder
             'email' => 'lana@admin.com',
             'password' => bcrypt('lana'),
             'no_handpone' => '085233918803',
+            'alamat' => 'Jember',
             'id_role' => 1,
             'email_verified_at' => now()
         ]);
 
-
-        // User::create([
-        //     'name' => 'ibnu',
-        //     'email' => 'ibnu@admin.com',
-        //     'password' => bcrypt('ibnu'),
-        //     'no_handpone' => '085233918803',
-        //     'id_role' => 2,
-        //     'email_verified_at' => now()
+        // Anggota::create([
+        //   'users_id' => '1'
         // ]);
+
+
+        User::create([
+            'name' => 'ibnu',
+            'email' => 'ibnu@admin.com',
+            'password' => bcrypt('ibnu'),
+            'no_handpone' => '085233918803',
+            'alamat' => 'Jember',
+            'id_role' => 2,
+            'email_verified_at' => now()
+        ]);
+
+        Anggota::create([
+            'users_id' => '2'
+          ]);
+
 
     }
 }

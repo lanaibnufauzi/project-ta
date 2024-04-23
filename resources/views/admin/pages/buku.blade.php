@@ -203,12 +203,12 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="isbn" class="col-form-label">ISBN</label>
-                            <input type="text" value="{{ $data->isbn }}" name="isbn" class="form-control"
+                            <input type="text" value="" name="isbn" class="form-control"
                                 id="isbn" required>
                         </div>
                         <div class="form-group">
                             <label for="judul_buku" class="col-form-label">Judul Buku</label>
-                            <input type="text" value="{{ $data->judul_buku }}" name="judul_buku"
+                            <input type="text" value="" name="judul_buku"
                                 class="form-control" id="judul_buku" required>
                         </div>
                         <div class="form-group">
@@ -218,26 +218,26 @@
                         </div>
                         <div class="form-group">
                             <label for="deskripsi" class="col-form-label">Deskripsi</label>
-                            <textarea name="deskripsi" class="form-control" id="deskripsi" required>{{ $data->deskripsi }}</textarea>
+                            <textarea name="deskripsi" class="form-control" id="deskripsi" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="tema" class="col-form-label">Tema</label>
-                            <input type="text" value="{{ $data->tema }}" name="tema" class="form-control"
+                            <input type="text" value="" name="tema" class="form-control"
                                 id="tema" required>
                         </div>
                         <div class="form-group">
                             <label for="penerbit" class="col-form-label">Penerbit</label>
-                            <input type="text" value="{{ $data->penerbit }}" name="penerbit" class="form-control"
+                            <input type="text" value="" name="penerbit" class="form-control"
                                 id="penerbit" required>
                         </div>
                         <div class="form-group">
                             <label for="penerbit" class="col-form-label">Penerbit</label>
-                            <input type="text" value="{{ $data->penerbit }}" name="penerbit" class="form-control"
+                            <input type="text" value="" name="penerbit" class="form-control"
                                 id="penerbit" required>
                         </div>
                         <div class="form-group">
                             <label for="tgl_terbit" class="col-form-label">Tanggal Terbit</label>
-                            <input type="date" value="{{ $data->tgl_terbit }}" name="tgl_terbit"
+                            <input type="date"  name="tgl_terbit"
                                 class="form-control" id="tgl_terbit" required>
                         </div>
                         {{-- <div class="form-group">
@@ -247,15 +247,15 @@
                         <div class="form-group">
                             <label for="status" class="col-form-label">Status</label>
                             <select name="status" class="form-control" id="status" required>
-                                <option value="Tersedia" {{ $data->status == 'Tersedia' ? 'selected' : '' }}>Tersedia
+                                <option value="Tersedia">Tersedia
                                 </option>
-                                <option value="Di pinjam" {{ $data->status == 'Di pinjam' ? 'selected' : '' }}>Di pinjam
+                                <option value="Di pinjam">Di pinjam
                                 </option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="penerbit" class="col-form-label">Kategori</label>
-                            <input type="text" value="{{ $data->kategori_id }}" name="kategori_id"
+                            <input type="text" value="" name="kategori_id"
                                 class="form-control" id="kategori_id" required>
                         </div>
                     </div>

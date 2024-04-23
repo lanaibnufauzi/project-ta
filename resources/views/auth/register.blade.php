@@ -108,6 +108,9 @@
                     <input type="text" class="form-control" name="no_handpone" placeholder="Masukkan No Handphone">
                 </div>
                 <div class="form-group">
+                    <input type="alamat" class="form-control" name="alamat" placeholder="Alamat">
+                </div>
+                <div class="form-group">
                     <input type="password" class="form-control" name="password" placeholder="Password">
                 </div>
                 <div class="form-group">

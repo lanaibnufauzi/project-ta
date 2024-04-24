@@ -81,6 +81,7 @@
         .auth-link:hover {
             text-decoration: underline;
         }
+
     </style>
 </head>
 
@@ -90,14 +91,25 @@
             <div class="auth-form-light">
                 <div class="brand-logo">
                     <a class="navbar-brand" href="/dashboard">
-                        <img src="{{ asset('image/logosekolah.png') }}" >
+                        <img src="{{ asset('image/logosekolah.png') }}">
                     </a>
                 </div>
                 <form class="pt-3" method="POST" action="{{ route('login') }}">
                     @csrf
-                    @if (session('status') && session('message'))
-                    <div class="alert alert-{{ session('status') }}">
-                        {{ session('message') }}
+                    @if($errors->any())
+                    <div class="alert alert-danger alert-dismissible fade show mt-2">
+
+
+
+                        <?php
+
+                $nomer = 1;
+
+                ?>
+
+                        @foreach($errors->all() as $error)
+                        <li>{{ $nomer++ }}. {{ $error }}</li>
+                        @endforeach
                     </div>
                     @endif
                     <div class="form-group">
@@ -127,9 +139,43 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <!-- endinject -->
+
+
+    @if(Session::get('error'))
+    <script>
+        Swal.fire({
+            icon: 'error'
+            , title: 'Oops...'
+            , text: 'gagal login'
+        , });
+
+    </script>
+    @endif
+    @if(Session::get('register'))
+    <script>
+        Swal.fire({
+            icon: 'success'
+            , title: 'Berhasil'
+            , text: 'Berhasil Dafatar'
+        , });
+
+    </script>
+    @endif
+    @if(Session::get('logout'))
+    <script>
+        Swal.fire({
+            icon: 'success'
+            , title: 'Berhasil'
+            , text: 'Berhasil Logout'
+        , });
+
+    </script>
+    @endif
 </body>
 
 </html>

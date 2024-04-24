@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Anggota;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -15,8 +16,7 @@ class RegisterController extends Controller
      */
     public function index()
     {
-        $datauser = User::where('id_role', '2')->get();
-        return view('auth.register', compact('datauser'));
+        return view('auth.register');
     }
 
     /**
@@ -26,48 +26,37 @@ class RegisterController extends Controller
      */
     public function create(Request $request)
     {
-        // $request->validate([
-        //     'name' => 'required|string',
-        //     'email' => 'required|string|email|unique:users,email',
-        //     'password' => 'required|string|min:8',
-        // ], [
-        //     'name.required' => 'Nama tidak boleh kosong',
-        //     'name.string' => 'Nama harus berupa huruf',
-        //     'email.required' => 'Email tidak boleh kosong',
-        //     'email.unique' => 'Email telah terdaftar',
-        //     'email.email' => 'Email harus berupa alamat email yang valid',
-        //     'password.required' => 'Password tidak boleh kosong',
-        //     'password.string' => 'Password harus berupa teks',
-        //     'password.min' => 'Password harus memiliki setidaknya 8 karakter',
-        // ]);
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'alamat' => 'required',
+            'password' => 'required|min:6',
+            'no_handpone' => 'required',
+        ], [
+            'name.required' => 'Nama tidak boleh kosong',
+            'email.required' => 'Email tidak boleh kosong',
+            'email.email' => 'Email tidak valid',
+            'email.unique' => 'Email sudah terdaftar',
+            'alamat.required' => 'Alamat tidak boleh kosong',
+            'password.required' => 'Password tidak boleh kosong',
+            'password.min' => 'Password minimal 6 karakter',
+            'no_handpone.required' => 'No Handpone tidak boleh kosong',
 
-
-            // $request->validate([
-            //     'password' => [
-            //         'required',
-            //         'string',
-            //         'min:8',
-            //         'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]+$/',
-            //     ],
-            // ], [
-            //     'password.required' => 'Password tidak boleh kosong',
-            //     'password.string' => 'Password harus berupa teks',
-            //     'password.min' => 'Password harus memiliki setidaknya 8 karakter',
-            //     'password.regex' => 'Password harus terdiri dari 8 karakter, 1 huruf besar, dan 1 huruf kecil',
-            // ]);
-
-
-
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'alamat' => $request->alamat,
-            'password' => Hash::make($request->password),
-            'no_handpone' => $request->no_handpone,
-            'id_role' => 2,
         ]);
 
-        return redirect('/login')->with(['status' => 'success', 'message' => 'Pendaftaran berhasil']);
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->alamat = $request->alamat;
+        $user->password = Hash::make($request->password);
+        $user->no_handpone = $request->no_handpone;
+        $user->save();
+
+        $anggota = new Anggota();
+        $anggota->users_id = $user->id;
+        $anggota->save();
+
+        return redirect('/login')->with('register', 'Register Berhasil, Silahkan Login');
     }
 
 

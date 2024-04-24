@@ -29,6 +29,6 @@ class buku extends Model
 
     public function detailBuku()
     {
-        return $this->hasOne(DetailBuku::class, 'buku_id', 'id');
+        return $this->hasOne(Detail_Buku::class, 'buku_id', 'id');
     }
 }

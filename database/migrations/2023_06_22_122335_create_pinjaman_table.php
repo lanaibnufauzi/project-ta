@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('pinjaman', function (Blueprint $table) {
             $table->id();
+            $table->string('status')->nullable();
             // $table->unsignedBigInteger('users_id');
             // $table->foreign('users_id')->references('id')->on('users');
             $table->timestamps();

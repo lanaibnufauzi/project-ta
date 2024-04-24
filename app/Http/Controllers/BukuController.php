@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Buku;
+use App\Models\Kategori;
+use Illuminate\Http\Request;
 
 class BukuController extends Controller
 {
@@ -14,8 +15,12 @@ class BukuController extends Controller
      */
     public function index()
     {
+        $kategori = Kategori::all();
         $databuku = Buku::with('kategori')->get();
-        return view('admin.pages.buku', compact('databuku'));
+        return view('admin.pages.buku', [
+            'databuku' => $databuku,
+            'kategori' => $kategori,
+        ]);
     }
 
     /**
@@ -38,6 +43,17 @@ class BukuController extends Controller
         'tgl_terbit' => 'required',
         'status' => 'required',
         'cover_buku' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ],[
+        'isbn.required' => 'ISBN tidak boleh kosong',
+        'judul_buku.required' => 'Judul Buku tidak boleh kosong',
+        'deskripsi.required' => 'Deskripsi tidak boleh kosong',
+        'tema.required' => 'Tema tidak boleh kosong',
+        'penerbit.required' => 'Penerbit tidak boleh kosong',
+        'tgl_terbit.required' => 'Tanggal Terbit tidak boleh kosong',
+        'status.required' => 'Status tidak boleh kosong',
+        'cover_buku.image' => 'Cover Buku harus berupa gambar',
+        'cover_buku.mimes' => 'Cover Buku harus berupa gambar',
+        'cover_buku.max' => 'Cover Buku maksimal 2MB',
     ]);
 
     if ($id) {
@@ -73,7 +89,7 @@ class BukuController extends Controller
     // $redirectPath = $id ? '/buku' : '/buku-create';
     $redirectMessage = $id ? 'Buku berhasil diperbarui' : 'Buku berhasil ditambahkan';
 
-    return redirect('buku')->with('success', $redirectMessage);
+    return redirect('buku')->with('store', $redirectMessage);
 }
 
 
@@ -120,6 +136,18 @@ class BukuController extends Controller
             'tgl_terbit' => 'required',
             'status' => 'required',
             'cover_buku' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ],[
+            'isbn.required' => 'ISBN tidak boleh kosong',
+            'judul_buku.required' => 'Judul Buku tidak boleh kosong',
+            'deskripsi.required' => 'Deskripsi tidak boleh kosong',
+            'tema.required' => 'Tema tidak boleh kosong',
+            'penerbit.required' => 'Penerbit tidak boleh kosong',
+            'tgl_terbit.required' => 'Tanggal Terbit tidak boleh kosong',
+            'status.required' => 'Status tidak boleh kosong',
+            'cover_buku.image' => 'Cover Buku harus berupa gambar',
+            'cover_buku.mimes' => 'Cover Buku harus berupa gambar',
+            'cover_buku.max' => 'Cover Buku maksimal 2MB',
+
         ]);
 
         $buku = Buku::find($id);
@@ -155,7 +183,7 @@ class BukuController extends Controller
 
         $buku->save();
 
-        return redirect('/buku')->with('success', 'Buku berhasil diperbarui');
+        return redirect('/buku')->with('update', 'Buku berhasil diperbarui');
 
     }
 
@@ -183,7 +211,7 @@ class BukuController extends Controller
 
         if ($buku) {
             $buku->delete();
-            return redirect('/buku')->with('success', 'Buku berhasil dihapus');
+            return redirect('/buku')->with('destroy', 'Buku berhasil dihapus');
         } else {
             return redirect('/buku')->with('error', 'Buku tidak ditemukan');
         }

@@ -18,53 +18,20 @@ class LoginController extends Controller
     public function loginProcess(Request $request)
     {
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required']
+            'email' => 'required|email',
+            'password' => 'required'
+        ], [
+            'email.required' => 'Email tidak boleh kosong',
+            'email.email' => 'Email tidak valid',
+            'password.required' => 'Password tidak boleh kosong'
         ]);
 
         if (Auth::attempt($credentials)) {
-            if (Auth::user()->email_verified_at == null) {
-                Auth::logout();
-                $request->session()->invalidate();
-                $request->session()->regenerateToken();
-
-                Session::flash('status', 'failed');
-                Session::flash('message', 'verifikasi');
-                return redirect('login');
-            }
-
-            if (Auth::user()->id_role == 1) {
-                $request->session()->regenerate();
-                Session::flash('status', 'success');
-                session()->flash('success', 'Login Sukses');
-                return redirect()->intended('/dashboard');
-            }
+            $request->session()->regenerate();
+            return redirect()->intended('dashboard')->with('login', 'Login Berhasil');
         }
 
-        Session::flash('status', 'failed');
-        Session::flash('message', 'Akun tidak ditemukan');
-        return redirect('login')->withInput();
+
+        return redirect('login')->with('error', 'Login Gagal, Silahkan cek email dan password anda');
     }
-
-    public function logout(Request $request)
-        {
-            Auth::logout();
-
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
-
-            return redirect('login');
-        }
-
 }
-    // public function logout(Request $request)
-    // {
-    //     Login::logout();
-
-    //     $request->session()->invalidate();
-
-    //     $request->session()->regenerateToken();
-
-    //     return redirect('login');
-    // }
-

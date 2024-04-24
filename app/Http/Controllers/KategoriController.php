@@ -36,7 +36,7 @@ class KategoriController extends Controller
         $kategori->save();
 
 
-        return redirect('/kategori')->with('success', 'Kategori berhasil ditambahkan');
+        return redirect('/kategori')->with('store', 'Kategori berhasil ditambahkan');
     }
     /**
      * Store a newly created resource in storage.
@@ -84,7 +84,7 @@ class KategoriController extends Controller
 
     $kategori->save(); // Menyimpan perubahan
 
-    return redirect('/kategori')->with('success', 'Kategori berhasil diperbarui');
+    return redirect('/kategori')->with('update', 'Kategori berhasil diperbarui');
 }
 
 
@@ -112,6 +112,6 @@ class KategoriController extends Controller
     {
         Kategori::find($id)->delete();
 
-        return redirect('/kategori')->with('success', 'Kategori berhasil dihapus');
+        return redirect('/kategori')->with('destroy', 'Kategori berhasil dihapus');
     }
 }

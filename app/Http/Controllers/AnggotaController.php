@@ -112,6 +112,14 @@ class AnggotaController extends Controller
             'telpon' => 'required',
             // 'tempat_lahir' => 'required',
             // 'tanggal_lahir' => 'required',
+        ],[
+            'nama.required' => 'Nama tidak boleh kosong',
+            // 'status.required' => 'Status tidak boleh kosong',
+            'email.required' => 'Email tidak boleh kosong',
+            'alamat.required' => 'Alamat tidak boleh kosong',
+            'telpon.required' => 'Nomor telepon tidak boleh kosong',
+            // 'tempat_lahir.required' => 'Tempat lahir tidak boleh kosong',
+            // 'tanggal_lahir.required' => 'Tanggal lahir tidak boleh kosong',
         ]);
 
         $anggota = Anggota::find($id);

@@ -79,6 +79,7 @@
         .mt-3 {
             margin-top: 15px;
         }
+
     </style>
 </head>
 
@@ -89,14 +90,25 @@
             <form class="pt-3" method="POST" action="{{ route('register.create') }}">
                 <div class="brand-logo text-center">
                     <a class="navbar-brand" href="/dashboard">
-                        <img src="{{ asset('image/logosekolah.png') }}" >
+                        <img src="{{ asset('image/logosekolah.png') }}">
                     </a>
                 </div>
                 @csrf
-                @if (session('status') && session('message'))
-                    <div class="alert alert-{{ session('status') }}">
-                        {{ session('message') }}
-                    </div>
+                @if($errors->any())
+                <div class="alert alert-danger alert-dismissible fade show mt-2">
+
+
+
+                    <?php
+
+            $nomer = 1;
+
+            ?>
+
+                    @foreach($errors->all() as $error)
+                    <li>{{ $nomer++ }}. {{ $error }}</li>
+                    @endforeach
+                </div>
                 @endif
                 <div class="form-group">
                     <input type="text" class="form-control" name="name" placeholder="Masukkan Nama">
@@ -120,15 +132,12 @@
                     <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Register</button>
                 </div>
             </form>
-            @if (session('status') && session('message'))
-                <div class="text-center mt-4 font-weight-light">
-                    {{ session('message') }}
-                </div>
-            @endif
         </div>
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('admin/vendors/js/vendor.bundle.base.js') }}"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
@@ -140,6 +149,17 @@
     <script src="{{ asset('admin/js/settings.js') }}"></script>
     <script src="{{ asset('admin/js/todolist.js') }}"></script>
     <!-- endinject -->
+
+    @if(Session::get('error'))
+    <script>
+        Swal.fire({
+            icon: 'error'
+            , title: 'Oops...'
+            , text: 'gagal register'
+        , });
+
+    </script>
+    @endif
 </body>
 
 </html>

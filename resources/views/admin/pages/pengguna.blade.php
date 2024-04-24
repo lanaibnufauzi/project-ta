@@ -4,79 +4,94 @@
 
 @section('content')
 
-    <div class="content-wrapper">
-        <div class="row">
-            <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Data pengguna</h4>
-                        <p class="card-description">
-                            Daftar Pengguna <code>table-striped</code>
-                        </p>
-                        <div class="table-responsive">
-                            <table id="dataTable-1" class="table table-striped responsive nowrap" style="width:100%">
-                                <div class="align-right text-right mb-3">
-                                    <button class="btn btn-success btn-sm" data-toggle="modal"
-                                        data-target="#addModal">Add</button>
-                                </div>
-                                <thead>
-                                    <tr>
-                                        <th>Nama</th>
-                                        <th>Email</th>
-                                        <th>Telephone</th>
-                                        <th>Alamat</th>
-                                        {{-- <th>Tempat Lahir</th>
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Data pengguna</h4>
+                    <p class="card-description">
+                        Daftar Pengguna <code>table-striped</code>
+                    </p>
+                    @if($errors->any())
+                    <div class="alert alert-danger alert-dismissible fade show mt-2">
+
+
+
+                        <?php
+
+                $nomer = 1;
+
+                ?>
+
+                        @foreach($errors->all() as $error)
+                        <li>{{ $nomer++ }}. {{ $error }}</li>
+                        @endforeach
+                    </div>
+                    @endif
+                    <div class="table-responsive">
+                        <table id="dataTable-1" class="table table-striped responsive nowrap" style="width:100%">
+                            {{-- <div class="align-right text-right mb-3">
+                                <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#addModal">Add</button>
+                            </div> --}}
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>Email</th>
+                                    <th>Telephone</th>
+                                    <th>Alamat</th>
+                                    {{-- <th>Tempat Lahir</th>
                                         <th>Tanggal Lahir</th> --}}
-                                        {{-- <th>Action</th> --}}
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($anggota as $data)
+                                    {{-- <th>Action</th> --}}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($anggota as $data)
 
-                                        <tr>
-                                            <td>{{ $data->user->name }}</td>
-                                            <td>{{ $data->user->email }}</td>
-                                            <td>{{ $data->user->no_handpone }}</td>
-                                            <td>{{ $data->user->alamat }}</td>
-                                            {{-- <td>{{ $data->tempat_lahir }}</td>
-                                            <td>{{ $data->tanggal_lahir }}</td> --}}
-                                            {{-- <td>
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $data->user->name }}</td>
+                                    <td>{{ $data->user->email }}</td>
+                                    <td>{{ $data->user->no_handpone }}</td>
+                                    <td>{{ $data->user->alamat }}</td>
+                                    {{-- <td>{{ $data->tempat_lahir }}</td>
+                                    <td>{{ $data->tanggal_lahir }}</td> --}}
+                                    {{-- <td>
                                                 <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal{{ $data->id }}">Edit</button>
-                                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal{{ $data->id }}">Delete</button>
-                                            </td> --}}
-                                        </tr>
+                                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal{{ $data->id }}">Delete</button>
+                                    </td> --}}
+                                </tr>
 
 
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 <!-- Add Modal -->
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="defaultModalLabel">Tambah Data</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <form action="{{ url('/pengguna-add/') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('POST')
-            <div class="modal-body">
-               <div class="form-group">
-                    <label for="nama" class="col-form-label">Nama</label>
-                    <input type="text" value=""
-                        name="nama" class="form-control" id="name"required>
-                </div>
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="defaultModalLabel">Tambah Data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ url('/pengguna-add/') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('POST')
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="nama" class="col-form-label">Nama</label>
+                        <input type="text" value="" name="nama" class="form-control" id="name" required>
+                    </div>
                     {{-- <div class="form-group">
                         <label for="status"
                             class="col-form-label">Status</label>
@@ -89,18 +104,15 @@ aria-hidden="true">
                     </div> --}}
                     <div class="form-group">
                         <label for="alamat" class="col-form-label">Email</label>
-                        <input type="text" value=""
-                            name="emiail" class="form-control" id="email"required>
+                        <input type="text" value="" name="emiail" class="form-control" id="email" required>
                     </div>
                     <div class="form-group">
                         <label for="telpon" class="col-form-label">No Handphone</label>
-                        <input type="text" value=""
-                            name="telpon" class="form-control" id="telpon"required>
+                        <input type="text" value="" name="telpon" class="form-control" id="telpon" required>
                     </div>
                     <div class="form-group">
                         <label for="tempat_lahir" class="col-form-label">Alamt</label>
-                        <input type="text" value=""
-                            name="alamat" class="form-control" id="alamat"required>
+                        <input type="text" value="" name="alamat" class="form-control" id="alamat" required>
                     </div>
                     {{-- <div class="form-group">
                         <label for="tanggal_lahir" class="col-form-label">Tanggal Lahir</label>
@@ -114,7 +126,7 @@ aria-hidden="true">
             </form>
         </div>
     </div>
-    </div>
+</div>
 @endsection
 {{-- @section('script')
     <script>
@@ -167,27 +179,29 @@ aria-hidden="true">
 
 @if (Session::get('update'))
 <script>
-  Swal.fire({
-  icon: 'success',
-  title: 'Berhasil Diupdate',
-})
+    Swal.fire({
+        icon: 'success'
+        , title: 'Berhasil Diupdate'
+    , })
+
 </script>
 @endif
 @if (Session::get('add'))
 <script>
-   Swal.fire({
-  icon: 'success',
-  title: 'Berhasil Ditambah',
-})
+    Swal.fire({
+        icon: 'success'
+        , title: 'Berhasil Ditambah'
+    , })
+
 </script>
 @endif
 @if (Session::get('delete'))
 <script>
-  Swal.fire({
-  icon: 'success',
-  title: 'Berhasil Dihapus',
-})
+    Swal.fire({
+        icon: 'success'
+        , title: 'Berhasil Dihapus'
+    , })
+
 </script>
 @endif
 @endsection
-

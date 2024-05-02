@@ -585,7 +585,7 @@
                                 </a>
                                 <a href="#" class="latest-product__item">
                                     <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-3.jpg" alt="">
+                                        <img src="{{ asset('user/img/latest-product/lp-3.jpg') }}" alt="">
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6>Crab Pool Security</h6>
@@ -615,7 +615,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="blog__item">
                         <div class="blog__item__pic">
-                            <img src="img/blog/blog-1.jpg" alt="">
+                            <img src="{{ asset('user/img/blog/blog-1.jpg') }}" alt="">
                         </div>
                         <div class="blog__item__text">
                             <ul>
@@ -630,7 +630,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="blog__item">
                         <div class="blog__item__pic">
-                            <img src="img/blog/blog-2.jpg" alt="">
+                            <img src="{{ asset('user/img/blog/blog-2.jpg') }}" alt="">
                         </div>
                         <div class="blog__item__text">
                             <ul>
@@ -645,7 +645,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="blog__item">
                         <div class="blog__item__pic">
-                            <img src="img/blog/blog-3.jpg" alt="">
+                            <img src="{{ asset('user/img/blog/blog-3.jpg') }}" alt="">
                         </div>
                         <div class="blog__item__text">
                             <ul>

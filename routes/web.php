@@ -12,9 +12,14 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\DashboardUserController;
 
+# landing Admin
 Route::get('/', function () {
     return view('landing.pages.index');
 });
+
+// Route::get('/', function () {
+//     return view('landingUser.pages.');
+// });
 
 # Auth
 Route::get('login', [LoginController::class, 'login'])->name('login');

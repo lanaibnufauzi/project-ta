@@ -1,3 +1,9 @@
+@extends('user.layout.index')
+
+@section('title', 'shop-details')
+
+@section('content')
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -544,3 +550,5 @@
 </body>
 
 </html>
+
+@endsection

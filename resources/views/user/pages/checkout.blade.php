@@ -1,3 +1,9 @@
+@extends('user.layout.index')
+
+@section('title', 'chekout')
+
+@section('content')
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -450,8 +456,10 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
 
- 
+
 
 </body>
 
 </html>
+
+@endsection

@@ -1,6 +1,6 @@
 @extends('landing.layouts.main')
 
-@section('title', 'E-BOOk')
+@section('title', 'Perpustakaan')
 
 @section('content')
 

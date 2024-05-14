@@ -18,23 +18,24 @@
     <link rel="stylesheet" href="{{ asset('user/css/elegant-icons.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('user/css/nice-select.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('user/css/jquery-ui.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ aseet("user/css/owl.carousel.min.css") }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset("user/css/owl.carousel.min.css") }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('user/css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('user/css/style.css') }}" type="text/css">
 </head>
 
-<body>0
+<body>
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
-@include('user.partials.navbar')
 
-@yield('content')
+ @include('user.partials.navbar')
+
+ @yield('content')
 
     <!-- Footer Section End
 
-        @include('user.partials.footer')
+ @include('user.partials.footer')
 
     Footer Section Begin -->
 
@@ -42,11 +43,11 @@
     <script src="{{ asset('user/js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('user/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('user/js/jquery.nice-select.min.js') }}"></script>
-    <script src="{{ asse('user/js/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('user/js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('user/js/jquery.slicknav.js') }}"></script>
     <script src="{{ asset('user/js/mixitup.min.js') }}"></script>
     <script src="{{ asset('user/js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('userjs/main.') }}js"></script>
+    <script src="{{ asset('user/js/main.') }}js"></script>
 
 
 

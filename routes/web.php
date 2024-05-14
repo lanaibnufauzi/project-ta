@@ -13,13 +13,13 @@ use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\DashboardUserController;
 
 # landing
-Route::get('/', function () {
-    return view('landing.pages.index');
-});
-
 // Route::get('/', function () {
-//     return view('user.pages.landingUser');
+//     return view('landing.pages.index');
 // });
+
+Route::get('/', function () {
+    return view('user.pages.landingUser');
+});
 
 
 

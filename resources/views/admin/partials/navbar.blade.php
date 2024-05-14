@@ -5,14 +5,14 @@
                 <a class="navbar-brand brand-logo mr-5" href="/dashboard" style="font-family: 'Arial', sans-serif; font-size: 22px; font-weight: bold; color:
                 #333; text-decoration: none; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); letter-spacing: 1px;">Perpustakaan</a>
 
-        <a class="navbar-brand brand-logo-mini" href="/dashboard"><img src="{{ asset('admin/images/logo-mini.svg') }}"
+        <a class="navbar-brand brand-logo-mini" href="/dashboard"><img src="{{ asset('image/logosekolah.png') }}"
                 alt="logo" /></a>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="icon-menu"></span>
         </button>
-        <ul class="navbar-nav mr-lg-2">
+        {{-- <ul class="navbar-nav mr-lg-2">
             <li class="nav-item nnav-search d-none d-lg-block">
                 <div class="input-group">
                     <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
@@ -24,9 +24,9 @@
                         aria-label="search" aria-describedby="search">
                 </div>
             </li>
-        </ul>
+        </ul> --}}
         <ul class="navbar-nav navbar-nav-right">
-            <li class="nav-item dropdown">
+            {{-- <li class="nav-item dropdown">
                 <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
                     data-toggle="dropdown">
                     <i class="icon-bell mx-0"></i>
@@ -75,27 +75,27 @@
                         </div>
                     </a>
                 </div>
-            </li>
+            </li> --}}
             <li class="nav-item nav-profile dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
                     <i class="ti-user ti-2x text-black"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                    <a class="dropdown-item" href="#">
+                    {{-- <a class="dropdown-item" href="#">
                         <i class="ti-settings text-primary"></i>
                         Settings
-                    </a>
+                    </a> --}}
                     <a href="/logout" class="dropdown-item">
                         <i class="ti-power-off text-primary"></i>
                         Logout
                     </a>
                 </div>
             </li>
-            <li class="nav-item nav-settings d-none d-lg-flex">
+            {{-- <li class="nav-item nav-settings d-none d-lg-flex">
                 <a class="nav-link" href="#">
                     <i class="icon-ellipsis"></i>
                 </a>
-            </li>
+            </li> --}}
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
             data-toggle="offcanvas">

@@ -19,7 +19,7 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background: #3498db;
+            background: #c2c9cd;
             color: #fff;
         }
 

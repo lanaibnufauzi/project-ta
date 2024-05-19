@@ -179,14 +179,14 @@
                 <p class="font-sm mb-0">&copy; 2024, <strong class="text-brand">Nest</strong> - HTML Ecommerce Template <br />All rights reserved</p>
             </div>
             <div class="col-xl-4 col-lg-6 text-center d-none d-xl-block">
-                <div class="hotline d-lg-inline-flex mr-30">
+                {{-- <div class="hotline d-lg-inline-flex mr-30">
                     <img src="{{ asset('landing/assets/imgs/theme/icons/phone-call.svg') }}" alt="hotline" />
                     <p>1900 - 6666<span>Working 8:00 - 22:00</span></p>
                 </div>
                 <div class="hotline d-lg-inline-flex">
                     <img src="{{ asset('landing/assets/imgs/theme/icons/phone-call.svg') }}" alt="hotline" />
                     <p>1900 - 8888<span>24/7 Support Center</span></p>
-                </div>
+                </div> --}}
             </div>
             <div class="col-xl-4 col-lg-6 col-md-6 text-end d-none d-md-block">
                 <div class="mobile-social-icon">

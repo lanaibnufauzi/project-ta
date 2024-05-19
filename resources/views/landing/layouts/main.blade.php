@@ -16,7 +16,7 @@
     <meta property="og:url" content="" />
     <meta property="og:image" content="" />
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('landing/assets/imgs/theme/favicon.svg') }}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('landing/logo/logo-aja.png') }}" />
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('landing/assets/css/plugins/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('landing/assets/css/main5103.css?v=6.0') }}" />

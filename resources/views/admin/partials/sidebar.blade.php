@@ -10,7 +10,6 @@
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
-        @if(Auth::check() && Auth::user()->id_role == '1')
 
         <li class="nav-item">
             <a class="nav-link" href="/buku">
@@ -48,14 +47,5 @@
                 <span class="menu-title">Pengaturan</span>
             </a>
         </li>
-        @else
-
-        <li class="nav-item">
-            <a class="nav-link" href="/user/peminjaman">
-                <i class="fas fa-handshake menu-icon"></i>
-                <span class="menu-title">Peminjaman</span>
-            </a>
-        </li>
-        @endif
     </ul>
 </nav>

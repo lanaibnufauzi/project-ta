@@ -30,67 +30,54 @@ class BukuController extends Controller
      */
     // public function create(Request $request)
 
-    public function create(Request $request, $id = null)
-{
-    //  dd($request->all());
+    public function create(Request $request)
+    {
+        //  dd($request->all());
 
-    $request->validate([
-        'isbn' => 'required',
-        'judul_buku' => 'required',
-        'deskripsi' => 'required',
-        'tema' => 'required',
-        'penerbit' => 'required',
-        'tgl_terbit' => 'required',
-        'status' => 'required',
-        'cover_buku' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-    ],[
-        'isbn.required' => 'ISBN tidak boleh kosong',
-        'judul_buku.required' => 'Judul Buku tidak boleh kosong',
-        'deskripsi.required' => 'Deskripsi tidak boleh kosong',
-        'tema.required' => 'Tema tidak boleh kosong',
-        'penerbit.required' => 'Penerbit tidak boleh kosong',
-        'tgl_terbit.required' => 'Tanggal Terbit tidak boleh kosong',
-        'status.required' => 'Status tidak boleh kosong',
-        'cover_buku.image' => 'Cover Buku harus berupa gambar',
-        'cover_buku.mimes' => 'Cover Buku harus berupa gambar',
-        'cover_buku.max' => 'Cover Buku maksimal 2MB',
-    ]);
-
-    if ($id) {
-        $buku = Buku::find($id);
-        if (!$buku) {
-            return redirect('/buku')->with('error', 'Buku tidak ditemukan');
-        }
-    } else {
+        $request->validate([
+            'isbn' => 'required',
+            'judul_buku' => 'required',
+            'jumlah_halaman' => 'required',
+            'stok' => 'required',
+            'deskripsi' => 'required',
+            'tema' => 'required',
+            'penerbit' => 'required',
+            'tgl_terbit' => 'required',
+            'cover_buku' => 'image|mimes:jpeg,png,jpg,gif,svg',
+        ], [
+            'isbn.required' => 'ISBN tidak boleh kosong',
+            'judul_buku.required' => 'Judul Buku tidak boleh kosong',
+            'jumlah_halaman.required' => 'Jumlah Halaman tidak boleh kosong',
+            'stok.required' => 'Stok tidak boleh kosong',
+            'deskripsi.required' => 'Deskripsi tidak boleh kosong',
+            'tema.required' => 'Tema tidak boleh kosong',
+            'penerbit.required' => 'Penerbit tidak boleh kosong',
+            'tgl_terbit.required' => 'Tanggal Terbit tidak boleh kosong',
+            'cover_buku.image' => 'Cover Buku harus berupa gambar',
+            'cover_buku.mimes' => 'Cover Buku harus berupa gambar',
+        ]);
 
         $buku = new Buku();
+        $buku->isbn = $request->isbn;
+        $buku->judul_buku = $request->judul_buku;
+        $buku->jumlah_halaman = $request->jumlah_halaman;
+        $buku->stok = $request->stok;
+        $buku->deskripsi = $request->deskripsi;
+        $buku->tema = $request->tema;
+        $buku->penerbit = $request->penerbit;
+        $buku->tgl_terbit = $request->tgl_terbit;
+        $buku->kategori_id = $request->kategori_id;
+
+        if ($request->hasFile('cover_buku')) {
+            $coverFile = $request->file('cover_buku');
+            $coverFileName = time() . '_' . $coverFile->getClientOriginalName();
+            $coverFile->move('public/cover', $coverFileName);
+            $buku->cover_buku = $coverFileName;
+        }
+
+        $buku->save();
+        return redirect('buku')->with('store', 'Buku berhasil ditambahkan');
     }
-
-    $buku->isbn = $request->isbn;
-    $buku->judul_buku = $request->judul_buku;
-    $buku->deskripsi = $request->deskripsi;
-    $buku->tema = $request->tema;
-    $buku->penerbit = $request->penerbit;
-    $buku->tgl_terbit = $request->tgl_terbit;
-    $buku->status = $request->status;
-    $buku->kategori_id = $request->kategori_id;
-
-    if ($request->hasFile('cover_buku')) {
-        $coverFile = $request->file('cover_buku');
-        $coverFileName = time() . '_' . $coverFile->getClientOriginalName();
-        $coverFile->storeAs('public/cover', $coverFileName);
-
-
-        $buku->cover_buku = $coverFileName;
-    }
-
-    $buku->save();
-
-    // $redirectPath = $id ? '/buku' : '/buku-create';
-    $redirectMessage = $id ? 'Buku berhasil diperbarui' : 'Buku berhasil ditambahkan';
-
-    return redirect('buku')->with('store', $redirectMessage);
-}
 
 
 
@@ -102,7 +89,7 @@ class BukuController extends Controller
      */
     public function store(Request $request)
     {
-       //
+        //
     }
 
     /**
@@ -130,15 +117,18 @@ class BukuController extends Controller
         $request->validate([
             'isbn' => 'required',
             'judul_buku' => 'required',
+            'jumlah_halaman' => 'required',
+            'stok' => 'required',
             'deskripsi' => 'required',
             'tema' => 'required',
             'penerbit' => 'required',
             'tgl_terbit' => 'required',
-            'status' => 'required',
-            'cover_buku' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ],[
+            'cover_buku' => 'image|mimes:jpeg,png,jpg,gif,svg',
+        ], [
             'isbn.required' => 'ISBN tidak boleh kosong',
             'judul_buku.required' => 'Judul Buku tidak boleh kosong',
+            'jumlah_halaman.required' => 'Jumlah Halaman tidak boleh kosong',
+            'stok.required' => 'Stok tidak boleh kosong',
             'deskripsi.required' => 'Deskripsi tidak boleh kosong',
             'tema.required' => 'Tema tidak boleh kosong',
             'penerbit.required' => 'Penerbit tidak boleh kosong',
@@ -151,40 +141,18 @@ class BukuController extends Controller
         ]);
 
         $buku = Buku::find($id);
-
-        if (!$buku) {
-            return redirect('/buku')->with('error', 'Buku tidak ditemukan');
-        }
-
         $buku->isbn = $request->isbn;
         $buku->judul_buku = $request->judul_buku;
+        $buku->jumlah_halaman = $request->jumlah_halaman;
+        $buku->stok = $request->stok;
         $buku->deskripsi = $request->deskripsi;
         $buku->tema = $request->tema;
         $buku->penerbit = $request->penerbit;
         $buku->tgl_terbit = $request->tgl_terbit;
-        $buku->status = $request->status;
         $buku->kategori_id = $request->kategori_id;
-
-
-        if ($request->hasFile('cover_buku')) {
-            $coverFile = $request->file('cover_buku');
-            $coverFileName = time() . '_' . $coverFile->getClientOriginalName();
-            $coverFile->storeAs('public/cover', $coverFileName);
-
-
-            // if ($buku->cover_buku) {
-            //     Storage::delete('public/cover/' . $buku->cover_buku);
-            // }
-
-
-            $buku->cover_buku = $coverFileName;
-        }
-
-
         $buku->save();
 
         return redirect('/buku')->with('update', 'Buku berhasil diperbarui');
-
     }
 
     /**
@@ -216,5 +184,4 @@ class BukuController extends Controller
             return redirect('/buku')->with('error', 'Buku tidak ditemukan');
         }
     }
-
 }

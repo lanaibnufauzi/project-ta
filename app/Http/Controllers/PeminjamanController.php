@@ -14,7 +14,7 @@ class PeminjamanController extends Controller
         $pinjaman = DB::table('pinjaman')
             ->join('anggota', 'pinjaman.id_anggota', '=', 'anggota.id')
             ->join('users', 'anggota.users_id', '=', 'users.id')
-            ->select('pinjaman.id as id', 'pinjaman.status as status', 'users.name as name', 'pinjaman.created_at as date')
+            ->select('pinjaman.id as id', 'pinjaman.status as status', 'users.name as name',  'pinjaman.tgl_pinjam as tgl_pinjam', 'pinjaman.tgl_kembali as tgl_kembali')
             ->get();
         return view('admin.pages.peminjaman', [
             'pinjaman' => $pinjaman
@@ -27,10 +27,10 @@ class PeminjamanController extends Controller
         $pinjaman->status = $request->status;
         $pinjaman->save();
 
-        if ($request->status == 'Dikembalikan') {
+        if ($request->status == 'Kembali') {
             $detailbuku = DetailPinjaman::where('pinjaman_id', $id)->get();
             foreach ($detailbuku as $detail) {
-                $detail->buku->status = 'Tersedia';
+                // $detail->buku->status = 'Tersedia';
                 $detail->buku->save();
             }
         }

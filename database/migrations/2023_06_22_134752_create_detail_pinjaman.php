@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('pinjaman_id')->references('id')->on('pinjaman');
             $table->unsignedBigInteger('buku_id');
             $table->foreign('buku_id')->references('id')->on('buku');
+            $table->string('kondisi_buku')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detail_pinjaman_colom');
+        Schema::dropIfExists('detail_pinjaman');
     }
 };

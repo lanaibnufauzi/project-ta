@@ -10,16 +10,24 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PeminjamanController;
-use App\Http\Controllers\DashboardUserController;
+
+use App\Http\Controllers\User\LandingController;
+use App\Http\Controllers\User\AuthController as UserAuthController;
+use App\Http\Controllers\User\DetailProductController;
+use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\WishlistController;
+use App\Http\Controllers\User\AccountController;
+use App\Http\Controllers\User\Peminjaman;
+
 
 # landing
 // Route::get('/', function () {
 //     return view('landing.pages.index');
 // });
 
-Route::get('/', function () {
-    return view('user.pages.landingUser');
-});
+// Route::get('/', function () {
+//     return view('user.pages.landingUser');
+// });
 
 
 
@@ -31,7 +39,7 @@ Route::post('/register', [RegisterController::class, 'create'])->name('register.
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('IsAdmin');
 
 # Dashboard
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('IsAdmin');
 
 # Pengguna
 Route::get('/pengguna', [AnggotaController::class, 'index'])->name('pengguna')->middleware('IsAdmin');
@@ -56,9 +64,36 @@ Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('peminja
 Route::put('/peminjaman/{id}', [PeminjamanController::class, 'editstatus'])->middleware('IsAdmin');
 
 
-# User
-Route::get('/user/peminjaman', [PinjamController::class, 'index']);
-Route::post('/user/peminjaman/store', [PinjamController::class, 'storepinjaman']);
-Route::get('/user/peminjaman/detail/{id}', [PinjamController::class, 'detailpeminjaman']);
-Route::post('/user/peminjaman/storebuku', [PinjamController::class, 'storebuku']);
-Route::delete('/user/peminjaman/delete/{id}', [PinjamController::class, 'deletebuku']);
+# Landing User
+Route::get('/', [LandingController::class, 'index']);
+Route::get('/user/detail-product/{id}', [DetailProductController::class, 'index']);
+
+# Auth User
+Route::get('/user/login', [UserAuthController::class, 'indexLogin']);
+Route::get('/user/register', [UserAuthController::class, 'indexRegister']);
+Route::post('/user/login', [UserAuthController::class, 'postLogin']);
+Route::post('/user/register', [UserAuthController::class, 'postRegister']);
+
+
+// middleware group
+Route::group(['middleware' => 'IsUser'], function () {
+
+    Route::get('/user/logout', [UserAuthController::class, 'userLogout']);
+    Route::post('/user/update-profil ', [UserAuthController::class, 'updateprofil']);
+
+
+    # Cart
+    Route::get('/user/cart', [CartController::class, 'index']);
+    Route::put('/user/cart/{id}', [CartController::class, 'cart']);
+
+    # Wishlist
+    Route::get('/user/wishlist', [WishlistController::class, 'index']);
+    Route::put('/user/wishlist/{id}', [WishlistController::class, 'wishlist']);
+    Route::delete('/user/wishlist/{id}', [WishlistController::class, 'delete']);
+
+    # Account
+    Route::get('/user/account', [AccountController::class, 'index']);
+
+    # Peminjaman
+    Route::post('/user/peminjaman', [Peminjaman::class, 'pinjam']);
+});

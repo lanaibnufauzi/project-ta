@@ -35,7 +35,11 @@
                                     <th>No</th>
                                     <th>Nama</th>
                                     <th>Tanggal Pinjam</th>
+                                    <th>Tanggal Kembali</th>
+                                    <th>Jumlah Hari Telat</th>
+                                    <th>Total Telat Denda</th>
                                     <th>Status</th>
+                                    <th>Detail Buku</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -44,30 +48,70 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $data->name }}</td>
-                                    <td>{{ $data->date }}</td>
+                                    <td>{{ $data->tgl_pinjam }}</td>
+                                    <td>{{ $data->tgl_kembali }}</td>
+                                    <td>
+                                        <?php
+                                        $tanggal_kembali = strtotime($data->tgl_kembali);
+                                        $tanggal_sekarang = strtotime(date('Y-m-d'));
+                                        $telat = ($tanggal_sekarang - $tanggal_kembali) / (60 * 60 * 24);
+
+                                        if($data->status == 'Kembali'){
+                                        echo '0';
+                                        // jika telat sama dengan 0 dan kurang dari 0 dan statusnya pinjam maka akan di tampilkan 0
+                                        } elseif ($telat < 0 && $data->status == 'Pinjam') {
+                                        echo '0';
+                                        }else{
+                                        echo $telat;
+                                        }
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if($data->status == 'Kembali'){
+                                            echo '0';
+                                        }
+                                        elseif ($telat < 0 && $data->status == 'Pinjam') {
+                                            echo '0';
+                                        }
+                                        else {
+                                            $jumlah_hari_telat = $telat;
+                                            $jumlah_buku_yang_di_pinjam = \App\Models\DetailPinjaman::where('pinjaman_id', $data->id)->count();
+                                            $denda = \App\Models\KategoriDenda::where('nama_kategori', 'Telat')->first()->harga_kategori;
+
+                                             echo $jumlah_hari_telat * $jumlah_buku_yang_di_pinjam * $denda;
+
+                                        }
+                                    ?>
+                                    </td>
+
                                     <td>
                                         @php
                                         $jumlah_buku = DB::table('detail_pinjaman')->where('pinjaman_id', $data->id)->count();
                                         @endphp
 
-                                        @if ($data->status == 'Dikembalikan')
+                                        @if ($data->status == 'Kembali')
                                         <span class="badge badge-success">{{ $data->status }}</span>
-                                        @elseif ($data->status == 'Dipinjam')
+                                        @elseif ($data->status == 'Pinjam')
                                         <span class="badge badge-warning">{{ $data->status }}</span>
-                                        @else
-                                        @if ($jumlah_buku == 0)
-                                        <span class="badge badge-danger">Belum Meminjam Buku</span>
-                                        @else
-                                        <span class="badge badge-warning">Menunggu Konfirmasi</span>
                                         @endif
-                                        @endif
-
-
-
 
                                     </td>
+
                                     <td>
-                                        <a href="/user/peminjaman/detail/{{ $data->id }}" class="btn btn-primary btn-sm">Detail Buku</a>
+                                        @php
+                                        $detail_buku = \App\Models\DetailPinjaman::where('pinjaman_id', $data->id)->get();
+                                        $no = 1;
+                                        @endphp
+                                        <ul>
+                                            @foreach ($detail_buku as $buku)
+                                            <li>{{ $no++ }}. {{ $buku->buku->judul_buku }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </td>
+
+                                    <td>
+
                                         <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal{{ $data->id }}">Edit</button>
                                     </td>
                                 </tr>
@@ -89,9 +133,9 @@
                                                     <div class="form-group">
                                                         <label for="penerbit" class="col-form-label">Status</label>
                                                         <select name="status" class="form-control" id="status" required>
-                                                            <option disabled>Pilih Status</option>
-                                                            <option value="Dipinjam">Dipinjam</option>
-                                                            <option value="Dikembalikan">Dikembalikan</option>
+                                                            <option disabled selected>Pilih Status</option>
+                                                            {{-- <option value="Dipinjam">Dipinjam</option> --}}
+                                                            <option value="Kembali">Dikembalikan</option>
                                                         </select>
                                                     </div>
                                                 </div>

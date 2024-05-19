@@ -20,6 +20,8 @@ class buku extends Model
         'tgl_terbit',
         'cover_buku',
         'kategori_id',
+        'jumlah_halaman',
+        'stok'
     ];
 
     public function kategori()
@@ -27,8 +29,13 @@ class buku extends Model
         return $this->belongsTo(Kategori::class, 'kategori_id', 'id');
     }
 
-    public function detailBuku()
+    public function cart()
     {
-        return $this->hasOne(Detail_Buku::class, 'buku_id', 'id');
+        return $this->hasMany(Cart::class);
+    }
+
+    public function wishlist()
+    {
+        return $this->hasMany(Wishlist::class);
     }
 }

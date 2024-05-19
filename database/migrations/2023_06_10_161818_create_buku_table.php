@@ -17,12 +17,13 @@ return new class extends Migration
             $table->id();
             $table->string('isbn');
             $table->string('judul_buku');
-            $table->string('deskripsi');
+            $table->longText('deskripsi');
             $table->string('tema');
             $table->string('penerbit');
             $table->date('tgl_terbit');
             $table->string('cover_buku');
-            $table->enum('status', ['Tersedia', 'Di Pinjam',]);
+            $table->integer('jumlah_halaman');
+            $table->integer('stok');
             $table->timestamps();
         });
     }

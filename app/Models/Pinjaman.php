@@ -13,6 +13,9 @@ class Pinjaman extends Model
 
     protected $fillable = [
         'id_anggota',
+        'tgl_pinjam',
+        'tgl_kembali',
+        'status',
     ];
 
     public function anggota()

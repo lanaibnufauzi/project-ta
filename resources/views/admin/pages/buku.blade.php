@@ -42,7 +42,9 @@
                                     <th>Tema</th>
                                     <th>Penerbit</th>
                                     <th>Tanggal Terbit</th>
-                                    <th>Status</th>
+                                    <th>Jumlah Halaman</th>
+                                    <th>Stok</th>
+                                    <th>Sisa Stok</th>
                                     <th>Kategori</th>
                                     <th>Action</th>
                                 </tr>
@@ -52,14 +54,25 @@
                                 @foreach ($databuku as $data)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td><img src="{{ asset('storage/cover/' . $data->cover_buku) }}" alt="" srcset=""></td>
+                                    <td><img src="{{ asset('public/cover/' . $data->cover_buku) }}" alt="" srcset=""></td>
                                     <td>{{ $data->judul_buku }}</td>
                                     <td>{{ $data->isbn }}</td>
                                     <td>{{ $data->tema }}</td>
                                     <td>{{ $data->penerbit }}</td>
                                     <td>{{ $data->tgl_terbit }}</td>
+                                    <td>{{ $data->jumlah_halaman }}</td>
+                                    <td>{{ $data->stok }}</td>
                                     <td>
-                                        <span class="badge @if ($data->status == 'Tersedia') badge-success @elseif($data->status == 'Di Pinjam') badge-info text-dark @endif">{{ $data->status }}</span>
+                                        @php
+                                        $jumlah_buku_dipinjam = DB::table('pinjaman')
+                                        ->join('detail_pinjaman', 'pinjaman.id', '=', 'detail_pinjaman.pinjaman_id')
+                                        ->where('detail_pinjaman.buku_id', $data->id)
+                                        ->where('pinjaman.status', 'Pinjam')
+                                        ->count();
+
+                                        $sisa_stok = $data->stok - $jumlah_buku_dipinjam;
+                                        echo $sisa_stok;
+                                        @endphp
                                     </td>
                                     <td>{{ $data->kategori->nama_kategori }}</td>
                                     <td>
@@ -119,7 +132,15 @@
                                                     <div class="form-group">
                                                         <label for="cover_buku" class="col-form-label">Cover
                                                             Buku</label>
-                                                        <input type="file" name="cover_buku" class="form-control-file" id="cover_buku" accept="image/*">
+                                                        <input type="file" name="cover_buku" class="form-control-file" id="cover_buku">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="judul_buku" class="col-form-label">Jumlah Halaman</label>
+                                                        <input type="text" value="{{ $data->jumlah_halaman }}" name="jumlah_halaman" class="form-control" id="judul_buku" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="judul_buku" class="col-form-label">Stok</label>
+                                                        <input type="text" value="{{ $data->stok }}" name="stok" class="form-control" id="judul_buku" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="deskripsi" class="col-form-label">Deskripsi</label>
@@ -137,15 +158,6 @@
                                                         <label for="tgl_terbit" class="col-form-label">Tanggal
                                                             Terbit</label>
                                                         <input type="date" value="{{ $data->tgl_terbit }}" name="tgl_terbit" class="form-control" id="tgl_terbit" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="status" class="col-form-label">Status</label>
-                                                        <select name="status" class="form-control" id="status" required>
-                                                            <option value="Tersedia" {{ $data->status == 'Tersedia' ? 'selected' : '' }}>
-                                                                Tersedia</option>
-                                                            <option value="Di Pinjam" {{ $data->status == 'Dipinjam' ? 'selected' : '' }}>
-                                                                Di Pinjam</option>
-                                                        </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="penerbit" class="col-form-label">Kategori</label>
@@ -199,7 +211,15 @@
                     </div>
                     <div class="form-group">
                         <label for="cover_buku" class="col-form-label">Cover Buku</label>
-                        <input type="file" name="cover_buku" class="form-control-file" id="cover_buku" accept="image/*" required>
+                        <input type="file" name="cover_buku" class="form-control" id="cover_buku" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="judul_buku" class="col-form-label">Jumlah Halaman</label>
+                        <input type="text" value="" name="jumlah_halaman" class="form-control" id="judul_buku" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="judul_buku" class="col-form-label">Stok</label>
+                        <input type="text" value="" name="stok" class="form-control" id="judul_buku" required>
                     </div>
                     <div class="form-group">
                         <label for="deskripsi" class="col-form-label">Deskripsi</label>
@@ -225,7 +245,7 @@
                 <label for="tgl_terbit" class="col-form-label">Kategori</label>
                 <input type="date" value="{{ $data->nama_kategori }}" name="nama_kaegori" class="form-control" id="tgl_terbit" required>
                 </div> --}}
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="status" class="col-form-label">Status</label>
                     <select name="status" class="form-control" id="status" required>
                         <option value="Tersedia">Tersedia
@@ -233,7 +253,7 @@
                         <option value="Di pinjam">Di pinjam
                         </option>
                     </select>
-                </div>
+                </div> --}}
                 <div class="form-group">
                     <label for="penerbit" class="col-form-label">Kategori</label>
                     <select name="kategori_id" class="form-control" id="kategori_id" required>

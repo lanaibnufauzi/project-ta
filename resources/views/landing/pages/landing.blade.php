@@ -4,21 +4,18 @@
     <div class="container">
         <div class="home-slide-cover mt-30">
             <div class="hero-slider-1 style-4 dot-style-1 dot-style-1-position-1">
-                <div class="single-hero-slider single-animation-wrap" style="background-image: url('https://images.unsplash.com/photo-1536965764833-5971e0abed7c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')">
+                <div class="single-hero-slider single-animation-wrap" style="background-image: url('https://images.unsplash.com/photo-1479142506502-19b3a3b7ff33?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D  ')">
                     <div class="slider-content">
                         <h1 style="
                         color: white;
                             " class="display-2 mb-40">
-                            Don’t miss amazing<br />
-                            grocery deals
+                            Membaca adalah petualangan <br />
+                            yang tak terlupakan.
                         </h1>
                         <p style="
                         color: white;
-                            " class="mb-65">Sign up for the daily newsletter</p>
-                        {{-- <form class="form-subcriber d-flex">
-                            <input type="email" placeholder="Your emaill address" />
-                            <button class="btn" type="submit">Subscribe</button>
-                        </form> --}}
+                            " class="mb-65">J.K. Rowling</p>
+
                     </div>
                 </div>
                 <div class="single-hero-slider single-animation-wrap" style="background-image: url('https://images.unsplash.com/photo-1479142506502-19b3a3b7ff33?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')">
@@ -26,12 +23,13 @@
                         <h1 style="
                         color: white;
                             " class="display-2 mb-40">
-                            Fresh Vegetables<br />
-                            Big discount
+                            Buku adalah sahabat <br />
+                            terbaik manusia.
+                            {{-- Big discount --}}
                         </h1>
                         <p style="
                         color: white;
-                            " class="mb-65">Save up to 50% off on your first order</p>
+                            " class="mb-65">Ralph Waldo Emerson</p>
                         {{-- <form class="form-subcriber d-flex">
                             <input type="email" placeholder="Your emaill address" />
                             <button class="btn" type="submit">Subscribe</button>

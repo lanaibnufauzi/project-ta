@@ -1,5 +1,5 @@
 @extends('landing.layouts.main')
-
+@section('title', 'Account - ')
 @section('content')
 <div class="page-header breadcrumb-wrap">
     <div class="container">

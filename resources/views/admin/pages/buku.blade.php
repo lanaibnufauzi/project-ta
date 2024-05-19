@@ -234,10 +234,6 @@
                         <input type="text" value="" name="penerbit" class="form-control" id="penerbit" required>
                     </div>
                     <div class="form-group">
-                        <label for="penerbit" class="col-form-label">Penerbit</label>
-                        <input type="text" value="" name="penerbit" class="form-control" id="penerbit" required>
-                    </div>
-                    <div class="form-group">
                         <label for="tgl_terbit" class="col-form-label">Tanggal Terbit</label>
                         <input type="date" name="tgl_terbit" class="form-control" id="tgl_terbit" required>
                     </div>

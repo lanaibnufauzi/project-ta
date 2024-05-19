@@ -444,10 +444,10 @@
         </nav>
     </div>
     </div>
-    <div class="hotline d-none d-lg-flex">
+    {{-- <div class="hotline d-none d-lg-flex">
         <img src="{{ asset('landing/assets/imgs/theme/icons/icon-headphone.svg') }}" alt="hotline" />
         <p>1900 - 888<span>24/7 Support Center</span></p>
-    </div>
+    </div> --}}
     <div class="header-action-icon-2 d-block d-lg-none">
         <div class="burger-icon burger-icon-white">
             <span class="burger-icon-top"></span>

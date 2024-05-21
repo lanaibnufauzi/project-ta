@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('status')->nullable();
             $table->date('tgl_pinjam');
             $table->date('tgl_kembali');
+            $table->dateTime('confirmation_deadline');
             $table->timestamps();
         });
     }

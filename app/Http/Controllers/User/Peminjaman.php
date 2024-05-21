@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\DetailPinjaman;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class Peminjaman extends Controller
@@ -21,7 +22,8 @@ class Peminjaman extends Controller
 
         $pinjaman = new Pinjaman();
         $pinjaman->id_anggota = $id_anggota;
-        $pinjaman->status = 'Pinjam';
+        $pinjaman->status = 'Pending';
+        $pinjaman->confirmation_deadline = Carbon::now()->addMinutes(15);
         $pinjaman->tgl_pinjam = date('Y-m-d');
         $pinjaman->tgl_kembali = date('Y-m-d', strtotime('+3 days'));
         $pinjaman->save();

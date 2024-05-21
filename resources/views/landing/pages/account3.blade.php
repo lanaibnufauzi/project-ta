@@ -70,6 +70,7 @@
                                                         <th>Jumlah Hari Telat</th>
                                                         <th>Total Telat Denda</th>
                                                         <th>Detail Buku</th>
+                                                        <th>Barcode</th>
 
                                                     </tr>
                                                 </thead>
@@ -86,10 +87,10 @@
                                                             $tanggal_sekarang = strtotime(date('Y-m-d'));
                                                             $telat = ($tanggal_sekarang - $tanggal_kembali) / (60 * 60 * 24);
 
-                                                            if($data->status == 'Kembali'){
+                                                            if($data->status == 'Kembali' || $data->status == 'Pending' || $data->status == 'Gagal'){
                                                             echo '0';
                                                             // jika telat sama dengan 0 dan kurang dari 0 dan statusnya pinjam maka akan di tampilkan 0
-                                                            } elseif ($telat < 0 && $data->status == 'Pinjam') {
+                                                            } elseif ($telat < 0 && $data->status == 'Pinjam' ) {
                                                             echo '0';
                                                             }else{
                                                             echo $telat;
@@ -98,7 +99,7 @@
                                                         </td>
                                                         <td>
                                                             <?php
-                                                                if($data->status == 'Kembali'){
+                                                                if($data->status == 'Kembali' || $data->status == 'Pending' || $data->status == 'Gagal'){
                                                                     echo '0';
                                                                 }
                                                                 elseif ($telat < 0 && $data->status == 'Pinjam') {
@@ -124,6 +125,12 @@
                                                                 <li>{{ $no++ }}. {{ $buku->buku->judul_buku }}</li>
                                                                 @endforeach
                                                             </ul>
+                                                        </td>
+                                                        <td>
+                                                            @php
+                                                            $enkripsi = Crypt::encryptString($data->id);
+                                                            @endphp
+                                                            {!! DNS2D::getBarcodeHTML($enkripsi, 'QRCODE', 3,3) !!}
                                                         </td>
                                                     </tr>
                                                     @endforeach

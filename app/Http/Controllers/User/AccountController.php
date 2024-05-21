@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\User;
 
+use Carbon\Carbon;
+use App\Models\kategori;
+use App\Models\Pinjaman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\kategori;
 use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
@@ -21,6 +23,15 @@ class AccountController extends Controller
             ->orderBy('pinjaman.id', 'desc')
             ->get();
 
+        $cek = Pinjaman::where('status', 'Pending')
+            ->where('confirmation_deadline', '<', Carbon::now())
+            ->get();
+
+        foreach ($cek as $cek_status) {
+            $cek_status->status = 'Gagal';
+            $cek_status->save();
+        }
+        
         return view('landing.pages.account3', [
             'pinjaman' => $pinjaman,
             'kategori' => $kategori

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DetailPinjaman;
+use Carbon\Carbon;
 use App\Models\Pinjaman;
 use Illuminate\Http\Request;
+use App\Models\DetailPinjaman;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Crypt;
 
 class PeminjamanController extends Controller
 {
@@ -16,6 +18,18 @@ class PeminjamanController extends Controller
             ->join('users', 'anggota.users_id', '=', 'users.id')
             ->select('pinjaman.id as id', 'pinjaman.status as status', 'users.name as name',  'pinjaman.tgl_pinjam as tgl_pinjam', 'pinjaman.tgl_kembali as tgl_kembali')
             ->get();
+
+        $cek = Pinjaman::where('status', 'Pending')
+            ->where('confirmation_deadline', '<', Carbon::now())
+            ->get();
+
+        foreach ($cek as $cek_status) {
+            $cek_status->status = 'Gagal';
+            $cek_status->save();
+        }
+
+
+
         return view('admin.pages.peminjaman', [
             'pinjaman' => $pinjaman
         ]);
@@ -33,8 +47,33 @@ class PeminjamanController extends Controller
                 // $detail->buku->status = 'Tersedia';
                 $detail->buku->save();
             }
+        } elseif ($request->status == 'Pinjam') {
+            if (Carbon::now()->lt($pinjaman->confirmation_deadline)) {
+                $pinjaman->status = 'Pinjam';
+                $pinjaman->save();
+            }
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Status peminjaman berhasil diubah');
+    }
+
+    public function kembalikan_buku(Request $request)
+    {
+        $id_peminjaman = Crypt::decryptString($request->peminjaman_id);
+        $datapeminjaman = Pinjaman::find($id_peminjaman);
+
+        if ($datapeminjaman->status == 'Pinjam') {
+            $datapeminjaman->status = 'Kembali';
+            $datapeminjaman->save();
+            return response()->json([
+                'success' => 'berhasil',
+                'message' => 'Pengembalian Buku Berhasil'
+            ]);
+        } else {
+            return response()->json([
+                'success' => 'gagal',
+                'message' => 'Pengembalian Buku Gagal'
+            ]);
+        }
     }
 }

@@ -155,7 +155,7 @@
                     <div class="tab-content shop_info_tab entry-main-content">
                         <div class="tab-pane fade show active" id="Description">
                             <div class="">
-                                <p>{{ $buku->deskripsi }}</p>
+                                <p id="enkripsi-deskripsi">{{ $buku->deskripsi }}</p>
 
 
                             </div>
@@ -244,6 +244,7 @@
                                     @foreach ($relate_buku as $item )
 
 
+<<<<<<< HEAD
                         <div class="col-lg-3 col-md-4 col-12 col-sm-6">
                             <div class="product-cart-wrap hover-up">
                                 <div class="product-img-action-wrap">
@@ -265,6 +266,29 @@
                                 <div class="product-content-wrap">
                                     <h2><a href='/user/detail-product/{{ $item->id }}' tabindex='0'>{{ $item->judul_buku }}</a></h2>
                                     {{-- <div class="rating-result" title="90%">
+=======
+                                    <div class="col-lg-3 col-md-4 col-12 col-sm-6">
+                                        <div class="product-cart-wrap hover-up">
+                                            <div class="product-img-action-wrap">
+                                                <div class="product-img product-img-zoom">
+                                                    <a href='/user/detail-product/{{ $item->id }}' tabindex='0'>
+                                                        <img class="default-img" src="{{ asset('public/cover/' . $item->cover_buku) }}" alt="" />
+                                                        <img class="hover-img" src="{{ asset('public/cover/' . $item->cover_buku) }}" alt="" />
+                                                    </a>
+                                                </div>
+                                                <div class="product-action-1">
+                                                    <a aria-label='Add To Wishlist' class='action-btn' href='shop-wishlist.html'><i class="fi-rs-heart"></i></a>
+                                                    {{-- <a aria-label='Compare' class='action-btn' href='shop-compare.html'><i class="fi-rs-shuffle"></i></a> --}}
+                                                    <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
+                                                </div>
+                                                <div class="product-badges product-badges-position product-badges-mrg">
+                                                    <span class="hot">Buku Lain</span>
+                                                </div>
+                                            </div>
+                                            <div class="product-content-wrap">
+                                                <h2><a href='/user/detail-product/{{ $item->id }}' tabindex='0'>{{ $item->judul_buku }}</a></h2>
+                                                {{-- <div class="rating-result" title="90%">
+>>>>>>> ed00aa17caa363a2e645a7638d124302c5063d86
                                         <span> </span>
                                     </div>
                                     <div class="product-price">
@@ -283,4 +307,19 @@
                 </div>
             </div>
         </div>
-        @endsection
+
+    </div>
+</div>
+@endsection
+
+@section('script')
+<script>
+    // ketika klik kanan hasil copy akan di enkripsi dengan aes 128
+    document.addEventListener('copy', function(e) {
+        var selection = window.getSelection();
+        e.clipboardData.setData('text/plain', selection.toString().replace(/./g, '*'));
+        e.preventDefault();
+    });
+
+</script>
+@endsection

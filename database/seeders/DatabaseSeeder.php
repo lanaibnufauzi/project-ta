@@ -98,18 +98,18 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        // buku::create([
-        //     'isbn' => '978-3-16-148410-0',
-        //     'judul_buku' => 'The Fault in Our Stars',
-        //     'deskripsi' => 'The Fault in Our Stars adalah novel remaja yang ditulis oleh John Green. Novel ini menceritakan kisah cinta dua remaja, Hazel Grace Lancaster dan Augustus Waters, yang sama-sama mengidap kanker.',
-        //     'tema' => 'Romance',
-        //     'penerbit' => 'Penguin Group',
-        //     'tgl_terbit' => '2012-01-10',
-        //     'cover_buku' => 'https://images-na.ssl-images-amazon.com/images/I/51UvKuZ8JNL._SX331_BO1,204,203,200_.jpg',
-        //     'jumlah_halaman' => '313',
-        //     'stok' => '10',
-        //     'kategori_id' => '1'
-        // ]);
+        buku::create([
+            'isbn' => '978-3-16-148410-0',
+            'judul_buku' => 'The Fault in Our Stars',
+            'deskripsi' => 'The Fault in Our Stars adalah novel remaja yang ditulis oleh John Green. Novel ini menceritakan kisah cinta dua remaja, Hazel Grace Lancaster dan Augustus Waters, yang sama-sama mengidap kanker.',
+            'tema' => 'Romance',
+            'penerbit' => 'Penguin Group',
+            'tgl_terbit' => '2012-01-10',
+            'cover_buku' => 'https://images-na.ssl-images-amazon.com/images/I/51UvKuZ8JNL._SX331_BO1,204,203,200_.jpg',
+            'jumlah_halaman' => '313',
+            'stok' => '10',
+            'kategori_id' => '1'
+        ]);
 
         // buku::create([
         //     'isbn' => '978-3-16-148410-1',

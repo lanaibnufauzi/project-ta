@@ -30,7 +30,7 @@ class User extends Authenticatable
         'alamat',
     ];
 
-    // // encrypt aes 128 name
+    // encrypt aes 128 name
     // public function setNameAttribute($value)
     // {
     //     $this->attributes['name'] = Crypt::encryptString($value);

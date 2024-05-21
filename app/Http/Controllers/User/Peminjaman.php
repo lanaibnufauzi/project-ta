@@ -42,8 +42,11 @@ class Peminjaman extends Controller
                 ->where('detail_pinjaman.buku_id', $item->id_buku)
                 ->where('pinjaman.status', 'Pending')
                 ->count();
-                
-            if ($cek_buku->jumlah_buku - $jumlah_buku_dipinjam - $jumlah_buku_pending <= 0) {
+
+            $jumlah_buku_dipinjam = $jumlah_buku_dipinjam + $jumlah_buku_pending;
+            $sisa_buku = $cek_buku->jumlah_buku - $jumlah_buku_dipinjam;
+
+            if ($sisa_buku < 0) {
                 return redirect()->back()->with('stoktidakada', 'Stok buku tidak mencukupi');
             }
 

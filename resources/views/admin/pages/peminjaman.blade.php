@@ -404,4 +404,14 @@
 
 </script>
 @endif
+@if(Session::get('ubahstatus'))
+<script>
+    Swal.fire({
+        icon: 'success'
+        , title: 'Good'
+        , text: 'Status Berhasil Diubah'
+    , });
+
+</script>
+@endif
 @endsection

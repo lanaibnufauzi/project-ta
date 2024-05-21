@@ -84,9 +84,9 @@ class DatabaseSeeder extends Seeder
 
 
         User::create([
-            'name' => 'ibnu',
-            'email' => 'ibnu@admin.com',
-            'password' => bcrypt('ibnu'),
+            'name' => 'ilham',
+            'email' => 'ilham@gmail.com',
+            'password' => bcrypt('1'),
             'no_handphone' => '085233918803',
             'alamat' => 'Jember',
             'id_role' => 2,

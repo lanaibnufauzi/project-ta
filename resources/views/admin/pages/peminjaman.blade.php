@@ -112,11 +112,63 @@
                                         @php
                                         $detail_buku = \App\Models\DetailPinjaman::where('pinjaman_id', $data->id)->get();
                                         $no = 1;
+
+                                        $buku_rusak = \App\Models\DetailPinjaman::where('pinjaman_id', $data->id)->where('kondisi_buku', 'Rusak')->count();
+                                        $buku_hilang = \App\Models\DetailPinjaman::where('pinjaman_id', $data->id)->where('kondisi_buku', 'Hilang')->count();
+
+                                        $denda_rusak = \App\Models\KategoriDenda::where('nama_kategori', 'Rusak')->first()->harga_kategori;
+                                        $denda_hilang = \App\Models\KategoriDenda::where('nama_kategori', 'Hilang')->first()->harga_kategori;
+
+                                        $total_denda_rusak = $buku_rusak * $denda_rusak;
+                                        $total_denda_hilang = $buku_hilang * $denda_hilang;
+
+                                        $total_denda = $total_denda_rusak + $total_denda_hilang;
+
                                         @endphp
                                         <ul>
                                             @foreach ($detail_buku as $buku)
-                                            <li>{{ $no++ }}. {{ $buku->buku->judul_buku }}</li>
+                                            <li>{{ $no++ }}. {{ $buku->buku->judul_buku }} <br> Kondisi Buku : {{ $buku->kondisi_buku }} <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editkondisiModal{{ $buku->id }}">Edit</button></li>
+
+
+
+                                            <!-- Edit Modal -->
+                                            <div class="modal fade" id="editkondisiModal{{ $buku->id }}" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="defaultModalLabel">Edit Kondisi Buku</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form action="/peminjaman/kondisi/{{ $buku->id }}" method="POST" enctype="multipart/form-data">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <div class="modal-body">
+                                                                <div class="form-group">
+                                                                    <label for="penerbit" class="col-form-label">Status</label>
+                                                                    <select name="kondisi_buku" class="form-control" id="status" required>
+                                                                        <option disabled selected>Pilih Status</option>
+                                                                        <option value="Baik">Baik</option>
+                                                                        <option value="Rusak">Rusak</option>
+                                                                        <option value="Hilang">Hilang</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn mb-2 btn-danger" data-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn mb-2 btn-success">Save
+                                                                    changes</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             @endforeach
+
+                                            <div class="mt-2">
+                                                <h5> Total Denda Kondisi : Rp. {{ number_format($total_denda, 0, ',', '.') }}</h5>
+                                            </div>
                                         </ul>
                                     </td>
 
@@ -338,6 +390,26 @@
         icon: 'error'
         , title: 'Oops..'
         , text: 'Oops..'
+    , });
+
+</script>
+@endif
+@if(Session::get('kondisibuku'))
+<script>
+    Swal.fire({
+        icon: 'success'
+        , title: 'Good'
+        , text: 'Kondisi Buku Berhasil Diubah'
+    , });
+
+</script>
+@endif
+@if(Session::get('ubahstatus'))
+<script>
+    Swal.fire({
+        icon: 'success'
+        , title: 'Good'
+        , text: 'Status Berhasil Diubah'
     , });
 
 </script>

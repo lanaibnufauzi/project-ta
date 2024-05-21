@@ -14,6 +14,7 @@ class DetailPinjaman extends Model
     protected $fillable = [
         'pinjaman_id',
         'buku_id',
+        'kondisi_buku',
     ];
 
     public function pinjaman()

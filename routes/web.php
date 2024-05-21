@@ -63,6 +63,7 @@ Route::put('/kategori-edit/{id}', [KategoriController::class, 'edit'])->middlewa
 Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman')->middleware('IsAdmin');
 Route::put('/peminjaman/{id}', [PeminjamanController::class, 'editstatus'])->middleware('IsAdmin');
 Route::post('/peminjaman/kembalikan', [PeminjamanController::class, 'kembalikan_buku'])->middleware('IsAdmin');
+Route::put('/peminjaman/kondisi/{id}', [PeminjamanController::class, 'kondisibuku'])->middleware('IsAdmin');
 
 
 # Landing User

@@ -90,7 +90,13 @@
                                         ->where('pinjaman.status', 'Pinjam')
                                         ->count();
 
-                                        $jumlah_buku = $buku->stok - $jumlah_buku_dipinjam;
+                                        $jumlah_buku_pending = DB::table('pinjaman')
+                                        ->join('detail_pinjaman', 'pinjaman.id', '=', 'detail_pinjaman.pinjaman_id')
+                                        ->where('detail_pinjaman.buku_id', $data->id)
+                                        ->where('pinjaman.status', 'Pending')
+                                        ->count();
+
+                                        $jumlah_buku = $buku->stok - $jumlah_buku_dipinjam - $jumlah_buku_pending;
                                         @endphp
 
                                         {{ $jumlah_buku }}
@@ -206,7 +212,7 @@
                                     </div>
                                 </div>
                             </div> --}}
-                            {{-- <ul class="contact-infor mb-50">
+                        {{-- <ul class="contact-infor mb-50">
                                 <li><img src="assets/imgs/theme/icons/icon-location.svg" alt="" /><strong>Address: </strong> <span>5171 W Campbell Ave undefined Kent, Utah 53127 United States</span></li>
                                 <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt="" /><strong>Contact Seller:</strong><span>(+91) - 540-025-553</span></li>
                             </ul>
@@ -229,15 +235,16 @@
                     </div>
                 </div>
             </div> --}}
-            <div class="row mt-60">
-                <div class="col-12">
-                    <h2 class="section-title style-1 mb-30">Buku Lain</h2>
-                </div>
-                <div class="col-12">
-                    <div class="row related-products">
-                        @foreach ($relate_buku as $item )
+                        <div class="row mt-60">
+                            <div class="col-12">
+                                <h2 class="section-title style-1 mb-30">Buku Lain</h2>
+                            </div>
+                            <div class="col-12">
+                                <div class="row related-products">
+                                    @foreach ($relate_buku as $item )
 
 
+<<<<<<< HEAD
                         <div class="col-lg-3 col-md-4 col-12 col-sm-6">
                             <div class="product-cart-wrap hover-up">
                                 <div class="product-img-action-wrap">
@@ -259,22 +266,45 @@
                                 <div class="product-content-wrap">
                                     <h2><a href='/user/detail-product/{{ $item->id }}' tabindex='0'>{{ $item->judul_buku }}</a></h2>
                                     {{-- <div class="rating-result" title="90%">
+=======
+                                    <div class="col-lg-3 col-md-4 col-12 col-sm-6">
+                                        <div class="product-cart-wrap hover-up">
+                                            <div class="product-img-action-wrap">
+                                                <div class="product-img product-img-zoom">
+                                                    <a href='/user/detail-product/{{ $item->id }}' tabindex='0'>
+                                                        <img class="default-img" src="{{ asset('public/cover/' . $item->cover_buku) }}" alt="" />
+                                                        <img class="hover-img" src="{{ asset('public/cover/' . $item->cover_buku) }}" alt="" />
+                                                    </a>
+                                                </div>
+                                                <div class="product-action-1">
+                                                    <a aria-label='Add To Wishlist' class='action-btn' href='shop-wishlist.html'><i class="fi-rs-heart"></i></a>
+                                                    {{-- <a aria-label='Compare' class='action-btn' href='shop-compare.html'><i class="fi-rs-shuffle"></i></a> --}}
+                                                    <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
+                                                </div>
+                                                <div class="product-badges product-badges-position product-badges-mrg">
+                                                    <span class="hot">Buku Lain</span>
+                                                </div>
+                                            </div>
+                                            <div class="product-content-wrap">
+                                                <h2><a href='/user/detail-product/{{ $item->id }}' tabindex='0'>{{ $item->judul_buku }}</a></h2>
+                                                {{-- <div class="rating-result" title="90%">
+>>>>>>> 57762bd6a5cf031c09de92f84fa708f2120631ac
                                         <span> </span>
                                     </div>
                                     <div class="product-price">
                                         <span>$238.85 </span>
                                         <span class="old-price">$245.8</span>
                                     </div> --}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
-
-                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-</div>
-@endsection
+        @endsection

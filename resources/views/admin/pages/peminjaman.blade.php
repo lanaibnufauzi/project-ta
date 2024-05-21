@@ -9,6 +9,14 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Data Peminjaman</h4>
+                    <div class="text-center">
+                        <div class="row">
+                            <h3>Scan QR Code</h3>
+                        </div>
+                        <div class="row">
+                            <div id="reader"></div>
+                        </div>
+                    </div>
                     <p class="card-description">
                         Add class <code>.table-striped</code>
                     </p>
@@ -56,7 +64,7 @@
                                         $tanggal_sekarang = strtotime(date('Y-m-d'));
                                         $telat = ($tanggal_sekarang - $tanggal_kembali) / (60 * 60 * 24);
 
-                                        if($data->status == 'Kembali'){
+                                        if($data->status == 'Kembali' || $data->status == 'Pending' || $data->status == 'Gagal'){
                                         echo '0';
                                         // jika telat sama dengan 0 dan kurang dari 0 dan statusnya pinjam maka akan di tampilkan 0
                                         } elseif ($telat < 0 && $data->status == 'Pinjam') {
@@ -68,7 +76,7 @@
                                     </td>
                                     <td>
                                         <?php
-                                        if($data->status == 'Kembali'){
+                                         if($data->status == 'Kembali' || $data->status == 'Pending' || $data->status == 'Gagal'){
                                             echo '0';
                                         }
                                         elseif ($telat < 0 && $data->status == 'Pinjam') {
@@ -94,6 +102,8 @@
                                         <span class="badge badge-success">{{ $data->status }}</span>
                                         @elseif ($data->status == 'Pinjam')
                                         <span class="badge badge-warning">{{ $data->status }}</span>
+                                        @else
+                                        <span class="badge badge-danger">{{ $data->status }}</span>
                                         @endif
 
                                     </td>
@@ -134,7 +144,7 @@
                                                         <label for="penerbit" class="col-form-label">Status</label>
                                                         <select name="status" class="form-control" id="status" required>
                                                             <option disabled selected>Pilih Status</option>
-                                                            {{-- <option value="Dipinjam">Dipinjam</option> --}}
+                                                            <option value="Pinjam">Dipinjam</option>
                                                             <option value="Kembali">Dikembalikan</option>
                                                         </select>
                                                     </div>
@@ -161,6 +171,62 @@
 @endsection
 
 @section('script')
+
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+
+<script>
+    function onScanSuccess(decodedText, decodedResult) {
+
+        $('#reader').val(decodedText);
+        let id = decodedText;
+        html5QrcodeScanner.clear();
+        var csrf_token = $('meta[name="csrf-token"]').attr('content');
+
+        $.ajax({
+            url: "/peminjaman/kembalikan"
+            , type: "POST"
+            , data: {
+                _token: csrf_token
+                , peminjaman_id: id
+            , }
+            , success: function(response) {
+                console.log(response);
+                if (response.success == "berhasil") {
+                    Swal.fire({
+                        title: 'Berhasil'
+                        , text: "Pengembalian Buku Berhasil"
+                        , icon: 'success'
+                        , confirmButtonColor: '#3085d6'
+                        , confirmButtonText: 'OK'
+                    }).then((result) => {
+                        location.reload();
+
+                    })
+                } else {
+                    Swal.fire({
+                        title: 'Gagal'
+                        , text: "Pengembalian Buku Gagal"
+                        , icon: 'error'
+                        , confirmButtonColor: '#3085d6'
+                        , confirmButtonText: 'OK'
+                    }).then((result) => {
+                        location.reload();
+
+                    })
+                }
+            }
+        , });
+
+    }
+
+    var html5QrcodeScanner = new Html5QrcodeScanner(
+        "reader", {
+            fps: 10
+            , qrbox: 250
+        });
+    html5QrcodeScanner.render(onScanSuccess);
+
+</script>
 
 <script>
     $('#dataTable-1').DataTable({

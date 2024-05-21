@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@yield('title') Perpustakaan </title>
     <!-- plugins:css -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('admin/vendors/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/vendors/ti-icons/css/themify-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/vendors/css/vendor.bundle.base.css') }}">
@@ -21,6 +22,34 @@
     <link rel="stylesheet" href="{{ asset('admin/css/vertical-layout-light/style.css') }}">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('admin/images/favicon.png') }}" />
+
+    <style>
+        .text-center {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .text-center h3 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        #reader {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            border: 5px solid #3085d6;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #reader video {
+            border-radius: 15px;
+        }
+
+    </style>
 </head>
 
 <body>

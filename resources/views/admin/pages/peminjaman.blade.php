@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Data Peminjaman</h4>
-                    <div class="text-center">
+                    <div class="text-center-reader">
                         <div class="row">
                             <h3>Scan QR Code</h3>
                         </div>

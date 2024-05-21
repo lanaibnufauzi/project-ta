@@ -24,12 +24,12 @@
     <link rel="shortcut icon" href="{{ asset('admin/images/favicon.png') }}" />
 
     <style>
-        .text-center {
+        .text-center-reader{
             text-align: center;
             margin: 20px 0;
         }
 
-        .text-center h3 {
+        .text-center-reader h3 {
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 20px;

@@ -243,8 +243,8 @@
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
                                         <a href='/user/detail-product/{{ $item->id }}' tabindex='0'>
-                                            <img class="default-img" src="{{ asset('landing/assets/imgs/shop/product-2-1.jpg') }}" alt="" />
-                                            <img class="hover-img" src="{{ asset('landing/assets/imgs/shop/product-2-2.jpg') }}" alt="" />
+                                            <img class="default-img" src="{{ asset('public/cover/' . $item->cover_buku) }}" alt="" />
+                                            <img class="hover-img" src="{{ asset('public/cover/' . $item->cover_buku) }}" alt="" />
                                         </a>
                                     </div>
                                     <div class="product-action-1">

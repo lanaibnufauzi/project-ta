@@ -70,7 +70,13 @@
                                         ->where('pinjaman.status', 'Pinjam')
                                         ->count();
 
-                                        $sisa_stok = $data->stok - $jumlah_buku_dipinjam;
+                                        $jumlah_buku_pending = DB::table('pinjaman')
+                                        ->join('detail_pinjaman', 'pinjaman.id', '=', 'detail_pinjaman.pinjaman_id')
+                                        ->where('detail_pinjaman.buku_id', $data->id)
+                                        ->where('pinjaman.status', 'Pending')
+                                        ->count();
+
+                                        $sisa_stok = $data->stok - $jumlah_buku_dipinjam - $jumlah_buku_pending;
                                         echo $sisa_stok;
                                         @endphp
                                     </td>

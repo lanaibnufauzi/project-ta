@@ -35,17 +35,17 @@
                 <span class="menu-title">Peminjaman</span>
             </a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" href="/denda">
                 <i class="fas fa-money-bill menu-icon"></i>
                 <span class="menu-title">Denda</span>
             </a>
-        </li>
-        <li class="nav-item">
+        </li> --}}
+        {{-- <li class="nav-item">
             <a class="nav-link" href="/pengaturan">
                 <i class="fas fa-cogs menu-icon"></i>
                 <span class="menu-title">Pengaturan</span>
             </a>
-        </li>
+        </li> --}}
     </ul>
 </nav>

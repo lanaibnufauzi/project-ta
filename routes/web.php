@@ -75,25 +75,24 @@ Route::post('/user/login', [UserAuthController::class, 'postLogin']);
 Route::post('/user/register', [UserAuthController::class, 'postRegister']);
 
 
-// middleware group
+# middleware group
 Route::group(['middleware' => 'IsUser'], function () {
+Route::get('/user/logout', [UserAuthController::class, 'userLogout']);
+Route::post('/user/update-profil ', [UserAuthController::class, 'updateprofil']);
 
-    Route::get('/user/logout', [UserAuthController::class, 'userLogout']);
-    Route::post('/user/update-profil ', [UserAuthController::class, 'updateprofil']);
 
+# Cart
+Route::get('/user/cart', [CartController::class, 'index']);
+Route::put('/user/cart/{id}', [CartController::class, 'cart']);
 
-    # Cart
-    Route::get('/user/cart', [CartController::class, 'index']);
-    Route::put('/user/cart/{id}', [CartController::class, 'cart']);
+# Wishlist
+Route::get('/user/wishlist', [WishlistController::class, 'index']);
+Route::put('/user/wishlist/{id}', [WishlistController::class, 'wishlist']);
+Route::delete('/user/wishlist/{id}', [WishlistController::class, 'delete']);
 
-    # Wishlist
-    Route::get('/user/wishlist', [WishlistController::class, 'index']);
-    Route::put('/user/wishlist/{id}', [WishlistController::class, 'wishlist']);
-    Route::delete('/user/wishlist/{id}', [WishlistController::class, 'delete']);
+# Account
+Route::get('/user/account', [AccountController::class, 'index']);
 
-    # Account
-    Route::get('/user/account', [AccountController::class, 'index']);
-
-    # Peminjaman
-    Route::post('/user/peminjaman', [Peminjaman::class, 'pinjam']);
+# Peminjaman
+Route::post('/user/peminjaman', [Peminjaman::class, 'pinjam']);
 });

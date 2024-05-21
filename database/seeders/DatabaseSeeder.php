@@ -247,8 +247,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'ilham',
-            'email' => 'ilhamibnuahmad@gmail.com',
+            'name' => 'lana',
+            'email' => 'lana@gmail.com',
             'password' => bcrypt('1'),
             'no_handphone' => '085233918803',
             'alamat' => 'Jember',

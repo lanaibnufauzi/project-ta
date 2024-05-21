@@ -22,7 +22,7 @@
                             <div class="padding_eight_all bg-white">
                                 <div class="heading_s1">
                                     <h1 class="mb-5">Login</h1>
-                                    <p class="mb-30">Don't have an account? <a href='/user/register'>Create here</a></p>
+                                    <p class="mb-30">Sudah Memiliki Akun? <a href='/user/register'>Daftar</a></p>
                                 </div>
                                 @if($errors->any())
                                 <div class="alert alert-danger alert-dismissible fade show mt-2">

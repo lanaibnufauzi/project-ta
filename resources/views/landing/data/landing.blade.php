@@ -33,14 +33,14 @@
                 <a href='shop-grid-right.html'>{{ $buku->kategori->nama_kategori }}</a>
             </div>
             <h2><a href='/user/detail-product/{{ $buku->id }}'>{{ $buku->judul_buku }}</a></h2>
-            <div class="product-rate-cover">
+            {{-- <div class="product-rate-cover">
                 <div class="product-rate d-inline-block">
                     <div class="product-rating" style="width: 90%"></div>
                 </div>
                 <span class="font-small ml-5 text-muted"> (4.0)</span>
-            </div>
+            </div> --}}
             <div>
-                <span class="font-small text-muted">By <a href='vendor-details-1.html'>{{ $buku->penerbit }}</a></span>
+                <span class="font-small text-muted">Penerbit <a href='vendor-details-1.html'>{{ $buku->penerbit }}</a></span>
             </div>
             <div class="product-card-bottom">
                 {{-- <div class="product-price">
@@ -51,7 +51,7 @@
                     <form action="/user/cart/{{ $buku->id }}" method="post">
                         @csrf
                         @method('PUT')
-                        <button type="submit" class="btn btn-sm btn-success"><i class="fi-rs-shopping-cart mr-5"></i>Add</button>
+                        <button type="submit" class="btn btn-sm btn-success"><i class="fi-rs-shopping-cart mr-5"></i>Tambah Buku</button>
                         {{-- <a class='add' href='shop-cart.html'><i class="fi-rs-shopping-cart mr-5"></i>Add </a> --}}
                     </form>
                 </div>
@@ -110,16 +110,16 @@
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12">
                     <div class="detail-info pr-30 pl-30">
-                        <span class="stock-status out-stock"> Sale Off </span>
+                        <span class="stock-status out-stock"> Judul Buku </span>
                         <h3 class="title-detail"><a class='text-heading' href='/user/detail-buku/{{ $buku->id }}'>{{ $buku->judul_buku }}</a></h3>
-                        <div class="product-detail-rating">
+                        {{-- <div class="product-detail-rating">
                             <div class="product-rate-cover text-end">
                                 <div class="product-rate d-inline-block">
                                     <div class="product-rating" style="width: 90%"></div>
                                 </div>
                                 <span class="font-small ml-5 text-muted"> (32 reviews)</span>
                             </div>
-                        </div>
+                        </div> --}}
                         {{-- <div class="clearfix product-price-cover">
                             <div class="product-price primary-color float-left">
                                 <span class="current-price text-brand">$38</span>
@@ -139,14 +139,14 @@
                                 <form action="/user/cart/{{ $buku->id }}" method="post">
                                     @csrf
                                     @method('PUT')
-                                    <button type="submit" class="button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
+                                    <button type="submit" class="button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>Tambah Buku</button>
                                 </form>
                             </div>
                         </div>
                         <div class="font-xs">
                             <ul>
-                                <li class="mb-5">Vendor: <span class="text-brand">{{ $buku->penerbit }}</span></li>
-                                <li class="mb-5">MFG:<span class="text-brand"> Jun 4.2024</span></li>
+                                <li class="mb-5">Penerbit: <span class="text-brand">{{ $buku->penerbit }}</span></li>
+                                {{-- <li class="mb-5">MFG:<span class="text-brand"> Jun 4.2024</span></li> --}}
                             </ul>
                         </div>
                     </div>

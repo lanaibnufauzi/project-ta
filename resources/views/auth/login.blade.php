@@ -123,16 +123,16 @@
                     </div>
                     <div class="my-2 d-flex justify-content-between align-items-center">
                         <div class="form-check">
-                            <label class="form-check-label text-muted">
+                            {{-- <label class="form-check-label text-muted">
                                 <input type="checkbox" class="form-check-input">
                                 Biarkan Saya Tetap Masuk
-                            </label>
-                        </div>
+                            </label> --}}
+                        {{-- </div>
                         <a href="#" class="auth-link">Lupa Password?</a>
                     </div>
                     <div class="text-center mt-4 font-weight-light">
                         Sudah Memiliki akun? <a href="{{ route('register') }}" class="auth-link">Daftar</a>
-                    </div>
+                    </div> --}}
                 </form>
             </div>
         </div>

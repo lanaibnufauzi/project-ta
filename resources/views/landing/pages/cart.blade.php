@@ -46,7 +46,7 @@
                                 <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" value="">
                                 <label class="form-check-label" for="exampleCheckbox1"></label>
                             </td>
-                            <td class="image product-thumbnail pt-40"><img src="{{ asset('landing/assets/imgs/shop/product-1-1.jpg') }}" alt="#"></td>
+                            <td class="image product-thumbnail pt-40"><img src="{{ asset('public/cover/' . $data->buku->cover_buku) }}" alt="#"></td>
                             <td class="product-des product-name">
                                 <h6 class="mb-5"><a class='product-name mb-10 text-heading' href='shop-product-right.html'>{{ $data->buku->judul_buku }}</a></h6>
                                 <div class="product-rate-cover">

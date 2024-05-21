@@ -18,8 +18,8 @@
                         <div class="login_wrap widget-taber-content background-white">
                             <div class="padding_eight_all bg-white">
                                 <div class="heading_s1">
-                                    <h1 class="mb-5">Create an Account</h1>
-                                    <p class="mb-30">Already have an account? <a href='/user/login'>Login</a></p>
+                                    <h1 class="mb-5">Silahkan Buat Akun</h1>
+                                    <p class="mb-30">Silahkan? <a href='/user/login'>Login</a></p>
                                     @if($errors->any())
                                     <div class="alert alert-danger alert-dismissible fade show mt-2">
 

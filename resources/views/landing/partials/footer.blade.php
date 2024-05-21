@@ -176,7 +176,7 @@
                 <div class="footer-bottom"></div>
             </div>
             <div class="col-xl-4 col-lg-6 col-md-6">
-                <p class="font-sm mb-0">&copy; 2024, <strong class="text-brand">Nest</strong> - HTML Ecommerce Template <br />All rights reserved</p>
+                <p class="font-sm mb-0">&copy; 2024, <strong class="text-brand">lana</strong> - SMK AL-MUNAWAROH <br />JEMBER JAWA TIMUR</p>
             </div>
             <div class="col-xl-4 col-lg-6 text-center d-none d-xl-block">
                 {{-- <div class="hotline d-lg-inline-flex mr-30">
@@ -197,7 +197,7 @@
                     <a href="#"><img src="{{ asset('landing/assets/imgs/theme/icons/icon-pinterest-white.svg') }}" alt="" /></a>
                     <a href="#"><img src="{{ asset('landing/assets/imgs/theme/icons/icon-youtube-white.svg') }}" alt="" /></a>
                 </div>
-                <p class="font-sm">Up to 15% discount on your first subscribe</p>
+                <p class="font-sm"> SMK AL MUNAWAROH JL. MOJOPAHIT II NO.139 KRATON WONOASRI, Tempurejo, Kec. Tempurejo, Kab. Jember Prov. Jawa Timur </p>
             </div>
         </div>
     </div>

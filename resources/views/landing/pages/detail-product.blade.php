@@ -57,15 +57,15 @@
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12">
                     <div class="detail-info pr-30 pl-30">
-                        <span class="stock-status out-stock"> Sale Off </span>
+                        <span class="stock-status out-stock"> judul Buku </span>
                         <h2 class="title-detail">{{ $buku->judul_buku }}</h2>
                         <div class="product-detail-rating">
-                            <div class="product-rate-cover text-end">
+                            {{-- <div class="product-rate-cover text-end">
                                 <div class="product-rate d-inline-block">
                                     <div class="product-rating" style="width: 90%"></div>
                                 </div>
                                 <span class="font-small ml-5 text-muted"> (32 reviews)</span>
-                            </div>
+                            </div> --}}
                         </div>
                         {{-- <div class="clearfix product-price-cover">
                                 <div class="product-price primary-color float-left">
@@ -108,7 +108,7 @@
                                 <form action="/user/cart/{{ $buku->id }}" method="post">
                                     @csrf
                                     @method('PUT')
-                                    <button type="submit" class="button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
+                                    <button type="submit" class="button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>Tambahkan Buku</button>
                                     {{-- <a aria-label='Add To Wishlist' class='action-btn hover-up' href='shop-wishlist.html'><i class="fi-rs-heart"></i></a>
                                     <a aria-label='Compare' class='action-btn hover-up' href='shop-compare.html'><i class="fi-rs-shuffle"></i></a> --}}
                                 </form>
@@ -136,9 +136,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" id="Description-tab" data-bs-toggle="tab" href="#Description">Description</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" id="Additional-info-tab" data-bs-toggle="tab" href="#Additional-info">Additional info</a>
-                        </li>
+                        </li> --}}
                         {{-- <li class="nav-item">
                                 <a class="nav-link" id="Vendor-info-tab" data-bs-toggle="tab" href="#Vendor-info">Vendor</a>
                             </li> --}}
@@ -191,7 +191,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="tab-pane fade" id="Vendor-info">
+                        {{-- <div class="tab-pane fade" id="Vendor-info">
                             <div class="vendor-logo d-flex mb-30">
                                 <img src="assets/imgs/vendor/vendor-18.svg" alt="" />
                                 <div class="vendor-name ml-15">
@@ -205,8 +205,8 @@
                                         <span class="font-small ml-5 text-muted"> (32 reviews)</span>
                                     </div>
                                 </div>
-                            </div>
-                            <ul class="contact-infor mb-50">
+                            </div> --}}
+                            {{-- <ul class="contact-infor mb-50">
                                 <li><img src="assets/imgs/theme/icons/icon-location.svg" alt="" /><strong>Address: </strong> <span>5171 W Campbell Ave undefined Kent, Utah 53127 United States</span></li>
                                 <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt="" /><strong>Contact Seller:</strong><span>(+91) - 540-025-553</span></li>
                             </ul>
@@ -228,10 +228,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="row mt-60">
                 <div class="col-12">
-                    <h2 class="section-title style-1 mb-30">Related products</h2>
+                    <h2 class="section-title style-1 mb-30">Buku Lain</h2>
                 </div>
                 <div class="col-12">
                     <div class="row related-products">
@@ -248,23 +248,23 @@
                                         </a>
                                     </div>
                                     <div class="product-action-1">
-                                        <a aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-search"></i></a>
-                                        <a aria-label='Add To Wishlist' class='action-btn small hover-up' href='shop-wishlist.html' tabindex='0'><i class="fi-rs-heart"></i></a>
-                                        <a aria-label='Compare' class='action-btn small hover-up' href='shop-compare.html' tabindex='0'><i class="fi-rs-shuffle"></i></a>
+                                        <a aria-label='Add To Wishlist' class='action-btn' href='shop-wishlist.html'><i class="fi-rs-heart"></i></a>
+                                        {{-- <a aria-label='Compare' class='action-btn' href='shop-compare.html'><i class="fi-rs-shuffle"></i></a> --}}
+                                        <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
                                     </div>
                                     <div class="product-badges product-badges-position product-badges-mrg">
-                                        <span class="hot">Hot</span>
+                                        <span class="hot">Buku Lain</span>
                                     </div>
                                 </div>
                                 <div class="product-content-wrap">
                                     <h2><a href='/user/detail-product/{{ $item->id }}' tabindex='0'>{{ $item->judul_buku }}</a></h2>
-                                    <div class="rating-result" title="90%">
+                                    {{-- <div class="rating-result" title="90%">
                                         <span> </span>
                                     </div>
                                     <div class="product-price">
                                         <span>$238.85 </span>
                                         <span class="old-price">$245.8</span>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>

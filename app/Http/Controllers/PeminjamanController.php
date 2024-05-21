@@ -76,4 +76,13 @@ class PeminjamanController extends Controller
             ]);
         }
     }
+
+    public function kondisibuku(Request $request, $id)
+    {
+        $detailbuku = DetailPinjaman::where('id', $id)->first();
+        $detailbuku->kondisi_buku = $request->kondisi_buku;
+        $detailbuku->save();
+
+        return redirect()->back()->with('kondisibuku', 'Kondisi buku berhasil diubah');
+    }
 }

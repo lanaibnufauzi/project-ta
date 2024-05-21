@@ -44,6 +44,7 @@ class Peminjaman extends Controller
             $detailPinjaman = new DetailPinjaman();
             $detailPinjaman->pinjaman_id = $pinjaman->id;
             $detailPinjaman->buku_id = $item->id_buku;
+            $detailPinjaman->kondisi_buku = 'Baik';
             $detailPinjaman->save();
         }
 

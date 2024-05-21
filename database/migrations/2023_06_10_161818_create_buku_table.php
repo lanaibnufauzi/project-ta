@@ -15,15 +15,15 @@ return new class extends Migration
     {
         Schema::create('buku', function (Blueprint $table) {
             $table->id();
-            $table->string('isbn');
-            $table->string('judul_buku');
+            $table->longText('isbn');
+            $table->longText('judul_buku');
             $table->longText('deskripsi');
-            $table->string('tema');
-            $table->string('penerbit');
-            $table->date('tgl_terbit');
-            $table->string('cover_buku');
-            $table->integer('jumlah_halaman');
-            $table->integer('stok');
+            $table->longText('tema');
+            $table->longText('penerbit');
+            $table->longText('tgl_terbit');
+            $table->longText('cover_buku');
+            $table->longText('jumlah_halaman');
+            $table->longText('stok');
             $table->timestamps();
         });
     }

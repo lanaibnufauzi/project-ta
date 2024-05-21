@@ -183,7 +183,7 @@
                     <nav>
                         <ul class="mobile-menu font-heading">
                             <li class="menu-item-has-children">
-                                <a href='index.html'>Home</a>
+                                <a href='index.html'>Beranda</a>
                                 {{-- <ul class="dropdown">
                                     <li><a href='index.html'>Home 1</a></li>
                                     <li><a href='index-2.html'>Home 2</a></li>

@@ -13,10 +13,10 @@
 <div class="container mb-80 mt-50">
     <div class="row">
         <div class="col-lg-8 mb-40">
-            <h1 class="heading-2 mb-10">Your Cart</h1>
+            <h1 class="heading-2 mb-10">Buku Pilihan Anda</h1>
             <div class="d-flex justify-content-between">
-                <h6 class="text-body">There are <span class="text-brand">3</span> products in your cart</h6>
-                <h6 class="text-body"><a href="#" class="text-muted"><i class="fi-rs-trash mr-5"></i>Clear Cart</a></h6>
+                <h6 class="text-body">Hai ini<span class="text-brand"></span> Buku yang Kamu Pilih</h6>
+                {{-- <h6 class="text-body"><a href="#" class="text-muted"><i class="fi-rs-trash mr-5"></i>Hapus Semua</a></h6> --}}
             </div>
         </div>
     </div>
@@ -49,13 +49,13 @@
                             <td class="image product-thumbnail pt-40"><img src="{{ asset('public/cover/' . $data->buku->cover_buku) }}" alt="#"></td>
                             <td class="product-des product-name">
                                 <h6 class="mb-5"><a class='product-name mb-10 text-heading' href='shop-product-right.html'>{{ $data->buku->judul_buku }}</a></h6>
-                                <div class="product-rate-cover">
+                                {{-- <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
                                         <div class="product-rating" style="width:90%">
                                         </div>
                                     </div>
                                     <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                </div>
+                                </div> --}}
                             </td>
                             {{-- <td class="price" data-title="Price">
                                 <h4 class="text-body">$2.51 </h4>
@@ -90,7 +90,9 @@
                 <form action="/user/peminjaman" method="post">
                     @csrf
                     @method('POST')
-                    <button type="submit" class="btn  mr-10 mb-sm-15"><i class="fi-rs-book mr-10"></i>Pinjam</button>
+                    <button class="tn mr-10 mb-sm-15 btn btn-primary" onclick="pinjamBuku()">
+                        <i class="fa fa-book"></i> Pinjam
+                    </button>
                 </form>
                 @else
                 @endif

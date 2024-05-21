@@ -123,7 +123,7 @@
                                     {{ $jumlah_wishlist }}
                                 </span>
                             </a>
-                            <a href='/user/wishlist'><span class="lable">Wishlist</span></a>
+                            <a href='/user/wishlist'><span class="lable">Favorit</span></a>
                         </div>
                         <div class="header-action-icon-2">
                             <a class='mini-cart-icon' href='/user/wishlist'>
@@ -135,7 +135,7 @@
                                     {{ $jumlah_cart }}
                                 </span>
                             </a>
-                            <a href='/user/cart'><span class="lable">Cart</span></a>
+                            <a href='/user/cart'><span class="lable">Keranjang</span></a>
                             {{-- <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                 <ul>
                                     <li>
@@ -186,10 +186,10 @@
                         <ul>
                             @if (Auth::check() && Auth::user()->role->name == 'user')
                             <li>
-                                <a href='/user/account'><i class="fi fi-rs-user mr-10"></i>My Account</a>
+                                <a href='/user/account'><i class="fi fi-rs-user mr-10"></i>Akun Saya</a>
                             </li>
                             <li>
-                                <a href='/user/logout'><i class="fi fi-rs-sign-out mr-10"></i>Sign out</a>
+                                <a href='/user/logout'><i class="fi fi-rs-sign-out mr-10"></i>Keluar</a>
                             </li>
                             @else
                             <li>
@@ -283,7 +283,7 @@
                     {{-- <li class="hot-deals"><img src="{{ asset('landing/assets/imgs/theme/icons/icon-hot.svg') }}" alt="hot deals" /><a href='shop-grid-right.html'>Deals</a></li>
                     <li class="hot-deals"><img src="{{ asset('landing/assets/imgs/theme/icons/icon-hot.svg') }}" alt="hot deals" /><a href='shop-grid-right.html'>Deals</a></li> --}}
                     <li>
-                        <a class='active' href='/'>Home</a>
+                        <a class='active' href='/'>Beranda</a>
                         {{-- <ul class="sub-menu">
                             <li><a href='index.html'>Home 1</a></li>
                             <li><a href='index-2.html'>Home 2</a></li>

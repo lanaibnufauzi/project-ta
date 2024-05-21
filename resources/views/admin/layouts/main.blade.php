@@ -24,11 +24,7 @@
     <link rel="shortcut icon" href="{{ asset('admin/images/favicon.png') }}" />
 
     <style>
-<<<<<<< HEAD
         .text-center-reader{
-=======
-        .text-center-reader {
->>>>>>> 57762bd6a5cf031c09de92f84fa708f2120631ac
             text-align: center;
             margin: 20px 0;
         }

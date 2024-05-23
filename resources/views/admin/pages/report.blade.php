@@ -1,6 +1,6 @@
 @extends('admin.layouts.main')
 
-@section('title', 'Peminjaman')
+@section('title', 'Report')
 
 @section('content')
 <div class="content-wrapper">
@@ -8,34 +8,31 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Data Peminjaman</h4>
-                    <div class="text-center-reader">
-                        <div class="row">
-                            <h3>Scan QR Code</h3>
-                        </div>
-                        <div class="row">
-                            <div id="reader"></div>
-                        </div>
+                    <h4 class="card-title">Data Report</h4>
+                    <div class="mb-2">
+                        <form action="/report" method="post">
+                            @csrf
+                            <div class="form-group">
+                                <label for="tgl_pinjam">Tanggal</label>
+                                <input type="date" class="form-control" id="tgl_pinjam" name="date1">
+                            </div>
+                            <div class="form-group">
+                                <label for="tgl_kembali">Tanggal</label>
+                                <input type="date" class="form-control" id="tgl_kembali" name="date2">
+                            </div>
+                            <div class="form-group">
+                                <label for="tgl_pinjam">Status</label>
+                                <select class="form-control" name="status">
+                                    <option selected value="0">Pilih Status</option>
+                                    <option value="Pinjam">Pinjam</option>
+                                    <option value="Kembali">Kembali</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Gagal">Gagal</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Cari</button>
+                        </form>
                     </div>
-                    <p class="card-description">
-                        Add class <code>.table-striped</code>
-                    </p>
-                    @if($errors->any())
-                    <div class="alert alert-danger alert-dismissible fade show mt-2">
-
-
-
-                        <?php
-
-                $nomer = 1;
-
-                ?>
-
-                        @foreach($errors->all() as $error)
-                        <li>{{ $nomer++ }}. {{ $error }}</li>
-                        @endforeach
-                    </div>
-                    @endif
                     <div class="table-responsive">
                         <table id="dataTable-1" class="table table-striped responsive nowrap" style="width:100%">
                             <thead>
@@ -48,7 +45,6 @@
                                     <th>Total Telat Denda</th>
                                     <th>Status</th>
                                     <th>Detail Buku</th>
-                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -134,43 +130,7 @@
                                         @endphp
                                         <ul>
                                             @foreach ($detail_buku as $buku)
-                                            <li>{{ $no++ }}. {{ $buku->buku->judul_buku }} <br> Kondisi Buku : {{ $buku->kondisi_buku }} <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editkondisiModal{{ $buku->id }}">Edit</button></li>
-
-
-
-                                            <!-- Edit Modal -->
-                                            <div class="modal fade" id="editkondisiModal{{ $buku->id }}" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="defaultModalLabel">Edit Kondisi Buku</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <form action="/peminjaman/kondisi/{{ $buku->id }}" method="POST" enctype="multipart/form-data">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <div class="modal-body">
-                                                                <div class="form-group">
-                                                                    <label for="penerbit" class="col-form-label">Status</label>
-                                                                    <select name="kondisi_buku" class="form-control" id="status" required>
-                                                                        <option disabled selected>Pilih Status</option>
-                                                                        <option value="Baik">Baik</option>
-                                                                        <option value="Rusak">Rusak</option>
-                                                                        <option value="Hilang">Hilang</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn mb-2 btn-danger" data-dismiss="modal">Close</button>
-                                                                <button type="submit" class="btn mb-2 btn-success">Save
-                                                                    changes</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <li>{{ $no++ }}. {{ $buku->buku->judul_buku }} <br> Kondisi Buku : {{ $buku->kondisi_buku }}</li>
                                             @endforeach
 
                                             <div class="mt-2">
@@ -178,46 +138,7 @@
                                             </div>
                                         </ul>
                                     </td>
-
-                                    <td>
-
-                                        <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal{{ $data->id }}">Edit</button>
-                                        <a href="/peminjaman/bayardenda/{{ $data->id }}" target="_blank" class="btn btn-primary btn-sm">Pembayaran Denda</a>
-                                    </td>
                                 </tr>
-
-                                <!-- Edit Modal -->
-                                <div class="modal fade" id="editModal{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="defaultModalLabel">Edit Table</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <form action="/peminjaman/{{ $data->id }}" method="POST" enctype="multipart/form-data">
-                                                @csrf
-                                                @method('PUT')
-                                                <div class="modal-body">
-                                                    <div class="form-group">
-                                                        <label for="penerbit" class="col-form-label">Status</label>
-                                                        <select name="status" class="form-control" id="status" required>
-                                                            <option disabled selected>Pilih Status</option>
-                                                            <option value="Pinjam">Dipinjam</option>
-                                                            <option value="Kembali">Dikembalikan</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn mb-2 btn-danger" data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn mb-2 btn-success">Save
-                                                        changes</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
                                 @endforeach
                             </tbody>
                         </table>
@@ -231,74 +152,6 @@
 @endsection
 
 @section('script')
-
-<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
-
-<script>
-    function onScanSuccess(decodedText, decodedResult) {
-
-        $('#reader').val(decodedText);
-        let id = decodedText;
-        html5QrcodeScanner.clear();
-        var csrf_token = $('meta[name="csrf-token"]').attr('content');
-
-        $.ajax({
-            url: "/peminjaman/kembalikan"
-            , type: "POST"
-            , data: {
-                _token: csrf_token
-                , peminjaman_id: id
-            , }
-            , success: function(response) {
-                console.log(response);
-                if (response.success == "berhasil-kembali") {
-                    Swal.fire({
-                        title: 'Berhasil'
-                        , text: "Pengembalian Buku Berhasil"
-                        , icon: 'success'
-                        , showConfirmButton: false
-                        , timer: 1000
-                    }).then((result) => {
-                        location.reload();
-
-                    })
-                } else if (response.success == "berhasil-pinjam") {
-                    Swal.fire({
-                        title: 'Berhasil'
-                        , text: "Peminjaman Buku Berhasil"
-                        , icon: 'success'
-                        , showConfirmButton: false
-                        , timer: 1000
-
-                    }).then((result) => {
-                        location.reload();
-
-                    })
-                } else {
-                    Swal.fire({
-                        title: 'Gagal'
-                        , text: "Tidak Valid"
-                        , icon: 'error'
-                        , showConfirmButton: false
-                        , timer: 1000
-                    }).then((result) => {
-                        location.reload();
-
-                    })
-                }
-            }
-        , });
-
-    }
-
-    var html5QrcodeScanner = new Html5QrcodeScanner(
-        "reader", {
-            fps: 10
-            , qrbox: 250
-        });
-    html5QrcodeScanner.render(onScanSuccess);
-
-</script>
 
 <script>
     $('#dataTable-1').DataTable({

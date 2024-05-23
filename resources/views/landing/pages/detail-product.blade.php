@@ -142,9 +142,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" id="Description-tab" data-bs-toggle="tab" href="#Description">Description</a>
                         </li>
-                        {{-- <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link" id="Additional-info-tab" data-bs-toggle="tab" href="#Additional-info">Additional info</a>
-                        </li> --}}
+                        </li>
                         {{-- <li class="nav-item">
                                 <a class="nav-link" id="Vendor-info-tab" data-bs-toggle="tab" href="#Vendor-info">Vendor</a>
                             </li> --}}
@@ -155,7 +155,7 @@
                     <div class="tab-content shop_info_tab entry-main-content">
                         <div class="tab-pane fade show active" id="Description">
                             <div class="">
-                                <p id="enkripsi-deskripsi">{{ $buku->deskripsi }}</p>
+                                <p id="deskripsi">{{ $buku->deskripsi }}</p>
 
 
                             </div>
@@ -288,14 +288,3 @@
 </div>
 @endsection
 
-@section('script')
-<script>
-    // ketika klik kanan hasil copy akan di enkripsi dengan aes 128
-    document.addEventListener('copy', function(e) {
-        var selection = window.getSelection();
-        e.clipboardData.setData('text/plain', selection.toString().replace(/./g, '*'));
-        e.preventDefault();
-    });
-
-</script>
-@endsection

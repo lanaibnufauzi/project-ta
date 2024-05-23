@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Anggota;
 use App\Models\kategori;
+use Illuminate\Support\Facades\Crypt;
 
 class AuthController extends Controller
 {
@@ -41,7 +42,15 @@ class AuthController extends Controller
             'password.required' => 'Password tidak boleh kosong'
         ]);
 
-        $credentials = $request->only('email', 'password');
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+
+        $email_encypt = openssl_encrypt($request->email, 'AES-128-CBC', $key, 0, $iv);
+
+        $credentials = [
+            'email' => $email_encypt,
+            'password' => $request->password
+        ];
 
         if (auth()->attempt($credentials)) {
             return redirect('/')->with('login', 'Selamat datang di dashboard');

@@ -28,100 +28,136 @@ class buku extends Model
     // encrypt isbn aes 128
     public function setIsbnAttribute($value)
     {
-        $this->attributes['isbn'] = Crypt::encryptString($value);
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        $this->attributes['isbn'] = openssl_encrypt($value, 'AES-128-CBC', $key, 0, $iv);
     }
 
     public function getIsbnAttribute($value)
     {
-        return Crypt::decryptString($value);
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        return openssl_decrypt($value, 'AES-128-CBC', $key, 0, $iv);
     }
 
     // encrypt judul_buku aes 128
     public function setJudulBukuAttribute($value)
     {
-        $this->attributes['judul_buku'] = Crypt::encryptString($value);
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        $this->attributes['judul_buku'] = openssl_encrypt($value, 'AES-128-CBC', $key, 0, $iv);
     }
 
     public function getJudulBukuAttribute($value)
     {
-        return Crypt::decryptString($value);
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        return openssl_decrypt($value, 'AES-128-CBC', $key, 0, $iv);
     }
 
     // encrypt deskripsi aes 128
     public function setDeskripsiAttribute($value)
     {
-        $this->attributes['deskripsi'] = Crypt::encryptString($value);
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        $this->attributes['deskripsi'] = openssl_encrypt($value, 'AES-128-CBC', $key, 0, $iv);
     }
 
     public function getDeskripsiAttribute($value)
     {
-        return Crypt::decryptString($value);
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        return openssl_decrypt($value, 'AES-128-CBC', $key, 0, $iv);
     }
 
     // encrypt tema aes 128
     public function setTemaAttribute($value)
     {
-        $this->attributes['tema'] = Crypt::encryptString($value);
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        $this->attributes['tema'] = openssl_encrypt($value, 'AES-128-CBC', $key, 0, $iv);
     }
 
     public function getTemaAttribute($value)
     {
-        return Crypt::decryptString($value);
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        return openssl_decrypt($value, 'AES-128-CBC', $key, 0, $iv);
     }
 
     // encrypt penerbit aes 128
     public function setPenerbitAttribute($value)
     {
-        $this->attributes['penerbit'] = Crypt::encryptString($value);
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        $this->attributes['penerbit'] = openssl_encrypt($value, 'AES-128-CBC', $key, 0, $iv);
     }
 
     public function getPenerbitAttribute($value)
     {
-        return Crypt::decryptString($value);
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        return openssl_decrypt($value, 'AES-128-CBC', $key, 0, $iv);
     }
 
     // encrypt tgl_terbit aes 128
     public function setTglTerbitAttribute($value)
     {
-        $this->attributes['tgl_terbit'] = Crypt::encryptString($value);
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        $this->attributes['tgl_terbit'] = openssl_encrypt($value, 'AES-128-CBC', $key, 0, $iv);
     }
 
     public function getTglTerbitAttribute($value)
     {
-        return Crypt::decryptString($value);
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        return openssl_decrypt($value, 'AES-128-CBC', $key, 0, $iv);
     }
 
     // encrypt cover_buku aes 128
     public function setCoverBukuAttribute($value)
     {
-        $this->attributes['cover_buku'] = Crypt::encryptString($value);
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        $this->attributes['cover_buku'] = openssl_encrypt($value, 'AES-128-CBC', $key, 0, $iv);
     }
 
     public function getCoverBukuAttribute($value)
     {
-        return Crypt::decryptString($value);
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        return openssl_decrypt($value, 'AES-128-CBC', $key, 0, $iv);
     }
 
     // encrypt jumlah_halaman aes 128
     public function setJumlahHalamanAttribute($value)
     {
-        $this->attributes['jumlah_halaman'] = Crypt::encryptString($value);
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        $this->attributes['jumlah_halaman'] = openssl_encrypt($value, 'AES-128-CBC', $key, 0, $iv);
     }
 
     public function getJumlahHalamanAttribute($value)
     {
-        return Crypt::decryptString($value);
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        return openssl_decrypt($value, 'AES-128-CBC', $key, 0, $iv);
     }
 
     // encrypt stok aes 128
     public function setStokAttribute($value)
     {
-        $this->attributes['stok'] = Crypt::encryptString($value);
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        $this->attributes['stok'] = openssl_encrypt($value, 'AES-128-CBC', $key, 0, $iv);
     }
 
     public function getStokAttribute($value)
     {
-        return Crypt::decryptString($value);
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        return openssl_decrypt($value, 'AES-128-CBC', $key, 0, $iv);
     }
 
     public function kategori()

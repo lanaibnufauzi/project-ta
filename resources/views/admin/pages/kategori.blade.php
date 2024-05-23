@@ -144,40 +144,52 @@
 @section('script')
 @if(Session::get('store'))
 <script>
+    // tidak usah tombol oke, berikan waktu 1 detik
     Swal.fire({
         icon: 'success'
         , title: 'Good'
         , text: 'Data Berhasil Ditambahkan'
+        , showConfirmButton: false
+        , timer: 1000
     , });
 
 </script>
 @endif
 @if(Session::get('update'))
 <script>
+    // tidak usah tombol oke, berikan waktu 1 detik
     Swal.fire({
         icon: 'success'
         , title: 'Good'
         , text: 'Data Berhasil Diubah'
+        , showConfirmButton: false
+        , timer: 1000
     , });
 
 </script>
 @endif
 @if(Session::get('destroy'))
 <script>
+    // tidak usah tombol oke, berikan waktu 1 detik
     Swal.fire({
         icon: 'success'
         , title: 'Good'
         , text: 'Data Berhasil Dihapus'
+        , showConfirmButton: false
+        , timer: 1000
     , });
 
 </script>
 @endif
 @if(Session::get('error'))
 <script>
+    // tidak usah tombol oke, berikan waktu 1 detik
     Swal.fire({
         icon: 'error'
-        , title: 'Oops..'
-        , text: 'Oops..'
+        , title: 'Oops...'
+        , text: 'Data Gagal Ditambahkan'
+        , showConfirmButton: false
+        , timer: 1000
     , });
 
 </script>

@@ -28,8 +28,6 @@ class PeminjamanController extends Controller
             $cek_status->save();
         }
 
-
-
         return view('admin.pages.peminjaman', [
             'pinjaman' => $pinjaman
         ]);
@@ -54,7 +52,7 @@ class PeminjamanController extends Controller
             }
         }
 
-        return redirect()->back()->with('success', 'Status peminjaman berhasil diubah');
+        return redirect()->back()->with('ubahstatus', 'Status peminjaman berhasil diubah');
     }
 
     public function kembalikan_buku(Request $request)
@@ -66,13 +64,20 @@ class PeminjamanController extends Controller
             $datapeminjaman->status = 'Kembali';
             $datapeminjaman->save();
             return response()->json([
-                'success' => 'berhasil',
+                'success' => 'berhasil-kembali',
                 'message' => 'Pengembalian Buku Berhasil'
+            ]);
+        } elseif ($datapeminjaman->status == 'Pending') {
+            $datapeminjaman->status = 'Pinjam';
+            $datapeminjaman->save();
+            return response()->json([
+                'success' => 'berhasil-pinjam',
+                'message' => 'Peminjaman Buku Berhasil'
             ]);
         } else {
             return response()->json([
                 'success' => 'gagal',
-                'message' => 'Pengembalian Buku Gagal'
+                'message' => 'tidak valid'
             ]);
         }
     }

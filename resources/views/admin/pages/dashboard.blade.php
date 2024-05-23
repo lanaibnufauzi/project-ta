@@ -933,10 +933,13 @@
 @section('script')
 @if(Session::get('login'))
 <script>
+    // tidak usah tombol oke, berikan waktu 1 detik
     Swal.fire({
         icon: 'success'
         , title: 'Login Berhasil'
         , text: 'Selamat Datang'
+        , showConfirmButton: false
+        , timer: 1000
     , });
 
 </script>

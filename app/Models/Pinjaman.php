@@ -16,7 +16,12 @@ class Pinjaman extends Model
         'tgl_pinjam',
         'tgl_kembali',
         'status',
-        'confirmation_deadline' 
+        'confirmation_deadline',
+        'no_transaksi',
+        'bank',
+        'no_va',
+        'expired_date',
+        'status_pembayaran'
     ];
 
     public function anggota()

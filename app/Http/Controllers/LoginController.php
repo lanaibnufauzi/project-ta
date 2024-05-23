@@ -17,7 +17,7 @@ class LoginController extends Controller
 
     public function loginProcess(Request $request)
     {
-        $credentials = $request->validate([
+        $request->validate([
             'email' => 'required|email',
             'password' => 'required'
         ], [
@@ -25,6 +25,17 @@ class LoginController extends Controller
             'email.email' => 'Email tidak valid',
             'password.required' => 'Password tidak boleh kosong'
         ]);
+        
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+
+        $email_encypt = openssl_encrypt($request->email, 'AES-128-CBC', $key, 0, $iv);
+
+        $credentials = [
+            'email' => $email_encypt,
+            'password' => $request->password
+        ];
+
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();

@@ -4,8 +4,8 @@
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a href='index.html' rel='nofollow'><i class="fi-rs-home mr-5"></i>Home</a>
-            <span></span> Pages <span></span> My Account
+            <a href='index.html' rel='nofollow'><i class="fi-rs-home mr-5"></i>Beranda</a>
+            {{-- <span></span> Pages <span></span> My Account --}}
         </div>
     </div>
 </div>
@@ -30,10 +30,10 @@
                                     <a class="nav-link" id="address-tab" data-bs-toggle="tab" href="#address" role="tab" aria-controls="address" aria-selected="true"><i class="fi-rs-marker mr-10"></i>My Address</a>
                                 </li> --}}
                                 <li class="nav-item">
-                                    <a class="nav-link" id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i class="fi-rs-user mr-10"></i>Account details</a>
+                                    <a class="nav-link" id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i class="fi-rs-user mr-10"></i>Akun Saya</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class='nav-link' href='/user/logout'><i class="fi-rs-sign-out mr-10"></i>Logout</a>
+                                    <a class='nav-link' href='/user/logout'><i class="fi-rs-sign-out mr-10"></i>Keluar</a>
                                 </li>
                             </ul>
                         </div>
@@ -47,8 +47,8 @@
                                     </div>
                                     <div class="card-body">
                                         <p>
-                                            From your account dashboard. you can easily check &amp; view your <a href="#">recent orders</a>,<br />
-                                            manage your <a href="#">shipping and billing addresses</a> and <a href="#">edit your password and account details.</a>
+                                         Hallo Selamat Datang di &amp; Halam<a href="#">Akun Kamu</a>,<br />
+                                           Senang <a href="#">Sekali</a> Bisa <a href="#">Bertemu Kamu Lagi Jangan Bosan Baca Buku Ya:)</a>
                                         </p>
                                     </div>
                                 </div>
@@ -217,7 +217,7 @@
                             <div class="tab-pane fade" id="account-detail" role="tabpanel" aria-labelledby="account-detail-tab">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5>Account Details</h5>
+                                        <h5>Akun Saya</h5>
                                     </div>
                                     <div class="card-body">
                                         @if($errors->any())

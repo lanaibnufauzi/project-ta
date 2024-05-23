@@ -4,7 +4,7 @@
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a href='index.html' rel='nofollow'><i class="fi-rs-home mr-5"></i>Home</a>
+            <a href='index.html' rel='nofollow'><i class="fi-rs-home mr-5"></i>Beranda</a>
             <span></span> <a href='shop-grid-right.html'>{{ $buku->kategori->nama_kategori }}</a> <span></span> {{ $buku->judul_buku }}
         </div>
     </div>
@@ -244,27 +244,27 @@
                                     @foreach ($relate_buku as $item )
 
 
-                                    <div class="col-lg-3 col-md-4 col-12 col-sm-6">
-                                        <div class="product-cart-wrap hover-up">
-                                            <div class="product-img-action-wrap">
-                                                <div class="product-img product-img-zoom">
-                                                    <a href='/user/detail-product/{{ $item->id }}' tabindex='0'>
-                                                        <img class="default-img" src="{{ asset('public/cover/' . $item->cover_buku) }}" alt="" />
-                                                        <img class="hover-img" src="{{ asset('public/cover/' . $item->cover_buku) }}" alt="" />
-                                                    </a>
-                                                </div>
-                                                <div class="product-action-1">
-                                                    <a aria-label='Add To Wishlist' class='action-btn' href='shop-wishlist.html'><i class="fi-rs-heart"></i></a>
-                                                    {{-- <a aria-label='Compare' class='action-btn' href='shop-compare.html'><i class="fi-rs-shuffle"></i></a> --}}
-                                                    <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
-                                                </div>
-                                                <div class="product-badges product-badges-position product-badges-mrg">
-                                                    <span class="hot">Buku Lain</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap">
-                                                <h2><a href='/user/detail-product/{{ $item->id }}' tabindex='0'>{{ $item->judul_buku }}</a></h2>
-                                                {{-- <div class="rating-result" title="90%">
+                        <div class="col-lg-3 col-md-4 col-12 col-sm-6">
+                            <div class="product-cart-wrap hover-up">
+                                <div class="product-img-action-wrap">
+                                    <div class="product-img product-img-zoom">
+                                        <a href='/user/detail-product/{{ $item->id }}' tabindex='0'>
+                                            <img class="default-img" src="{{ asset('public/cover/' . $item->cover_buku) }}" alt="" />
+                                            <img class="hover-img" src="{{ asset('public/cover/' . $item->cover_buku) }}" alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="product-action-1">
+                                        <a aria-label='Add To Wishlist' class='action-btn' href='shop-wishlist.html'><i class="fi-rs-heart"></i></a>
+                                        {{-- <a aria-label='Compare' class='action-btn' href='shop-compare.html'><i class="fi-rs-shuffle"></i></a> --}}
+                                        <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
+                                    </div>
+                                    <div class="product-badges product-badges-position product-badges-mrg">
+                                        <span class="hot">Buku Lain</span>
+                                    </div>
+                                </div>
+                                <div class="product-content-wrap">
+                                    <h2><a href='/user/detail-product/{{ $item->id }}' tabindex='0'>{{ $item->judul_buku }}</a></h2>
+                                    {{-- <div class="rating-result" title="90%">
                                         <span> </span>
                                     </div>
                                     <div class="product-price">

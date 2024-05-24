@@ -63,7 +63,7 @@
                                             <table class="table">
                                                 <thead>
                                                     <tr>
-                                                        <th>Name</th>
+                                                        {{-- <th>Name</th> --}}
                                                         <th>Status</th>
                                                         <th>Tanggal Pinjam</th>
                                                         <th>Tanggal Kembali</th>
@@ -71,13 +71,14 @@
                                                         <th>Total Telat Denda</th>
                                                         <th>Detail Buku</th>
                                                         <th>Barcode</th>
+                                                        <th>Action</th>
 
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @foreach ($pinjaman as $data )
                                                     <tr>
-                                                        <td>{{ $data->name }}</td>
+                                                        {{-- <td>{{ $data->name }}</td> --}}
                                                         <td>{{ $data->status }}</td>
                                                         <td>{{ $data->tanggal_pinjam }}</td>
                                                         <td>{{ $data->tanggal_kembali }}</td>
@@ -127,10 +128,23 @@
                                                             </ul>
                                                         </td>
                                                         <td>
-                                                            @php
-                                                            $enkripsi = Crypt::encryptString($data->id);
-                                                            @endphp
-                                                            {!! DNS2D::getBarcodeHTML($enkripsi, 'QRCODE', 3,3) !!}
+                                                            <div class="row justify-content-center">
+                                                                @php
+                                                                $enkripsi = Crypt::encryptString($data->id);
+                                                                @endphp
+                                                                {!! DNS2D::getBarcodeHTML($enkripsi, 'QRCODE', 3,3) !!}
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            @if ($data->status == 'Pending')
+                                                            <form action="/user/peminjaman/batal/{{ $data->id }}" method="post">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <button type="submit" class="btn btn-sm btn-danger">Batalkan</button>
+                                                            </form>
+                                                            @else
+                                                            -
+                                                            @endif
                                                         </td>
                                                     </tr>
                                                     @endforeach

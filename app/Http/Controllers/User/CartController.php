@@ -49,6 +49,17 @@ class CartController extends Controller
             ->where('pinjaman.status', 'Pinjam')
             ->count();
 
+        $cek_apakah_user_sudah_meminjam_buku_pending = DB::table('pinjaman')
+            ->join('detail_pinjaman', 'pinjaman.id', '=', 'detail_pinjaman.pinjaman_id')
+            ->where('detail_pinjaman.buku_id', $id_buku)
+            ->where('pinjaman.id_anggota', $id_anggota)
+            ->where('pinjaman.status', 'Pending')
+            ->count();
+
+        if ($cek_apakah_user_sudah_meminjam_buku_pending > 0) {
+            return redirect()->back()->with('sudahmeminjampending', 'Anda sudah meminjam buku ini');
+        }
+
         if ($cek_apakah_user_sudah_meminjam_buku > 0) {
             return redirect()->back()->with('sudahmeminjam', 'Anda sudah meminjam buku ini');
         }

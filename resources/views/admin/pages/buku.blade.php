@@ -353,41 +353,49 @@
 
 @if(Session::get('store'))
 <script>
+    // tidak usah tombol oke, berikan waktu 1 detik
     Swal.fire({
         icon: 'success'
-        , title: 'Good'
-        , text: 'Data Berhasil Ditambahkan'
-    , });
+        , title: 'Berhasil Ditambahkan'
+        , showConfirmButton: false
+        , timer: 1000
+    , })
 
 </script>
 @endif
 @if(Session::get('update'))
 <script>
+    // tidak usah tombol oke, berikan waktu 1 detik
     Swal.fire({
         icon: 'success'
-        , title: 'Good'
-        , text: 'Data Berhasil Diubah'
-    , });
+        , title: 'Berhasil Diupdate'
+        , showConfirmButton: false
+        , timer: 1000
+    , })
 
 </script>
 @endif
 @if(Session::get('destroy'))
 <script>
+    // tidak usah tombol oke, berikan waktu 1 detik
     Swal.fire({
         icon: 'success'
-        , title: 'Good'
-        , text: 'Data Berhasil Dihapus'
-    , });
+        , title: 'Berhasil Dihapus'
+        , showConfirmButton: false
+        , timer: 1000
+    , })
 
 </script>
 @endif
 @if(Session::get('error'))
 <script>
+    // tidak usah tombol oke, berikan waktu 1 detik
     Swal.fire({
         icon: 'error'
-        , title: 'Oops..'
-        , text: 'Oops..'
-    , });
+        , title: 'Gagal'
+        , showConfirmButton: false
+        , timer: 1000
+    , })
 
 </script>
 @endif

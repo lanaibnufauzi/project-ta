@@ -179,27 +179,36 @@
 
 @if (Session::get('update'))
 <script>
+    // tidak usah tombol oke, berikan waktu 1 detik
     Swal.fire({
         icon: 'success'
         , title: 'Berhasil Diupdate'
+        , showConfirmButton: false
+        , timer: 1000
     , })
 
 </script>
 @endif
 @if (Session::get('add'))
 <script>
+    // tidak usah tombol oke, berikan waktu 1 detik
     Swal.fire({
         icon: 'success'
-        , title: 'Berhasil Ditambah'
+        , title: 'Berhasil Ditambahkan'
+        , showConfirmButton: false
+        , timer: 1000
     , })
 
 </script>
 @endif
 @if (Session::get('delete'))
 <script>
+    // tidak usah tombol oke, berikan waktu 1 detik
     Swal.fire({
         icon: 'success'
         , title: 'Berhasil Dihapus'
+        , showConfirmButton: false
+        , timer: 1000
     , })
 
 </script>

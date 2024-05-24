@@ -31,50 +31,64 @@ class User extends Authenticatable
     ];
 
     // encrypt aes 128 name
-    // public function setNameAttribute($value)
-    // {
-    //     $this->attributes['name'] = Crypt::encryptString($value);
-    // }
+    public function setNameAttribute($value)
+    {
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        $this->attributes['name'] = openssl_encrypt($value, 'AES-128-CBC', $key, 0, $iv);
+    }
 
-    // public function getNameAttribute($value)
-    // {
-    //     return Crypt::decryptString($value);
-    // }
+    public function getNameAttribute($value)
+    {
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        return openssl_decrypt($value, 'AES-128-CBC', $key, 0, $iv);
+    }
 
-    // // encrypt aes 128 email
-    // public function setEmailAttribute($value)
-    // {
-    //     $this->attributes['email'] = Crypt::encryptString($value);
-    // }
+    // encrypt aes 128 email
+    public function setEmailAttribute($value)
+    {
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        $this->attributes['email'] = openssl_encrypt($value, 'AES-128-CBC', $key, 0, $iv);
+    }
 
-    // public function getEmailAttribute($value)
-    // {
-    //     return Crypt::decryptString($value);
-    // }
+    public function getEmailAttribute($value)
+    {
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        return openssl_decrypt($value, 'AES-128-CBC', $key, 0, $iv);
+    }
 
-    // // encrypt aes 128 no_handphone
-    // public function setNoHandphoneAttribute($value)
-    // {
-    //     $this->attributes['no_handphone'] = Crypt::encryptString($value);
-    // }
+    // encrypt aes 128 no_handphone
+    public function setNoHandphoneAttribute($value)
+    {
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        $this->attributes['no_handphone'] = openssl_encrypt($value, 'AES-128-CBC', $key, 0, $iv);
+    }
 
-    // public function getNoHandphoneAttribute($value)
-    // {
-    //     return Crypt::decryptString($value);
-    // }
+    public function getNoHandphoneAttribute($value)
+    {
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        return openssl_decrypt($value, 'AES-128-CBC', $key, 0, $iv);
+    }
 
+    // encrypt aes 128 alamat
+    public function setAlamatAttribute($value)
+    {
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        $this->attributes['alamat'] = openssl_encrypt($value, 'AES-128-CBC', $key, 0, $iv);
+    }
 
-
-    // // encrypt aes 128 alamat
-    // public function setAlamatAttribute($value)
-    // {
-    //     $this->attributes['alamat'] = Crypt::encryptString($value);
-    // }
-
-    // public function getAlamatAttribute($value)
-    // {
-    //     return Crypt::decryptString($value);
-    // }
+    public function getAlamatAttribute($value)
+    {
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        return openssl_decrypt($value, 'AES-128-CBC', $key, 0, $iv);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

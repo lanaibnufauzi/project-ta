@@ -35,6 +35,12 @@
                 <span class="menu-title">Peminjaman</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/report">
+                <i class="fas fa-handshake menu-icon"></i>
+                <span class="menu-title">Report</span>
+            </a>
+        </li>
         {{-- <li class="nav-item">
             <a class="nav-link" href="/denda">
                 <i class="fas fa-money-bill menu-icon"></i>

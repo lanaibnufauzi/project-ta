@@ -29,6 +29,7 @@ class buku extends Model
     public function setIsbnAttribute($value)
     {
         $this->attributes['isbn'] = Crypt::encryptString($value);
+
     }
 
     public function getIsbnAttribute($value)

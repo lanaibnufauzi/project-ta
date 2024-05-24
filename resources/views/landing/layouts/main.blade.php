@@ -49,23 +49,8 @@
                     <nav>
                         <ul class="mobile-menu font-heading">
                             <li class="menu-item-has-children">
-<<<<<<< HEAD
                                 <a href='/'>Home</a>
 
-
-
-
-=======
-                                <a href='index.html'>Beranda</a>
-                                {{-- <ul class="dropdown">
-                                    <li><a href='index.html'>Home 1</a></li>
-                                    <li><a href='index-2.html'>Home 2</a></li>
-                                    <li><a href='index-3.html'>Home 3</a></li>
-                                    <li><a href='index-4.html'>Home 4</a></li>
-                                    <li><a href='index-5.html'>Home 5</a></li>
-                                    <li><a href='index-6.html'>Home 6</a></li>
-                                </ul> --}}
->>>>>>> 210352d00457f9497310f42c5a99e21f36f15ea5
                             </li>
                             <li class="menu-item-has-children"><span class="menu-expand"><i class="fi-rs-angle-small-down"></i></span>
                                 <a href="#">Account</a>

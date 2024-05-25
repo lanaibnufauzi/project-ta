@@ -28,14 +28,9 @@ class buku extends Model
     // encrypt isbn aes 128
     public function setIsbnAttribute($value)
     {
-<<<<<<< HEAD
-        $this->attributes['isbn'] = Crypt::encryptString($value);
-
-=======
         $iv = '1234567890123456';
         $key = '1234567890123456';
         $this->attributes['isbn'] = openssl_encrypt($value, 'AES-128-CBC', $key, 0, $iv);
->>>>>>> ffbeb5728321985ade16bd06c7ae978934cf18aa
     }
 
     public function getIsbnAttribute($value)

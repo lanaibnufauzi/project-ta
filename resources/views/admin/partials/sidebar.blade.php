@@ -37,7 +37,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/report">
-                <i class="fas fa-handshake menu-icon"></i>
+                <i class="fas fa-list-alt menu-icon"></i>
                 <span class="menu-title">Report</span>
             </a>
         </li>

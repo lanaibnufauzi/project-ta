@@ -241,7 +241,7 @@
                                             @method('POST')
                                             <div class="row">
                                                 <div class="form-group col-md-6">
-                                                    <label>Name <span class="required">*</span></label>
+                                                    <label>Nama <span class="required">*</span></label>
                                                     <input required="" value="{{ Auth::user()->name }}" class="form-control" name="name" type="text" />
                                                 </div>
                                                 <div class="form-group col-md-12">

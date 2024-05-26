@@ -319,6 +319,18 @@
 
     </script>
     @endif
+    @if(Session::get('batalpinjam'))
+    <script>
+        // tidak usah tombol oke, berikan waktu 1 detik
+        Swal.fire({
+            icon: 'success'
+            , title: 'Berhasil Membatalkan Peminjaman'
+            , showConfirmButton: false
+            , timer: 1000
+        , });
+
+    </script>
+    @endif
 </body>
 
 

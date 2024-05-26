@@ -82,6 +82,12 @@ Route::get('/user/register', [UserAuthController::class, 'indexRegister']);
 Route::post('/user/login', [UserAuthController::class, 'postLogin']);
 Route::post('/user/register', [UserAuthController::class, 'postRegister']);
 
+# Reset Password
+Route::get('/user/reset-password', [UserAuthController::class, 'linkresetpassword']);
+Route::post('/user/reset-password', [UserAuthController::class, 'sendlinkresetpassword']);
+Route::get('/user/reset-password/{code}', [UserAuthController::class, 'changepassword']);
+Route::post('/user/change-password', [UserAuthController::class, 'changepasswordpost']);
+
 
 # middleware group
 Route::group(['middleware' => 'IsUser'], function () {

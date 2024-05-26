@@ -47,8 +47,8 @@
                                     </div>
                                     <div class="card-body">
                                         <p>
-                                         Hallo Selamat Datang di &amp; Halam<a href="#">Akun Kamu</a>,<br />
-                                           Senang <a href="#">Sekali</a> Bisa <a href="#">Bertemu Kamu Lagi Jangan Bosan Baca Buku Ya:)</a>
+                                            Hallo Selamat Datang di &amp; Halam<a href="#">Akun Kamu</a>,<br />
+                                            Senang <a href="#">Sekali</a> Bisa <a href="#">Bertemu Kamu Lagi Jangan Bosan Baca Buku Ya:)</a>
                                         </p>
                                     </div>
                                 </div>

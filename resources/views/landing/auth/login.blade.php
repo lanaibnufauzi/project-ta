@@ -21,8 +21,8 @@
                         <div class="login_wrap widget-taber-content background-white">
                             <div class="padding_eight_all bg-white">
                                 <div class="heading_s1">
-                                    <h1 class="mb-5">Login</h1>
-                                    <p class="mb-30">Sudah Memiliki Akun? <a href='/user/register'>Daftar</a></p>
+                                    <h1 class="mb-5">Masuk</h1>
+                                    <p class="mb-30">Belum Memiliki Akun? <a href='/user/register'>Daftar</a></p>
                                 </div>
                                 @if($errors->any())
                                 <div class="alert alert-danger alert-dismissible fade show mt-2">
@@ -44,23 +44,23 @@
                                     @csrf
                                     @method('POST')
                                     <div class="form-group">
-                                        <input type="text" required="" name="email" placeholder="Username or Email *" />
+                                        <input type="email" required="" name="email" placeholder="Username or Email *" />
                                     </div>
                                     <div class="form-group">
                                         <input required="" type="password" name="password" placeholder="Your password *" />
                                     </div>
 
                                     <div class="login_footer form-group mb-50">
-                                        <div hidden class="chek-form">
+                                        {{-- <div hidden class="chek-form">
                                             <div class="custome-checkbox">
                                                 <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" value="" />
                                                 <label class="form-check-label" for="exampleCheckbox1"><span>Remember me</span></label>
                                             </div>
-                                        </div>
-                                        <a class="text-muted" href="#">Forgot password?</a>
+                                        </div> --}}
+                                        <a class="text-muted" href="/user/reset-password">Lupa Password?</a>
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-heading btn-block hover-up" name="login">Log in</button>
+                                        <button type="submit" class="btn btn-heading btn-block hover-up" name="login">Masuk</button>
                                     </div>
                                 </form>
                             </div>

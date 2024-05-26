@@ -28,7 +28,7 @@
 
                             @if(Auth::check() && Auth::user()->role->name == 'user')
                             <div class="header-action-icon-2">
-                                <a href='shop-wishlist.html'>
+                                <a href='/user/wishlist'>
                                     <img class="svgInject" alt="Nest" src="{{ asset('landing/assets/imgs/theme/icons/icon-heart.svg') }}" />
                                     <span class="pro-count blue">
                                         @php
@@ -40,7 +40,7 @@
                                 <a href='/user/wishlist'><span class="lable">Favorit</span></a>
                             </div>
                             <div class="header-action-icon-2">
-                                <a class='mini-cart-icon' href='/user/wishlist'>
+                                <a class='mini-cart-icon' href='/user/cart'>
                                     <img alt="Nest" src="{{ asset('landing/assets/imgs/theme/icons/icon-cart.svg') }}" />
                                     <span class="pro-count blue">
                                         @php
@@ -56,10 +56,10 @@
                             @endif
 
                             <div class="header-action-icon-2">
-                                <a href='page-account.html'>
+                                <a href='#'>
                                     <img class="svgInject" alt="Nest" src="{{ asset('landing/assets/imgs/theme/icons/icon-user.svg') }}" />
                                 </a>
-                                <a href='page-account.html'><span class="lable ml-0">Account</span></a>
+                                <a href='#'><span class="lable ml-0">Account</span></a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                     <ul>
                                         @if (Auth::check() && Auth::user()->role->name == 'user')
@@ -116,7 +116,7 @@
 
                         @if(Auth::check() && Auth::user()->role->name == 'user')
                         <div class="header-action-icon-2">
-                            <a href='shop-wishlist.html'>
+                            <a href='/user/wishlist'>
                                 <img class="svgInject" alt="Nest" src="{{ asset('landing/assets/imgs/theme/icons/icon-heart.svg') }}" />
                                 <span class="pro-count blue">
                                     @php
@@ -128,7 +128,7 @@
                             <a href='/user/wishlist'><span class="lable">Favorit</span></a>
                         </div>
                         <div class="header-action-icon-2">
-                            <a class='mini-cart-icon' href='/user/wishlist'>
+                            <a class='mini-cart-icon' href='/user/cart'>
                                 <img alt="Nest" src="{{ asset('landing/assets/imgs/theme/icons/icon-cart.svg') }}" />
                                 <span class="pro-count blue">
                                     @php

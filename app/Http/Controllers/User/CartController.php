@@ -75,7 +75,7 @@ class CartController extends Controller
             $wishlist->id_buku = $id_buku;
             $wishlist->save();
 
-            return redirect()->back()->with('storecart', 'Buku berhasil ditambahkan ke wishlist');
+            return redirect('/user/cart')->with('storecart', 'Buku berhasil ditambahkan ke wishlist');
         }
     }
 }

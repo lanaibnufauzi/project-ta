@@ -338,6 +338,78 @@
 
     </script>
     @endif
+    @if(Session::get('harusgmail'))
+    <script>
+        // tidak usah tombol oke, berikan waktu 1 detik
+        Swal.fire({
+            icon: 'error'
+            , title: 'Harus Menggunakan Gmail'
+            , showConfirmButton: false
+            , timer: 1000
+        , });
+
+    </script>
+    @endif
+
+    @if(Session::get('resetpasswordberhasil'))
+    <script>
+        // tidak usah tombol oke, berikan waktu 1 detik
+        Swal.fire({
+            icon: 'success'
+            , title: 'Reset Password Berhasil'
+            , showConfirmButton: false
+            , timer: 1000
+        , });
+
+    </script>
+    @endif
+
+    @if(Session::get('linkkadaluarsa'))
+    <script>
+        // tidak usah tombol oke, berikan waktu 1 detik
+        Swal.fire({
+            icon: 'error'
+            , title: 'Link Sudah Kadaluarsa'
+            , showConfirmButton: false
+            , timer: 1000
+        , });
+
+    </script>
+    @endif
+
+    @if(Session::get('linkresetpassword'))
+    <script>
+        // tidak usah tombol oke, berikan waktu 1 detik
+        Swal.fire({
+            icon: 'error'
+            , title: 'Link Reset Password Salah'
+            , showConfirmButton: false
+            , timer: 1000
+        , });
+
+    </script>
+    @endif
+
+    @if(Session::get('emailtidakditemukan'))
+    <script>
+        // tidak usah tombol oke, berikan waktu 1 detik
+        Swal.fire({
+            icon: 'error'
+            , title: 'Email Tidak Ditemukan'
+            , showConfirmButton: false
+            , timer: 1000
+        , });
+
+    </script>
+    @endif
+
+
+
+
+
+
+
+
 </body>
 
 

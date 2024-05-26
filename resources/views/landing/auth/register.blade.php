@@ -19,7 +19,7 @@
                             <div class="padding_eight_all bg-white">
                                 <div class="heading_s1">
                                     <h1 class="mb-5">Silahkan Buat Akun</h1>
-                                    <p class="mb-30">Silahkan? <a href='/user/login'>Login</a></p>
+                                    <p class="mb-30">Sudah punya akun? silahkan <a href='/user/login'>Login</a></p>
                                     @if($errors->any())
                                     <div class="alert alert-danger alert-dismissible fade show mt-2">
 
@@ -44,10 +44,10 @@
                                         <input type="text" required="" name="name" placeholder="Name" />
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" required="" name="email" placeholder="Email" />
+                                        <input id="email" type="email" required="" name="email" placeholder="Email" />
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" required="" name="no_handphone" placeholder="No Handphone" />
+                                        <input id="no_hanpdhone" type="text" required="" name="no_handphone" placeholder="No Handphone" pattern="[0-9]+" />
                                     </div>
                                     <div class="form-group">
                                         <input type="text" required="" name="alamat" placeholder="Alamat" />
@@ -72,14 +72,14 @@
 
 
                                     <div class="form-group mb-30">
-                                        <button type="submit" class="btn btn-fill-out btn-block hover-up font-weight-bold" name="login">Submit &amp; Register</button>
+                                        <button type="submit" class="btn btn-fill-out btn-block hover-up font-weight-bold" name="login">Daftar</button>
                                     </div>
                                     <p class="font-xs text-muted"><strong>Note:</strong>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy</p>
                                 </form>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 pr-30 d-none d-lg-block">
+                    {{-- <div class="col-lg-6 pr-30 d-none d-lg-block">
                         <div class="card-login mt-115">
                             <a href="#" class="social-login facebook-login">
                                 <img src="{{ asset('landing/assets/imgs/theme/icons/logo-facebook.svg') }}" alt="" />
@@ -94,10 +94,25 @@
                                 <span>Continue with Apple</span>
                             </a>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+    $(document).ready(function() {
+        $('#no_hanpdhone').on('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+    });
+</script>
+
+<script>
+    // cek email apakah aktif atau tidak
+
+</script>
 @endsection

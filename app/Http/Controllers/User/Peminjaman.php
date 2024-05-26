@@ -69,7 +69,7 @@ class Peminjaman extends Controller
             $buku->save();
         }
 
-        return redirect()->back()->with('pinjam', 'Berhasil melakukan peminjaman');
+        return redirect('/user/account#orders')->with('pinjam', 'Berhasil melakukan peminjaman');
     }
 
     public function tambahbukuketikapending()
@@ -112,7 +112,7 @@ class Peminjaman extends Controller
             $item->delete();
         }
 
-        return redirect()->back()->with('tambahanbuku', 'Berhasil menambahkan buku ketika status peminjaman pending');
+        return redirect('/user/account#orders')->back()->with('tambahanbuku', 'Berhasil menambahkan buku ketika status peminjaman pending');
     }
 
     public function batal($id)
@@ -121,6 +121,6 @@ class Peminjaman extends Controller
         $pinjaman->status = 'Gagal';
         $pinjaman->save();
 
-        return redirect()->back()->with('batalpinjam', 'Berhasil membatalkan peminjaman');
+        return redirect('/')->with('batalpinjam', 'Berhasil membatalkan peminjaman');
     }
 }

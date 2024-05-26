@@ -43,7 +43,7 @@ class WishlistController extends Controller
             $wishlist->id_buku = $id_buku;
             $wishlist->save();
 
-            return redirect()->back()->with('storewish', 'Buku berhasil ditambahkan ke wishlist');
+            return redirect('/user/wishlist')->with('storewish', 'Buku berhasil ditambahkan ke wishlist');
         }
     }
 

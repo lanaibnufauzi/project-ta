@@ -20,6 +20,8 @@ return new class extends Migration
             $table->longText('no_handphone');
             $table->longText('alamat');
             $table->longText('password');
+            $table->string('code')->nullable();
+            $table->string('status_code')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

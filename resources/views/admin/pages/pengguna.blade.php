@@ -53,7 +53,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $data->user->name }}</td>
                                     <td>{{ $data->user->email }}</td>
-                                    <td>{{ $data->user->no_handpone }}</td>
+                                    <td>{{ $data->user->no_handphone }}</td>
                                     <td>{{ $data->user->alamat }}</td>
                                     {{-- <td>{{ $data->tempat_lahir }}</td>
                                     <td>{{ $data->tanggal_lahir }}</td> --}}

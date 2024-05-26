@@ -245,6 +245,10 @@ class BayarDendaController extends Controller
                 $total_denda = $denda_telat + $total_denda_rusak + $total_denda_hilang;
             }
 
+            if ($total_denda == 0) {
+                return redirect()->back()->with('tidakdenda', 'Tidak ada denda yang harus dibayar');
+            }
+
             \Midtrans\Config::$serverKey = config('midtrans.server_key');
             // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
             \Midtrans\Config::$isProduction = false;

@@ -452,4 +452,17 @@
 
 </script>
 @endif
+@if(Session::get('tidakdenda'))
+<script>
+    Swal.fire({
+        // tidak usah tombol oke, berikan waktu 1 detik
+        title: 'Gagal'
+        , text: 'Tidak Ada Denda'
+        , icon: 'error'
+        , timer: 1000
+        , showConfirmButton: false
+    , });
+
+</script>
+@endif
 @endsection

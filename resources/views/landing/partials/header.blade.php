@@ -37,7 +37,7 @@
                                         {{ $jumlah_wishlist }}
                                     </span>
                                 </a>
-                                <a href='/user/wishlist'><span class="lable">Wishlist</span></a>
+                                <a href='/user/wishlist'><span class="lable">Favorit</span></a>
                             </div>
                             <div class="header-action-icon-2">
                                 <a class='mini-cart-icon' href='/user/wishlist'>
@@ -49,7 +49,7 @@
                                         {{ $jumlah_cart }}
                                     </span>
                                 </a>
-                                <a href='/user/cart'><span class="lable">Cart</span></a>
+                                <a href='/user/cart'><span class="lable">Keranjang</span></a>
 
                             </div>
                             @else
@@ -64,14 +64,14 @@
                                     <ul>
                                         @if (Auth::check() && Auth::user()->role->name == 'user')
                                         <li>
-                                            <a href='/user/account'><i class="fi fi-rs-user mr-10"></i>My Account</a>
+                                            <a href='/user/account'><i class="fi fi-rs-user mr-10"></i>Akun Saya</a>
                                         </li>
                                         <li>
-                                            <a href='/user/logout'><i class="fi fi-rs-sign-out mr-10"></i>Sign out</a>
+                                            <a href='/user/logout'><i class="fi fi-rs-sign-out mr-10"></i>Kluar</a>
                                         </li>
                                         @else
                                         <li>
-                                            <a href='/user/login'><i class="fi fi-rs-user mr-10"></i>Login / Register</a>
+                                            <a href='/user/login'><i class="fi fi-rs-user mr-10"></i>Masuk / Daftar</a>
                                         </li>
                                         @endif
                                     </ul>
@@ -96,7 +96,7 @@
                             <ul>
 
                                 <li>
-                                    <a class='active' href='/'>Home</a>
+                                    <a class='active' href='/'>Beranda</a>
 
                                 </li>
 

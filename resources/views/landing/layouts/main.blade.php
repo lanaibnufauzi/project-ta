@@ -49,18 +49,25 @@
                     <nav>
                         <ul class="mobile-menu font-heading">
                             <li class="menu-item-has-children">
-                                <a href='/'>Home</a>
-
+                                <a href='index.html'>Beranda</a>
+                                {{-- <ul class="dropdown">
+                                    <li><a href='index.html'>Home 1</a></li>
+                                    <li><a href='index-2.html'>Home 2</a></li>
+                                    <li><a href='index-3.html'>Home 3</a></li>
+                                    <li><a href='index-4.html'>Home 4</a></li>
+                                    <li><a href='index-5.html'>Home 5</a></li>
+                                    <li><a href='index-6.html'>Home 6</a></li>
+                                </ul> --}}
                             </li>
                             <li class="menu-item-has-children"><span class="menu-expand"><i class="fi-rs-angle-small-down"></i></span>
                                 <a href="#">Account</a>
                                 <ul class="dropdown" style="display: none;">
                                     @if (Auth::check() && Auth::user()->role->name == 'user')
                                     <li>
-                                        <a href='/user/account'><i class="fi fi-rs-user mr-10"></i>My Account</a>
+                                        <a href='/user/account'><i class="fi fi-rs-user mr-10"></i>Akun Saya</a>
                                     </li>
                                     <li>
-                                        <a href='/user/logout'><i class="fi fi-rs-sign-out mr-10"></i>Sign out</a>
+                                        <a href='/user/logout'><i class="fi fi-rs-sign-out mr-10"></i>Kluar</a>
                                     </li>
                                     @else
                                     <li>

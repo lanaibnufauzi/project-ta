@@ -165,7 +165,9 @@ class BukuController extends Controller
         $buku->penerbit = $request->penerbit;
         $buku->tgl_terbit = $request->tgl_terbit;
         $buku->kategori_id = $request->kategori_id;
-        $buku->cover_buku = $coverFileName;
+        if ($request->hasFile('cover_buku')) {
+            $buku->cover_buku = $coverFileName;
+        }
         $buku->save();
 
         return redirect('/buku')->with('update', 'Buku berhasil diperbarui');
@@ -192,6 +194,13 @@ class BukuController extends Controller
     public function destroy($id)
     {
         $buku = Buku::find($id);
+
+
+        // hapus cover
+        if ($buku->cover_buku) {
+            unlink('public/cover
+            /' . $buku->cover_buku);
+        }
 
         if ($buku) {
             $buku->delete();

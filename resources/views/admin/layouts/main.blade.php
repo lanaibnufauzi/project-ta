@@ -8,6 +8,7 @@
     <title>@yield('title') Perpustakaan </title>
     <!-- plugins:css -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="{{ asset('admin/vendors/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/vendors/ti-icons/css/themify-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/vendors/css/vendor.bundle.base.css') }}">
@@ -24,7 +25,7 @@
     <link rel="shortcut icon" href="{{ asset('admin/images/favicon.png') }}" />
 
     <style>
-        .text-center-reader{
+        .text-center-reader {
             text-align: center;
             margin: 20px 0;
         }
@@ -101,7 +102,7 @@
     <!-- endinject -->
     <!-- Custom js for this page-->
     <script src="{{ asset('admin/js/dashboard.js') }}"></script>
-    <script src="{{ asset('admin/js/Chart.roundedBarCharts.js') }}"></script>
+    {{-- <script src="{{ asset('admin/js/Chart.roundedBarCharts.js') }}"></script> --}}
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.colVis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>

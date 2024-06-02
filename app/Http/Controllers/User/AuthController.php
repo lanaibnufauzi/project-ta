@@ -84,7 +84,7 @@ class AuthController extends Controller
             'no_handphone.required' => 'No handphone tidak boleh kosong',
             'alamat.required' => 'Alamat tidak boleh kosong',
             'password.required' => 'Password tidak boleh kosong',
-            'password.min' => 'Password minimal 6 karakter',
+            'password.min' => 'Password minimal 8 karakter',
             'password.regex' => 'Password harus mengandung huruf besar, huruf kecil, angka, dan simbol',
             'repassword.required' => 'Konfirmasi password tidak boleh kosong',
             'repassword.same' => 'Konfirmasi password tidak sama dengan password'

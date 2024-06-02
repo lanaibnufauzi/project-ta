@@ -183,7 +183,7 @@
                             <div class="mu-single-counter">
                                 <i class="fa fa-users" aria-hidden="true"></i>
                                 <div class="counter-value" data-count="1055">0</div>
-                                <h5 class="mu-counter-name">Online Users</h5>
+                                <h5 class="mu-counter-name">Users</h5>
                             </div>
                         </div>
                     </section>

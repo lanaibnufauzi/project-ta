@@ -17,12 +17,18 @@ class BayarDendaController extends Controller
 
         if ($pinjaman->status_pembayaran == 'paid') {
 
+            $tanggal_kembali_real = strtotime($pinjaman->tgl_kembali_real);
             $tanggal_kembali = strtotime($pinjaman->tgl_kembali);
             $tanggal_sekarang = strtotime(date('Y-m-d'));
             $telat = ($tanggal_sekarang - $tanggal_kembali) / (60 * 60 * 24);
+            $telat_kembali = ($tanggal_kembali_real - $tanggal_kembali) / (60 * 60 * 24);
 
             if ($pinjaman->status == 'Kembali' || $pinjaman->status == 'Pending' || $pinjaman->status == 'Gagal') {
-                $telat = 0;
+                if ($telat_kembali < 0) {
+                    $telat = 0;
+                } else {
+                    $telat = $telat_kembali;
+                }
                 // jika telat sama dengan 0 dan kurang dari 0 dan statusnya pinjam maka akan di tampilkan 0
             } elseif ($telat < 0 && $pinjaman->status == 'Pinjam') {
                 $telat = 0;
@@ -64,12 +70,19 @@ class BayarDendaController extends Controller
             ]);
         } elseif ($pinjaman->bank != null && $pinjaman->no_va != null && $pinjaman->status_pembayaran == 'pending') {
 
+
+            $tanggal_kembali_real = strtotime($pinjaman->tgl_kembali_real);
             $tanggal_kembali = strtotime($pinjaman->tgl_kembali);
             $tanggal_sekarang = strtotime(date('Y-m-d'));
             $telat = ($tanggal_sekarang - $tanggal_kembali) / (60 * 60 * 24);
+            $telat_kembali = ($tanggal_kembali_real - $tanggal_kembali) / (60 * 60 * 24);
 
             if ($pinjaman->status == 'Kembali' || $pinjaman->status == 'Pending' || $pinjaman->status == 'Gagal') {
-                $telat = 0;
+                if ($telat_kembali < 0) {
+                    $telat = 0;
+                } else {
+                    $telat = $telat_kembali;
+                }
                 // jika telat sama dengan 0 dan kurang dari 0 dan statusnya pinjam maka akan di tampilkan 0
             } elseif ($telat < 0 && $pinjaman->status == 'Pinjam') {
                 $telat = 0;
@@ -118,12 +131,19 @@ class BayarDendaController extends Controller
             $user = Anggota::find($pinjaman->id_anggota);
             $data_user = User::find($user->users_id);
 
+
+            $tanggal_kembali_real = strtotime($pinjaman->tgl_kembali_real);
             $tanggal_kembali = strtotime($pinjaman->tgl_kembali);
             $tanggal_sekarang = strtotime(date('Y-m-d'));
             $telat = ($tanggal_sekarang - $tanggal_kembali) / (60 * 60 * 24);
+            $telat_kembali = ($tanggal_kembali_real - $tanggal_kembali) / (60 * 60 * 24);
 
             if ($pinjaman->status == 'Kembali' || $pinjaman->status == 'Pending' || $pinjaman->status == 'Gagal') {
-                $telat = 0;
+                if ($telat_kembali < 0) {
+                    $telat = 0;
+                } else {
+                    $telat = $telat_kembali;
+                }
                 // jika telat sama dengan 0 dan kurang dari 0 dan statusnya pinjam maka akan di tampilkan 0
             } elseif ($telat < 0 && $pinjaman->status == 'Pinjam') {
                 $telat = 0;
@@ -205,12 +225,18 @@ class BayarDendaController extends Controller
             $user = Anggota::find($pinjaman->id_anggota);
             $data_user = User::find($user->users_id);
 
+            $tanggal_kembali_real = strtotime($pinjaman->tgl_kembali_real);
             $tanggal_kembali = strtotime($pinjaman->tgl_kembali);
             $tanggal_sekarang = strtotime(date('Y-m-d'));
             $telat = ($tanggal_sekarang - $tanggal_kembali) / (60 * 60 * 24);
+            $telat_kembali = ($tanggal_kembali_real - $tanggal_kembali) / (60 * 60 * 24);
 
             if ($pinjaman->status == 'Kembali' || $pinjaman->status == 'Pending' || $pinjaman->status == 'Gagal') {
-                $telat = 0;
+                if ($telat_kembali < 0) {
+                    $telat = 0;
+                } else {
+                    $telat = $telat_kembali;
+                }
                 // jika telat sama dengan 0 dan kurang dari 0 dan statusnya pinjam maka akan di tampilkan 0
             } elseif ($telat < 0 && $pinjaman->status == 'Pinjam') {
                 $telat = 0;

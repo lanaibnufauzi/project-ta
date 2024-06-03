@@ -260,84 +260,88 @@
 @section('script')
 
 <script>
-    $("#order-chart").length
-        var areaData = {
-            labels: {!! json_encode($daysOfWeek) !!}
-            , datasets: [{
-                    data: {!! json_encode($pinjamanPerHariOrdered) !!}
-                    , borderColor: ["#4747A1"]
-                    , borderWidth: 2
-                    , fill: false
-                    , label: "Orders"
-                , }
+    $(function() {
+        if ($("#order-chart-2").length) {
+            var pinjamanPerHariOrdered = @json($pinjamanPerHariOrdered);
+            var daysOfWeek = @json($daysOfWeek);
 
-            , ]
-        , };
-        var areaOptions = {
-            responsive: true
-            , maintainAspectRatio: true
-            , plugins: {
-                filler: {
-                    propagate: false
-                , }
-            , }
-            , scales: {
-                xAxes: [{
-                    display: true
-                    , ticks: {
-                        display: true
-                        , padding: 10
-                        , fontColor: "#6C7383"
-                    , }
-                    , gridLines: {
-                        display: false
-                        , drawBorder: false
-                        , color: "transparent"
-                        , zeroLineColor: "#eeeeee"
-                    , }
-                , }, ]
-                , yAxes: [{
-                    display: true
-                    , ticks: {
-                        display: true
-                        , autoSkip: false
-                        , maxRotation: 0
-                        , stepSize: 200
-                        , min: 200
-                        , max: 1200
-                        , padding: 18
-                        , fontColor: "#6C7383"
-                    , }
-                    , gridLines: {
-                        display: true
-                        , color: "#f2f2f2"
-                        , drawBorder: false
-                    , }
-                , }, ]
-            , }
-            , legend: {
-                display: false
-            , }
-            , tooltips: {
-                enabled: true
-            , }
-            , elements: {
-                line: {
-                    tension: 0.35
-                , }
-                , point: {
-                    radius: 0
-                , }
-            , }
-        , };
-        var revenueChartCanvas = $("#order-chart-2").get(0).getContext("2d");
-        var revenueChart = new Chart(revenueChartCanvas, {
-            type: "line"
-            , data: areaData
-            , options: areaOptions
-        , });
+            var areaData = {
+                labels: daysOfWeek,
+                datasets: [{
+                    data: pinjamanPerHariOrdered,
+                    borderColor: ["#4747A1"],
+                    borderWidth: 2,
+                    fill: false,
+                    label: "Pinjaman"
+                }]
+            };
 
+            var areaOptions = {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    filler: {
+                        propagate: false
+                    }
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        ticks: {
+                            display: true,
+                            padding: 10,
+                            fontColor: "#6C7383"
+                        },
+                        gridLines: {
+                            display: false,
+                            drawBorder: false,
+                            color: "transparent",
+                            zeroLineColor: "#eeeeee"
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                            display: true,
+                            autoSkip: false,
+                            maxRotation: 0,
+                            stepSize: 1,
+                            min: 0,
+                            fontColor: "#6C7383"
+                        },
+                        gridLines: {
+                            display: true,
+                            color: "#f2f2f2",
+                            drawBorder: false
+                        }
+                    }]
+                },
+                legend: {
+                    display: false
+                },
+                tooltips: {
+                    enabled: true
+                },
+                elements: {
+                    line: {
+                        tension: 0.35
+                    },
+                    point: {
+                        radius: 0
+                    }
+                }
+            };
+
+            var revenueChartCanvas = $("#order-chart-2").get(0).getContext("2d");
+            var revenueChart = new Chart(revenueChartCanvas, {
+                type: "line",
+                data: areaData,
+                options: areaOptions
+            });
+        }
+    });
 </script>
+
 
 
 @if(Session::get('login'))

@@ -84,7 +84,7 @@
                                                         <td>{{ $data->tanggal_kembali }}</td>
                                                         <td>
                                                             <?php
-                                                             $tanggal_kembali_real = strtotime($data->tgl_kembali_real);
+                                                            $tanggal_kembali_real = strtotime($data->tgl_kembali_real);
                                                             $tanggal_kembali = strtotime($data->tanggal_kembali);
                                                             $tanggal_sekarang = strtotime(date('Y-m-d'));
                                                             $telat = ($tanggal_sekarang - $tanggal_kembali) / (60 * 60 * 24);

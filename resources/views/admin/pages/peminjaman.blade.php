@@ -193,7 +193,7 @@
                                     <td>
 
                                         <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal{{ $data->id }}">Edit</button>
-                                        <a href="/peminjaman/bayardenda/{{ $data->id }}" target="_blank" class="btn btn-primary btn-sm">Pembayaran Denda</a>
+                                        {{-- <a href="/peminjaman/bayardenda/{{ $data->id }}" target="_blank" class="btn btn-primary btn-sm">Pembayaran Denda</a> --}}
                                     </td>
                                 </tr>
 

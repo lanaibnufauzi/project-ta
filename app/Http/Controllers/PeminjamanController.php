@@ -17,6 +17,7 @@ class PeminjamanController extends Controller
             ->join('anggota', 'pinjaman.id_anggota', '=', 'anggota.id')
             ->join('users', 'anggota.users_id', '=', 'users.id')
             ->select('pinjaman.id as id', 'pinjaman.status as status', 'users.name as name',  'pinjaman.tgl_pinjam as tgl_pinjam', 'pinjaman.tgl_kembali as tgl_kembali', 'pinjaman.tgl_kembali_real as tgl_kembali_real')
+            ->orderBy('pinjaman.id', 'desc')
             ->get();
 
         $cek = Pinjaman::where('status', 'Pending')

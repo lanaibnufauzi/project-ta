@@ -17,7 +17,7 @@ class BukuController extends Controller
     public function index()
     {
         $kategori = Kategori::all();
-        $databuku = Buku::with('kategori')->get();
+        $databuku = Buku::with('kategori')->orderBy('id', 'desc')->get();
         return view('admin.pages.buku', [
             'databuku' => $databuku,
             'kategori' => $kategori,

@@ -8,14 +8,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Anggota;
-use App\Models\kategori;
+use App\Models\Kategori;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
     public function index()
     {
-        $kategori = kategori::all();
+        $kategori = Kategori::all();
         $cart = Cart::with('buku')->where('id_user', Auth::user()->id)->get();
         return view('landing.pages.cart', [
             'cart' => $cart,

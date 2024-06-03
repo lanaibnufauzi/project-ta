@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buku;
+use App\Models\DetailPinjaman;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 
@@ -198,8 +199,12 @@ class BukuController extends Controller
 
         // hapus cover
         if ($buku->cover_buku) {
-            unlink('public/cover
-            /' . $buku->cover_buku);
+            unlink('public/cover/' . $buku->cover_buku);
+        }
+
+        $cek_buku_detail = DetailPinjaman::where('buku_id', $id)->count();
+        if ($cek_buku_detail > 0) {
+            return redirect('/buku')->with('error', 'Buku tidak bisa dihapus karena sedang dipinjam');
         }
 
         if ($buku) {

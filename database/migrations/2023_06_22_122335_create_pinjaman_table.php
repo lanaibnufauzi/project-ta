@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('status')->nullable();
             $table->date('tgl_pinjam');
             $table->date('tgl_kembali');
+            $table->date('tgl_kembali_real')->nullable();
             $table->dateTime('confirmation_deadline');
             $table->string('no_transaksi')->nullable();
             $table->string('status_pembayaran')->nullable();

@@ -16,7 +16,7 @@ class PeminjamanController extends Controller
         $pinjaman = DB::table('pinjaman')
             ->join('anggota', 'pinjaman.id_anggota', '=', 'anggota.id')
             ->join('users', 'anggota.users_id', '=', 'users.id')
-            ->select('pinjaman.id as id', 'pinjaman.status as status', 'users.name as name',  'pinjaman.tgl_pinjam as tgl_pinjam', 'pinjaman.tgl_kembali as tgl_kembali')
+            ->select('pinjaman.id as id', 'pinjaman.status as status', 'users.name as name',  'pinjaman.tgl_pinjam as tgl_pinjam', 'pinjaman.tgl_kembali as tgl_kembali', 'pinjaman.tgl_kembali_real as tgl_kembali_real')
             ->get();
 
         $cek = Pinjaman::where('status', 'Pending')
@@ -37,12 +37,14 @@ class PeminjamanController extends Controller
     {
         $pinjaman = Pinjaman::find($id);
         $pinjaman->status = $request->status;
+        if ($request->status == 'Kembali') {
+            $pinjaman->tgl_kembali_real = Carbon::now();
+        }
         $pinjaman->save();
 
         if ($request->status == 'Kembali') {
             $detailbuku = DetailPinjaman::where('pinjaman_id', $id)->get();
             foreach ($detailbuku as $detail) {
-                // $detail->buku->status = 'Tersedia';
                 $detail->buku->save();
             }
         } elseif ($request->status == 'Pinjam') {
@@ -62,6 +64,7 @@ class PeminjamanController extends Controller
 
         if ($datapeminjaman->status == 'Pinjam') {
             $datapeminjaman->status = 'Kembali';
+            $datapeminjaman->tgl_kembali_real = Carbon::now();
             $datapeminjaman->save();
             return response()->json([
                 'success' => 'berhasil-kembali',

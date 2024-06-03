@@ -15,6 +15,7 @@ class Pinjaman extends Model
         'id_anggota',
         'tgl_pinjam',
         'tgl_kembali',
+        'tgl_kembali_real',
         'status',
         'confirmation_deadline',
         'no_transaksi',

@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Anggota;
-use App\Models\kategori;
+use App\Models\Kategori;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -16,7 +16,7 @@ class AuthController extends Controller
 {
     public function indexLogin()
     {
-        $kategori = kategori::all();
+        $kategori = Kategori::all();
         return view(
             'landing.auth.login',
             [
@@ -27,7 +27,7 @@ class AuthController extends Controller
 
     public function indexRegister()
     {
-        $kategori = kategori::all();
+        $kategori = Kategori::all();
         return view('landing.auth.register', [
             'kategori' => $kategori
         ]);

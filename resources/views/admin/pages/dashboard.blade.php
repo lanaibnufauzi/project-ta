@@ -111,7 +111,7 @@
                         <div class="mu-single-counter">
                             <i class="fa fa-files-o" aria-hidden="true"></i>
                             <div class="counter-value" data-count="4">{{ $jumlah_kategori }}</div>
-                            <h5 class="mu-counter-name">Jenis Buku</h5>
+                            <h5 class="mu-counter-name">Jenis Kategori</h5>
                         </div>
                     </div>
                 </section>
@@ -156,71 +156,7 @@
                             <h5 class="mu-counter-name">Total Peminjaman</h5>
                         </div>
                     </div>
-<<<<<<< HEAD
-                </div>
-            </div>
-        </div> --}}
-
-<body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="counter-container">
-                    <section class="mu-counter-area">
-                        <div class="mu-counter-block">
-                            <div class="mu-single-counter">
-                                <i class="fa fa-files-o" aria-hidden="true"></i>
-                                <div class="counter-value" data-count="4">0</div>
-                                <h5 class="mu-counter-name">Jenis Buku</h5>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="counter-container">
-                    <section class="mu-counter-area">
-                        <div class="mu-counter-block">
-                            <div class="mu-single-counter">
-                                <i class="fa fa-book" aria-hidden="true"></i>
-                                <div class="counter-value" data-count="650">0</div>
-                                <h5 class="mu-counter-name">Total Buku</h5>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="counter-container">
-                    <section class="mu-counter-area">
-                        <div class="mu-counter-block">
-                            <div class="mu-single-counter">
-                                <i class="fa fa-users" aria-hidden="true"></i>
-                                <div class="counter-value" data-count="1055">0</div>
-                                <h5 class="mu-counter-name">Users</h5>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="counter-container">
-                    <section class="mu-counter-area">
-                        <div class="mu-counter-block">
-                            <div class="mu-single-counter">
-                                <i class="fa fa-history" aria-hidden="true"></i>
-                                <div class="counter-value" data-count="25">0</div>
-                                <h5 class="mu-counter-name">History</h5>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-=======
                 </section>
->>>>>>> 45918226b1e3e780776f7e360efd4a7069672c59
             </div>
         </div>
     </div>

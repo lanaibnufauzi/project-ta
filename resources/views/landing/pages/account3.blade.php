@@ -84,12 +84,18 @@
                                                         <td>{{ $data->tanggal_kembali }}</td>
                                                         <td>
                                                             <?php
+                                                            $tanggal_kembali_real = strtotime($data->tgl_kembali_real);
                                                             $tanggal_kembali = strtotime($data->tanggal_kembali);
                                                             $tanggal_sekarang = strtotime(date('Y-m-d'));
                                                             $telat = ($tanggal_sekarang - $tanggal_kembali) / (60 * 60 * 24);
+                                                            $telat_kembali = ($tanggal_kembali_real - $tanggal_kembali) / (60 * 60 * 24);
 
                                                             if($data->status == 'Kembali' || $data->status == 'Pending' || $data->status == 'Gagal'){
-                                                            echo '0';
+                                                                if($telat_kembali < 0){
+                                                                echo '0';
+                                                                }else{
+                                                                echo $telat_kembali;
+                                                                }
                                                             // jika telat sama dengan 0 dan kurang dari 0 dan statusnya pinjam maka akan di tampilkan 0
                                                             } elseif ($telat < 0 && $data->status == 'Pinjam' ) {
                                                             echo '0';
@@ -101,7 +107,15 @@
                                                         <td>
                                                             <?php
                                                                 if($data->status == 'Kembali' || $data->status == 'Pending' || $data->status == 'Gagal'){
-                                                                    echo '0';
+                                                                    if($telat_kembali < 0){
+                                                                        echo '0';
+                                                                    }else{
+                                                                        $jumlah_hari_telat = $telat_kembali;
+                                                                        $jumlah_buku_yang_di_pinjam = \App\Models\DetailPinjaman::where('pinjaman_id', $data->id)->count();
+                                                                        $denda = \App\Models\KategoriDenda::where('nama_kategori', 'Telat')->first()->harga_kategori;
+
+                                                                        echo $jumlah_hari_telat * $jumlah_buku_yang_di_pinjam * $denda;
+                                                                    }
                                                                 }
                                                                 elseif ($telat < 0 && $data->status == 'Pinjam') {
                                                                     echo '0';

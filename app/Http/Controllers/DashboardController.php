@@ -21,10 +21,13 @@ class DashboardController extends Controller
         $total_peminjaman = Pinjaman::where('status', 'Pinjam')->count();
 
         // Ambil data pinjaman per hari dari database
-        $chart_pinjaman_per_hari = Pinjaman::select(DB::raw('DATE(created_at) as date, count(*) as total'))
+        $chart_pinjaman_per_hari = DB::table('pinjaman')
+            ->selectRaw('DATE(created_at) as date, count(*) as total')
             ->where('status', 'Pinjam')
-            ->groupBy(DB::raw('DATE(created_at)'))
+            ->groupByRaw('DATE(created_at)')
             ->get();
+
+        // dd($chart_pinjaman_per_hari);
 
         // Inisialisasi array untuk menyimpan data pinjaman per hari
         $daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -41,6 +44,8 @@ class DashboardController extends Controller
         foreach ($daysOfWeek as $day) {
             $pinjamanPerHariOrdered[] = $pinjamanPerHari[$day];
         }
+
+        // dd($pinjamanPerHariOrdered, $daysOfWeek);
 
 
         return view('admin.pages.dashboard', [

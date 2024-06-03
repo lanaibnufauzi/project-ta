@@ -17,7 +17,7 @@ class BukuController extends Controller
     public function index()
     {
         $kategori = Kategori::all();
-        $databuku = Buku::with('kategori')->get();
+        $databuku = Buku::with('kategori')->orderBy('id', 'desc')->get();
         return view('admin.pages.buku', [
             'databuku' => $databuku,
             'kategori' => $kategori,
@@ -202,9 +202,9 @@ class BukuController extends Controller
             unlink('public/cover/' . $buku->cover_buku);
         }
 
-        $cek_buku = DetailPinjaman::where('buku_id', $id)->count();
-        if($cek_buku < 0){
-            return redirect('/buku')->with('error', 'Buku tidak ditemukan');
+        $cek_buku_detail = DetailPinjaman::where('buku_id', $id)->count();
+        if ($cek_buku_detail > 0) {
+            return redirect('/buku')->with('error', 'Buku tidak bisa dihapus karena sedang dipinjam');
         }
 
         if ($buku) {

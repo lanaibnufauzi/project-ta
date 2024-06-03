@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\buku;
-use App\Models\kategori;
+use App\Models\Buku;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class DetailProductController extends Controller
 {
     public function index($id)
     {
-        $kategori = kategori::all();
+        $kategori = Kategori::all();
         $buku = buku::find($id);
         $relate_buku = buku::where('kategori_id', $buku->kategori_id)->where('id', '!=', $buku->id)->get();
         return view('landing.pages.detail-product', [

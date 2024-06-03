@@ -30,7 +30,7 @@ class Peminjaman extends Controller
 
         foreach ($cart as $item) {
 
-            $cek_buku = buku::where('id', $item->id_buku)->first();
+            $cek_buku = Buku::where('id', $item->id_buku)->first();
             $jumlah_buku_dipinjam = DB::table('pinjaman')
                 ->join('detail_pinjaman', 'pinjaman.id', '=', 'detail_pinjaman.pinjaman_id')
                 ->where('detail_pinjaman.buku_id', $item->id_buku)
@@ -80,7 +80,7 @@ class Peminjaman extends Controller
         $pinjaman = Pinjaman::where('id_anggota', $id_anggota)->where('status', 'Pending')->first();
 
         foreach ($cart as $item) {
-            $cek_buku = buku::where('id', $item->id_buku)->first();
+            $cek_buku = Buku::where('id', $item->id_buku)->first();
             $jumlah_buku_dipinjam = DB::table('pinjaman')
                 ->join('detail_pinjaman', 'pinjaman.id', '=', 'detail_pinjaman.pinjaman_id')
                 ->where('detail_pinjaman.buku_id', $item->id_buku)

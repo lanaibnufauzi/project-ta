@@ -5,15 +5,15 @@ namespace App\Http\Controllers\User;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\buku;
-use App\Models\kategori;
+use App\Models\Buku;
+use App\Models\Kategori;
 use Illuminate\Support\Facades\Auth;
 
 class WishlistController extends Controller
 {
     public function index()
     {
-        $kategori = kategori::all();
+        $kategori = Kategori::all();
         $wishlist = Wishlist::with('buku')->where('id_user', Auth::user()->id)->get();
         return view('landing.pages.wishlist', [
             'wishlist' => $wishlist,
@@ -26,7 +26,7 @@ class WishlistController extends Controller
         $id_buku = $id;
         $id_user = Auth::user()->id;
 
-        $cek_status = buku::where('id', $id_buku)->first();
+        $cek_status = Buku::where('id', $id_buku)->first();
 
         if ($cek_status->status == 'Di Pinjam') {
             return redirect()->back()->with('gagalwish', 'Buku sedang dipinjam');

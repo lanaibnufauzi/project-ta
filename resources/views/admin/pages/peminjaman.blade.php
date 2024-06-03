@@ -67,12 +67,18 @@
                                     <td>{{ $data->tgl_kembali }}</td>
                                     <td>
                                         <?php
+                                        $tanggal_kembali_real = strtotime($data->tgl_kembali_real);
                                         $tanggal_kembali = strtotime($data->tgl_kembali);
                                         $tanggal_sekarang = strtotime(date('Y-m-d'));
                                         $telat = ($tanggal_sekarang - $tanggal_kembali) / (60 * 60 * 24);
+                                        $telat_kembali = ($tanggal_kembali_real - $tanggal_kembali) / (60 * 60 * 24);
 
                                         if($data->status == 'Kembali' || $data->status == 'Pending' || $data->status == 'Gagal'){
+                                        if($telat_kembali < 0){
                                         echo '0';
+                                        }else{
+                                        echo $telat_kembali;
+                                        }
                                         // jika telat sama dengan 0 dan kurang dari 0 dan statusnya pinjam maka akan di tampilkan 0
                                         } elseif ($telat < 0 && $data->status == 'Pinjam') {
                                         echo '0';
@@ -84,17 +90,25 @@
                                     <td>
                                         <?php
                                          if($data->status == 'Kembali' || $data->status == 'Pending' || $data->status == 'Gagal'){
-                                            echo '0';
+                                            if($telat_kembali < 0){
+                                                echo '0';
+                                            }else{
+                                                $jumlah_hari_telat = $telat_kembali;
+                                                $jumlah_buku_yang_di_pinjam = \App\Models\DetailPinjaman::where('pinjaman_id', $data->id)->count();
+                                                $denda = \App\Models\KategoriDenda::where('nama_kategori', 'Telat')->first()->harga_kategori;
+
+                                                echo $jumlah_hari_telat * $jumlah_buku_yang_di_pinjam * $denda;
+                                            }
                                         }
                                         elseif ($telat < 0 && $data->status == 'Pinjam') {
                                             echo '0';
                                         }
                                         else {
-                                            $jumlah_hari_telat = $telat;
-                                            $jumlah_buku_yang_di_pinjam = \App\Models\DetailPinjaman::where('pinjaman_id', $data->id)->count();
-                                            $denda = \App\Models\KategoriDenda::where('nama_kategori', 'Telat')->first()->harga_kategori;
+                                                $jumlah_hari_telat = $telat;
+                                                $jumlah_buku_yang_di_pinjam = \App\Models\DetailPinjaman::where('pinjaman_id', $data->id)->count();
+                                                $denda = \App\Models\KategoriDenda::where('nama_kategori', 'Telat')->first()->harga_kategori;
 
-                                             echo $jumlah_hari_telat * $jumlah_buku_yang_di_pinjam * $denda;
+                                                echo $jumlah_hari_telat * $jumlah_buku_yang_di_pinjam * $denda;
 
                                         }
                                     ?>
@@ -135,9 +149,6 @@
                                         <ul>
                                             @foreach ($detail_buku as $buku)
                                             <li>{{ $no++ }}. {{ $buku->buku->judul_buku }} <br> Kondisi Buku : {{ $buku->kondisi_buku }} <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editkondisiModal{{ $buku->id }}">Edit</button></li>
-
-
-
                                             <!-- Edit Modal -->
                                             <div class="modal fade" id="editkondisiModal{{ $buku->id }}" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
@@ -182,7 +193,7 @@
                                     <td>
 
                                         <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal{{ $data->id }}">Edit</button>
-                                        <a href="/peminjaman/bayardenda/{{ $data->id }}" target="_blank" class="btn btn-primary btn-sm">Pembayaran Denda</a>
+                                        {{-- <a href="/peminjaman/bayardenda/{{ $data->id }}" target="_blank" class="btn btn-primary btn-sm">Pembayaran Denda</a> --}}
                                     </td>
                                 </tr>
 

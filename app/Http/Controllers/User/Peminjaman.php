@@ -17,6 +17,11 @@ class Peminjaman extends Controller
 {
     public function pinjam()
     {
+        $cek_jumlah_pinjam = Pinjaman::where('id_anggota', Auth::user()->anggota->id)->where('status', 'Pinjam')->count();
+        if ($cek_jumlah_pinjam >= 2) {
+            return redirect()->back()->with('maxpinjam', 'Maksimal peminjaman hanya 2');
+        }
+
         $cart = Cart::where('id_user', Auth::user()->id)->get();
         $id_anggota = Anggota::where('users_id', Auth::user()->id)->first()->id;
 

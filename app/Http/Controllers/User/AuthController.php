@@ -122,7 +122,12 @@ class AuthController extends Controller
                 'email' => 'required|email|unique:users,email,' . auth()->user()->id,
                 'no_handphone' => 'required',
                 'alamat' => 'required',
-                'password' => 'required',
+                'password' => [
+                    'required',
+                    'string',
+                    'min:8',
+                    'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#@$!%*?&])[A-Za-z\d#@$!%*?&]{8,}$/',
+                ],
                 'repassword' => 'required|same:password'
             ], [
                 'name.required' => 'Nama tidak boleh kosong',
@@ -132,6 +137,8 @@ class AuthController extends Controller
                 'no_handphone.required' => 'No handphone tidak boleh kosong',
                 'alamat.required' => 'Alamat tidak boleh kosong',
                 'password.required' => 'Password tidak boleh kosong',
+                'password.min' => 'Password minimal 8 karakter',
+                'password.regex' => 'Password harus mengandung huruf besar, huruf kecil, angka, dan simbol',
                 'repassword.required' => 'Konfirmasi password tidak boleh kosong',
                 'repassword.same' => 'Konfirmasi password tidak sama dengan password'
             ]);
@@ -196,12 +203,19 @@ class AuthController extends Controller
     {
         $user = User::where('code', $request->code)->where('status_code', 'aktif')->where('id_role', '2')->first();
         $request->validate([
-            'password' => 'required',
-            'repassword' => 'required|same:password',
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#@$!%*?&])[A-Za-z\d#@$!%*?&]{8,}$/',
+            ],
+            'repassword' => 'required|same:password'
         ], [
             'password.required' => 'Password tidak boleh kosong',
-            'repassword.required' => 'Re-Password tidak boleh kosong',
-            'repassword.same' => 'Re-Password tidak sama dengan Password',
+            'password.min' => 'Password minimal 8 karakter',
+            'password.regex' => 'Password harus mengandung huruf besar, huruf kecil, angka, dan simbol',
+            'repassword.required' => 'Konfirmasi password tidak boleh kosong',
+            'repassword.same' => 'Konfirmasi password tidak sama dengan password'
         ]);
 
         $user->password = bcrypt($request->password);

@@ -56,11 +56,11 @@
             <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                     <h3 class="font-weight-bold">Welcome Lana</h3>
-                    <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h6>
+                    {{-- <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h6> --}}
                 </div>
                 <div class="col-12 col-xl-4">
                     <div class="justify-content-end d-flex">
-                        <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                        {{-- <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
                             <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 <i class="mdi mdi-calendar"></i> Today (10 Jan 2021)
                             </button>
@@ -70,7 +70,7 @@
                                 <a class="dropdown-item" href="#">June - August</a>
                                 <a class="dropdown-item" href="#">August - November</a>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -84,13 +84,13 @@
                         <img src="{{ asset('admin/images/dashboard/people.svg') }}" alt="people" class="img-fluid" style="max-width: 200px;">
                         <div class="weather-info">
                             <div class="d-flex">
-                                <div>
+                                {{-- <div>
                                     <h2 class="mb-0 font-weight-normal"><i class="icon-sun mr-2"></i>31<sup>C</sup></h2>
                                 </div>
                                 <div class="ml-2">
                                     <h4 class="location font-weight-normal">Jember</h4>
                                     <h6 class="font-weight-normal">Indonesia</h6>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -167,7 +167,7 @@
     <div class="col-md-6 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <p class="card-title">Order Details</p>
+                <p class="card-title">Data Peminjaman</p>
                 {{-- <div class="d-flex flex-wrap mb-5">
                     <div class="mr-5 mt-3">
                         <p class="text-muted">Order value</p>

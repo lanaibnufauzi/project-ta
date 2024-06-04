@@ -57,7 +57,7 @@
                                                 <label class="form-check-label" for="exampleCheckbox1"><span>Remember me</span></label>
                                             </div>
                                         </div> --}}
-                                        <a class="text-muted" href="/user/reset-password">Lupa Password?</a>
+                                        {{-- <a class="text-muted" href="/user/reset-password">Lupa Password?</a> --}}
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-heading btn-block hover-up" name="login">Masuk</button>

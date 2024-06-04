@@ -112,7 +112,7 @@ class Peminjaman extends Controller
             $item->delete();
         }
 
-        return redirect('/user/account#orders')->back()->with('tambahanbuku', 'Berhasil menambahkan buku ketika status peminjaman pending');
+        return redirect('/user/account#orders')->with('tambahanbuku', 'Berhasil menambahkan buku ketika status peminjaman pending');
     }
 
     public function batal($id)

@@ -9,9 +9,9 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Data Kategori</h4>
-                    <p class="card-description">
+                    {{-- <p class="card-description">
                         Add class <code>.table-striped</code>
-                    </p>
+                    </p> --}}
                     @if($errors->any())
                     <div class="alert alert-danger alert-dismissible fade show mt-2">
 

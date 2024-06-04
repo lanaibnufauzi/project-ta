@@ -9,9 +9,9 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Data Buku</h4>
-                    <p class="card-description">
+                    {{-- <p class="card-description">
                         Add class <code>.table-striped</code>
-                    </p>
+                    </p> --}}
                     @if($errors->any())
                     <div class="alert alert-danger alert-dismissible fade show mt-2">
 
@@ -292,61 +292,61 @@
             , ['10 rows', '25 rows', '50 rows', 'Show all']
         ],
 
-        buttons: [{
-                extend: 'colvis'
-                , className: 'btn btn-primary btn-sm'
-                , text: 'Column Visibility',
-                // columns: ':gt(0)'
+        // buttons: [{
+        //         extend: 'colvis'
+        //         , className: 'btn btn-primary btn-sm'
+        //         , text: 'Column Visibility',
+        //         // columns: ':gt(0)'
 
 
-            },
+        //     },
 
-            {
+        //     {
 
-                extend: 'pageLength'
-                , className: 'btn btn-primary btn-sm'
-                , text: 'Page Length',
-                // columns: ':gt(0)'
-            },
+        //         extend: 'pageLength'
+        //         , className: 'btn btn-primary btn-sm'
+        //         , text: 'Page Length',
+        //         // columns: ':gt(0)'
+        //     },
 
 
-            // 'colvis', 'pageLength',
+        //     // 'colvis', 'pageLength',
 
-            {
-                extend: 'excel'
-                , className: 'btn btn-primary btn-sm'
-                , exportOptions: {
-                    columns: [0, ':visible']
-                }
-            },
+        //     {
+        //         extend: 'excel'
+        //         , className: 'btn btn-primary btn-sm'
+        //         , exportOptions: {
+        //             columns: [0, ':visible']
+        //         }
+        //     },
 
-            // {
-            //     extend: 'csv',
-            //     className: 'btn btn-primary btn-sm',
-            //     exportOptions: {
-            //         columns: [0, ':visible']
-            //     }
-            // },
-            {
-                extend: 'pdf'
-                , className: 'btn btn-primary btn-sm'
-                , exportOptions: {
-                    columns: [0, ':visible']
-                }
-            },
+        //     // {
+        //     //     extend: 'csv',
+        //     //     className: 'btn btn-primary btn-sm',
+        //     //     exportOptions: {
+        //     //         columns: [0, ':visible']
+        //     //     }
+        //     // },
+        //     {
+        //         extend: 'pdf'
+        //         , className: 'btn btn-primary btn-sm'
+        //         , exportOptions: {
+        //             columns: [0, ':visible']
+        //         }
+        //     },
 
-            {
-                extend: 'print'
-                , className: 'btn btn-primary btn-sm'
-                , exportOptions: {
-                    columns: [0, ':visible']
-                }
-            },
+        //     {
+        //         extend: 'print'
+        //         , className: 'btn btn-primary btn-sm'
+        //         , exportOptions: {
+        //             columns: [0, ':visible']
+        //         }
+        //     },
 
-            // 'pageLength', 'colvis',
-            // 'copy', 'csv', 'excel', 'print'
+        //     // 'pageLength', 'colvis',
+        //     // 'copy', 'csv', 'excel', 'print'
 
-        ]
+        // ]
     , });
 
 </script>

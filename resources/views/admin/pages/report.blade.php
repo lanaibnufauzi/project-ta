@@ -211,13 +211,13 @@
                 }
             },
 
-            {
-                extend: 'print'
-                , className: 'btn btn-primary btn-sm'
-                , exportOptions: {
-                    columns: [0, ':visible']
-                }
-            },
+            // {
+            //     extend: 'print'
+            //     , className: 'btn btn-primary btn-sm'
+            //     , exportOptions: {
+            //         columns: [0, ':visible']
+            //     }
+            // },
 
             // 'pageLength', 'colvis',
             // 'copy', 'csv', 'excel', 'print'

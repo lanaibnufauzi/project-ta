@@ -408,7 +408,7 @@
         // tidak usah tombol oke, berikan waktu 1 detik
         Swal.fire({
             icon: 'error'
-            , title: 'Maksimal peminjaman hanya 2'
+            , title: 'Maksimal peminjaman hanya 1'
             , showConfirmButton: false
             , timer: 1000
         , });
@@ -416,12 +416,18 @@
     </script>
     @endif
 
+    @if(Session::get('maxpinjambuku'))
+    <script>
+        // tidak usah tombol oke, berikan waktu 1 detik
+        Swal.fire({
+            icon: 'error'
+            , title: 'Maksimal peminjaman buku hanya 2'
+            , showConfirmButton: false
+            , timer: 1000
+        , });
 
-
-
-
-
-
+    </script>
+    @endif
 
 </body>
 

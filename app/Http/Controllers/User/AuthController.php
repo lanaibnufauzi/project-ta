@@ -7,10 +7,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Anggota;
 use App\Models\Kategori;
+use Illuminate\Support\Facades\Session;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\PHPMailer;
 use Illuminate\Support\Facades\Crypt;
+
 
 class AuthController extends Controller
 {
@@ -35,6 +37,8 @@ class AuthController extends Controller
 
     public function postLogin(Request $request)
     {
+        Session::flash('emailLogin', $request->email);
+        Session::flash('passwordLogin', $request->password);
 
         $request->validate([
             'email' => 'required|email',
@@ -64,7 +68,15 @@ class AuthController extends Controller
 
     public function postRegister(Request $request)
     {
+
+        Session::flash('nisnRegister', $request->nisn);
+        Session::flash('nameRegister', $request->name);
+        Session::flash('emailRegister', $request->email);
+        Session::flash('no_handphoneRegister', $request->no_handphone);
+        Session::flash('alamatRegister', $request->alamat);
+
         $request->validate([
+            'nisn' => 'required|unique:users',
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'no_handphone' => 'required',
@@ -77,6 +89,8 @@ class AuthController extends Controller
             ],
             'repassword' => 'required|same:password'
         ], [
+            'nisn.required' => 'NISN tidak boleh kosong',
+            'nisn.unique' => 'NISN sudah terdaftar',
             'name.required' => 'Nama tidak boleh kosong',
             'email.required' => 'Email tidak boleh kosong',
             'email.email' => 'Email tidak valid',
@@ -99,6 +113,7 @@ class AuthController extends Controller
 
 
         $user = new User();
+        $user->nisn = $request->nisn;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->no_handphone = $request->no_handphone;
@@ -118,6 +133,7 @@ class AuthController extends Controller
     {
         if ($request->password != null) {
             $request->validate([
+                'nisn' => 'required|unique:users,nisn,' . auth()->user()->id,
                 'name' => 'required',
                 'email' => 'required|email|unique:users,email,' . auth()->user()->id,
                 'no_handphone' => 'required',
@@ -130,6 +146,8 @@ class AuthController extends Controller
                 ],
                 'repassword' => 'required|same:password'
             ], [
+                'nisn.required' => 'NISN tidak boleh kosong',
+                'nisn.unique' => 'NISN sudah terdaftar',
                 'name.required' => 'Nama tidak boleh kosong',
                 'email.required' => 'Email tidak boleh kosong',
                 'email.email' => 'Email tidak valid',
@@ -144,11 +162,14 @@ class AuthController extends Controller
             ]);
         } else {
             $request->validate([
+                'nisn' => 'required|unique:users,nisn,' . auth()->user()->id,
                 'name' => 'required',
                 'email' => 'required|email|unique:users,email,' . auth()->user()->id,
                 'no_handphone' => 'required',
                 'alamat' => 'required',
             ], [
+                'nisn.required' => 'NISN tidak boleh kosong',
+                'nisn.unique' => 'NISN sudah terdaftar',
                 'name.required' => 'Nama tidak boleh kosong',
                 'email.required' => 'Email tidak boleh kosong',
                 'email.email' => 'Email tidak valid',
@@ -159,6 +180,7 @@ class AuthController extends Controller
         }
 
         $user = User::find(auth()->user()->id);
+        $user->nisn = $request->nisn;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->no_handphone = $request->no_handphone;
@@ -243,15 +265,15 @@ class AuthController extends Controller
                 //Server settings
                 $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
                 $mail->isSMTP();                                            //Send using SMTP
-                $mail->Host       = 'mail.semnasjkgsby.com';                     //Set the SMTP server to send through
+                $mail->Host       = 'monza.id.domainesia.com';                     //Set the SMTP server to send through
                 $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                $mail->Username   = 'admin@semnasjkgsby.com';                     //SMTP username
-                $mail->Password   = '%CQw$!a@@#%U';                               //SMTP password
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-                $mail->Port       = 465;                              //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+                $mail->Username   = 'rentcar@kaliansenang.my.id';                     //SMTP username
+                $mail->Password   = 'Gituajamarah#23';                               //SMTP password
+                $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
+                $mail->Port       = 465;                  //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
                 //Recipients
-                $mail->setFrom('admin@semnasjkgsby.com', 'Admin KPA');
+                $mail->setFrom('rentcar@kaliansenang.my.id', 'Admin');
                 $mail->addAddress($request->email);     //Add a recipient
 
                 $Code = substr((str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")), 0, 10);

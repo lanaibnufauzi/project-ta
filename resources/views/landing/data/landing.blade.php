@@ -1,3 +1,29 @@
+<style>
+    <style>.product-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .product-cart-wrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    .product-content-wrap h2 {
+        min-height: 50px;
+        /* Atur sesuai kebutuhan */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+</style>
+
 @foreach ($buku as $buku )
 <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
     <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">

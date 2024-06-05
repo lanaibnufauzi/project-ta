@@ -37,6 +37,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>NISN</th>
                                     <th>Nama</th>
                                     <th>Email</th>
                                     <th>Telephone</th>
@@ -51,6 +52,7 @@
 
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $data->user->nisn }}</td>
                                     <td>{{ $data->user->name }}</td>
                                     <td>{{ $data->user->email }}</td>
                                     <td>{{ $data->user->no_handphone }}</td>

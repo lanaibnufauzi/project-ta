@@ -44,10 +44,10 @@
                                     @csrf
                                     @method('POST')
                                     <div class="form-group">
-                                        <input type="email" required="" name="email" placeholder="Username or Email *" />
+                                        <input type="email" value="{{ Session::get('emailLogin') }}" required="" name="email" placeholder="Username or Email *"  />
                                     </div>
                                     <div class="form-group">
-                                        <input required="" type="password" name="password" placeholder="Your password *" />
+                                        <input required="" value="{{ Session::get('passwordLogin') }}" type="password" name="password" placeholder="Your password *" />
                                     </div>
 
                                     <div class="login_footer form-group mb-50">

@@ -17,12 +17,19 @@ class Peminjaman extends Controller
 {
     public function pinjam()
     {
-        $cek_jumlah_pinjam = Pinjaman::where('id_anggota', Auth::user()->anggota->id)->where('status', 'Pinjam')->count();
-        if ($cek_jumlah_pinjam >= 2) {
-            return redirect()->back()->with('maxpinjam', 'Maksimal peminjaman hanya 2');
+        $id_anggota = Anggota::where('users_id', Auth::user()->id)->first()->id;
+        $cek_jumlah_pinjam = Pinjaman::where('id_anggota', $id_anggota)->where('status', 'Pinjam')->count();
+        if ($cek_jumlah_pinjam >= 1) {
+            return redirect()->back()->with('maxpinjam', 'Maksimal peminjaman hanya 1');
         }
 
         $cart = Cart::where('id_user', Auth::user()->id)->get();
+
+        // jika cart lebih dari 2 buku tidak bisa melakukan peminjaman
+        if (count($cart) > 2) {
+            return redirect()->back()->with('maxpinjam', 'Maksimal peminjaman hanya 2');
+        }
+
         $id_anggota = Anggota::where('users_id', Auth::user()->id)->first()->id;
 
         $pinjaman = new Pinjaman();
@@ -83,6 +90,12 @@ class Peminjaman extends Controller
         $id_anggota = Anggota::where('users_id', Auth::user()->id)->first()->id;
 
         $pinjaman = Pinjaman::where('id_anggota', $id_anggota)->where('status', 'Pending')->first();
+
+        // cek detail pinjaman apakah sudah ada 2 buku
+        $cek_detail_pinjaman = DetailPinjaman::where('pinjaman_id', $pinjaman->id)->count();
+        if ($cek_detail_pinjaman >= 2) {
+            return redirect()->back()->with('maxpinjambuku', 'Maksimal peminjaman hanya 2');
+        }
 
         foreach ($cart as $item) {
             $cek_buku = Buku::where('id', $item->id_buku)->first();

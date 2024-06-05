@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->longText('nisn')->nullable();
             $table->longText('name');
             $table->longText('email');
             $table->longText('no_handphone');

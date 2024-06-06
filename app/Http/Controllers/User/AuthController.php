@@ -256,7 +256,11 @@ class AuthController extends Controller
             'email.required' => 'Email tidak boleh kosong',
         ]);
 
-        $user = User::where('email', $request->email)->where('id_role', '2')->first();
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+
+        $email_encypt = openssl_encrypt($request->email, 'AES-128-CBC', $key, 0, $iv);
+        $user = User::where('email', $email_encypt)->where('id_role', '2')->first();
 
         if ($user) {
             try {
@@ -282,7 +286,7 @@ class AuthController extends Controller
                 $mail->isHTML(true);                                  //Set email format to HTML
                 $mail->Subject = 'Password Reset';
                 $mail->Body    = 'To reset your password, please click the link below:<br><br><a href="http://127.0.0.1:8000/user/reset-password/' . $Code . '">Reset Password</a>';
-                $updatecode = User::where('email', '=', $request->email)->first();
+                $updatecode = User::where('email', '=', $email_encypt)->first();
                 $updatecode->code = $Code;
                 $updatecode->status_code = 'aktif';
                 $updatecode->save();

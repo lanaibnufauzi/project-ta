@@ -9,36 +9,46 @@ use Illuminate\Http\Request;
 
 class LandingController extends Controller
 {
+    // Pada controller, sesuaikan pencarian buku
     public function index(Request $request)
-
     {
         $kategori = Kategori::all();
         $id_kategori = $request->id_kategori;
         $nama_buku = $request->nama_buku;
 
-        if ($id_kategori != null && $nama_buku != null) {
-            $buku = Buku::where('kategori_id', $id_kategori)->where('judul_buku', 'like', '%' . $nama_buku . '%')->get();
-            $jumlah_data = Buku::where('kategori_id', $id_kategori)->where('judul_buku', 'like', '%' . $nama_buku . '%')->count();
-        } elseif ($id_kategori != null) {
-            $buku = Buku::where('kategori_id', $id_kategori)->paginate(10);
-            $jumlah_data = Buku::where('kategori_id', $id_kategori)->count();
-        } elseif ($nama_buku != null) {
-            $buku = Buku::where('judul_buku', 'like', '%' . $nama_buku . '%')->paginate(10);
-            $jumlah_data = Buku::where('judul_buku', 'like', '%' . $nama_buku . '%')->count();
-        } else {
-            $buku = Buku::paginate(10);
-            $jumlah_data = Buku::count();
+        $query = Buku::query();
+
+        if ($id_kategori != null) {
+            $query->where('kategori_id', $id_kategori);
         }
+
+        // Paginate the results
+        $buku = $query->paginate(10);
+
+        $decrypted_buku = [];
+
+        foreach ($buku as $item) {
+            $item->judul_buku_decrypted = $item->judul_buku; // Dekripsi judul buku
+            $decrypted_buku[] = $item;
+        }
+
+        if ($nama_buku != null) {
+            $decrypted_buku = array_filter($decrypted_buku, function ($item) use ($nama_buku) {
+                return stripos($item->judul_buku_decrypted, $nama_buku) !== false;
+            });
+        }
+
+        $jumlah_data = count($decrypted_buku);
 
         if ($request->ajax()) {
             $view = view('landing.data.landing', [
-                'buku' => $buku,
+                'buku' => $decrypted_buku,
             ])->render();
             return response()->json(['html' => $view]);
         }
 
         return view('landing.pages.landing', [
-            'buku' => $buku,
+            'buku' => $decrypted_buku,
             'kategori' => $kategori,
             'jumlah_data' => $jumlah_data
         ]);

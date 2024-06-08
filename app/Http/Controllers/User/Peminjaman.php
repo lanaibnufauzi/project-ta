@@ -27,7 +27,11 @@ class Peminjaman extends Controller
 
         // jika cart lebih dari 2 buku tidak bisa melakukan peminjaman
         if (count($cart) > 2) {
+<<<<<<< HEAD
             return redirect()->back()->with('maxpinjambuku', 'Maksimal peminjaman hanya 2');
+=======
+            return redirect()->back()->with('maxpinjam', 'Maksimal peminjaman hanya 2');
+>>>>>>> a9bdd1ce509366dd1f9c4e56ea9b3a2ee498a500
         }
 
         $id_anggota = Anggota::where('users_id', Auth::user()->id)->first()->id;

@@ -41,16 +41,19 @@
                                     @csrf
                                     @method('POST')
                                     <div class="form-group">
-                                        <input type="text" required="" name="name" placeholder="Name" />
+                                        <input type="text" required="" value="{{ Session::get('nisnRegister') }}" name="nisn" placeholder="Nisn" />
                                     </div>
                                     <div class="form-group">
-                                        <input id="email" type="email" required="" name="email" placeholder="Email" />
+                                        <input type="text" required="" value="{{ Session::get('nameRegister') }}" name="name" placeholder="Name" />
                                     </div>
                                     <div class="form-group">
-                                        <input id="no_hanpdhone" type="text" required="" name="no_handphone" placeholder="No Handphone" pattern="[0-9]+" />
+                                        <input id="email" type="email" value="{{ Session::get('emailRegister') }}" required="" name="email" placeholder="Email" />
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" required="" name="alamat" placeholder="Alamat" />
+                                        <input id="no_hanpdhone" value="{{ Session::get('no_handphoneRegister') }}" type="text" required="" name="no_handphone" placeholder="No Handphone" pattern="[0-9]+" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" required="" value="{{ Session::get('alamatRegister') }}" name="alamat" placeholder="Alamat" />
                                     </div>
                                     <div class="form-group">
                                         <input required="" type="password" name="password" placeholder="Password" />

@@ -44,10 +44,10 @@
                                     @csrf
                                     @method('POST')
                                     <div class="form-group">
-                                        <input type="email" required="" name="email" placeholder="Username or Email *" />
+                                        <input type="email" value="{{ Session::get('emailLogin') }}" required="" name="email" placeholder="Username or Email *"  />
                                     </div>
                                     <div class="form-group">
-                                        <input required="" type="password" name="password" placeholder="Your password *" />
+                                        <input required="" value="{{ Session::get('passwordLogin') }}" type="password" name="password" placeholder="Your password *" />
                                     </div>
 
                                     <div class="login_footer form-group mb-50">
@@ -57,7 +57,7 @@
                                                 <label class="form-check-label" for="exampleCheckbox1"><span>Remember me</span></label>
                                             </div>
                                         </div> --}}
-                                        {{-- <a class="text-muted" href="/user/reset-password">Lupa Password?</a> --}}
+                                        <a class="text-muted" href="/user/reset-password">Lupa Password?</a>
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-heading btn-block hover-up" name="login">Masuk</button>

@@ -14,6 +14,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $table = 'users';
+    
 
     /**
      * The attributes that are mass assignable.
@@ -23,12 +24,28 @@ class User extends Authenticatable
     protected $fillable = [
 
         'id_role',
+        'nisn',
         'name',
         'email',
         'password',
         'no_handphone',
         'alamat',
     ];
+
+    // encrypt aes 128 nisn
+    public function setNisnAttribute($value)
+    {
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        $this->attributes['nisn'] = openssl_encrypt($value, 'AES-128-CBC', $key, 0, $iv);
+    }
+
+    public function getNisnAttribute($value)
+    {
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+        return openssl_decrypt($value, 'AES-128-CBC', $key, 0, $iv);
+    }
 
     // encrypt aes 128 name
     public function setNameAttribute($value)

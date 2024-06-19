@@ -68,13 +68,39 @@ class AuthController extends Controller
 
     public function postRegister(Request $request)
     {
-
+        // Simpan data form di session untuk menampilkan kembali jika ada kesalahan
         Session::flash('nisnRegister', $request->nisn);
         Session::flash('nameRegister', $request->name);
         Session::flash('emailRegister', $request->email);
         Session::flash('no_handphoneRegister', $request->no_handphone);
         Session::flash('alamatRegister', $request->alamat);
 
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+
+        $nisn_encrypt = openssl_encrypt($request->nisn, 'AES-128-CBC', $key, 0, $iv);
+
+
+        // Cek NISN sudah terdaftar atau belum
+        $nisn = User::where('nisn', $nisn_encrypt)->first();
+
+
+        $email_encrypt = openssl_encrypt($request->email, 'AES-128-CBC', $key, 0, $iv);
+
+        // Cek email sudah terdaftar atau belum
+        $email = User::where('email', $email_encrypt)->first();
+
+
+        if ($nisn && $email) {
+            return redirect('/user/register')->with('nisnemail', 'NISN dan Email sudah terdaftar');
+        } elseif ($nisn) {
+            return redirect('/user/register')->with('nisn', 'NISN sudah terdaftar');
+        } elseif ($email) {
+            return redirect('/user/register')->with('email', 'Email sudah terdaftar');
+        }
+
+
+        // Validasi form
         $request->validate([
             'nisn' => 'required|unique:users',
             'name' => 'required',
@@ -104,14 +130,14 @@ class AuthController extends Controller
             'repassword.same' => 'Konfirmasi password tidak sama dengan password'
         ]);
 
-        // email harus @gmail.com
+        // Email harus @gmail.com
         $email = $request->email;
         $email_explode = explode('@', $email);
         if ($email_explode[1] != 'gmail.com') {
             return redirect('/user/register')->with('harusgmail', 'Email harus menggunakan @gmail.com');
         }
 
-
+        // Simpan user baru
         $user = new User();
         $user->nisn = $request->nisn;
         $user->name = $request->name;
@@ -126,7 +152,7 @@ class AuthController extends Controller
         $new->users_id = $user->id;
         $new->save();
 
-        return redirect('/user/register')->with('register', 'Registrasi berhasil, silahkan login');
+        return redirect('/user/login')->with('register', 'Registrasi berhasil, silahkan login');
     }
 
     public function updateprofil(Request $request)

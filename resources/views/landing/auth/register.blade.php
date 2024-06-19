@@ -36,6 +36,24 @@
                                         @endforeach
                                     </div>
                                     @endif
+
+                                    @if(Session::has('nisnemail'))
+                                    <div class="alert alert-danger alert-dismissible fade show mt-2">
+                                        <li>{{ Session::get('nisnemail') }}</li>
+                                    </div>
+                                    @endif
+
+                                    @if(Session::has('nisn'))
+                                    <div class="alert alert-danger alert-dismissible fade show mt-2">
+                                        <li>{{ Session::get('nisn') }}</li>
+                                    </div>
+                                    @endif
+
+                                    @if(Session::has('email'))
+                                    <div class="alert alert-danger alert-dismissible fade show mt-2">
+                                        <li>{{ Session::get('email') }}</li>
+                                    </div>
+                                    @endif
                                 </div>
                                 <form action="/user/register" method="post">
                                     @csrf
@@ -86,22 +104,22 @@
                         <div class="card-login mt-115">
                             <a href="#" class="social-login facebook-login">
                                 <img src="{{ asset('landing/assets/imgs/theme/icons/logo-facebook.svg') }}" alt="" />
-                                <span>Continue with Facebook</span>
-                            </a>
-                            <a href="#" class="social-login google-login">
-                                <img src="{{ asset('landing/assets/imgs/theme/icons/logo-google.svg') }}" alt="" />
-                                <span>Continue with Google</span>
-                            </a>
-                            <a href="#" class="social-login apple-login">
-                                <img src="{{ asset('landing/assets/imgs/theme/icons/logo-apple.svg') }}" alt="" />
-                                <span>Continue with Apple</span>
-                            </a>
-                        </div>
-                    </div> --}}
+                    <span>Continue with Facebook</span>
+                    </a>
+                    <a href="#" class="social-login google-login">
+                        <img src="{{ asset('landing/assets/imgs/theme/icons/logo-google.svg') }}" alt="" />
+                        <span>Continue with Google</span>
+                    </a>
+                    <a href="#" class="social-login apple-login">
+                        <img src="{{ asset('landing/assets/imgs/theme/icons/logo-apple.svg') }}" alt="" />
+                        <span>Continue with Apple</span>
+                    </a>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
+</div>
+</div>
 </div>
 @endsection
 
@@ -112,6 +130,7 @@
             this.value = this.value.replace(/[^0-9]/g, '');
         });
     });
+
 </script>
 
 <script>

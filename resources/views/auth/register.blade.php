@@ -109,7 +109,9 @@
                     <li>{{ $nomer++ }}. {{ $error }}</li>
                     @endforeach
                 </div>
+
                 @endif
+
                 <div class="form-group">
                     <input type="text" class="form-control" name="name" placeholder="Masukkan Nama">
                 </div>

@@ -68,14 +68,47 @@ class AuthController extends Controller
 
     public function postRegister(Request $request)
     {
+<<<<<<< HEAD
         // Flash input values to session
+=======
+        // Simpan data form di session untuk menampilkan kembali jika ada kesalahan
+>>>>>>> 6c6270f7b42eabfd777e870a9308a289535c463a
         Session::flash('nisnRegister', $request->nisn);
         Session::flash('nameRegister', $request->name);
         Session::flash('emailRegister', $request->email);
         Session::flash('no_handphoneRegister', $request->no_handphone);
         Session::flash('alamatRegister', $request->alamat);
 
+<<<<<<< HEAD
         // Validate input
+=======
+        $iv = '1234567890123456';
+        $key = '1234567890123456';
+
+        $nisn_encrypt = openssl_encrypt($request->nisn, 'AES-128-CBC', $key, 0, $iv);
+
+
+        // Cek NISN sudah terdaftar atau belum
+        $nisn = User::where('nisn', $nisn_encrypt)->first();
+
+
+        $email_encrypt = openssl_encrypt($request->email, 'AES-128-CBC', $key, 0, $iv);
+
+        // Cek email sudah terdaftar atau belum
+        $email = User::where('email', $email_encrypt)->first();
+
+
+        if ($nisn && $email) {
+            return redirect('/user/register')->with('nisnemail', 'NISN dan Email sudah terdaftar');
+        } elseif ($nisn) {
+            return redirect('/user/register')->with('nisn', 'NISN sudah terdaftar');
+        } elseif ($email) {
+            return redirect('/user/register')->with('email', 'Email sudah terdaftar');
+        }
+
+
+        // Validasi form
+>>>>>>> 6c6270f7b42eabfd777e870a9308a289535c463a
         $request->validate([
             'nisn' => 'required|unique:users',
             'name' => 'required',
@@ -105,13 +138,18 @@ class AuthController extends Controller
             'repassword.same' => 'Konfirmasi password tidak sama dengan password'
         ]);
 
+<<<<<<< HEAD
         // Email harus menggunakan @gmail.com
+=======
+        // Email harus @gmail.com
+>>>>>>> 6c6270f7b42eabfd777e870a9308a289535c463a
         $email = $request->email;
         $email_explode = explode('@', $email);
         if ($email_explode[1] != 'gmail.com') {
             return redirect('/user/register')->with('harusgmail', 'Email harus menggunakan @gmail.com');
         }
 
+<<<<<<< HEAD
         try {
             // Create new user
             $user = new User();
@@ -134,6 +172,24 @@ class AuthController extends Controller
             // Handle other exceptions
             return redirect('/user/register')->with('errornisn', 'Nisn Sudah Terdaftar. Silahkan coba lagi.');
         }
+=======
+        // Simpan user baru
+        $user = new User();
+        $user->nisn = $request->nisn;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->no_handphone = $request->no_handphone;
+        $user->alamat = $request->alamat;
+        $user->password = bcrypt($request->password);
+        $user->id_role = '2';
+        $user->save();
+
+        $new = new Anggota();
+        $new->users_id = $user->id;
+        $new->save();
+
+        return redirect('/user/login')->with('register', 'Registrasi berhasil, silahkan login');
+>>>>>>> 6c6270f7b42eabfd777e870a9308a289535c463a
     }
 
     public function updateprofil(Request $request)

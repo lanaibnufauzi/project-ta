@@ -40,7 +40,7 @@
                                 <form action="/user/change-password" method="post">
                                     @csrf
                                     @method('POST')
-                                    <input name="code" value="{{ $user->code }}" type="text">
+                                    <input hidden name="code" value="{{ $user->code }}" type="text">
                                     <div class="form-group">
                                         <input required="" type="password" name="password" placeholder="Password" />
                                     </div>
@@ -49,7 +49,7 @@
                                     </div>
 
                                     <div class="form-group mb-30">
-                                        <button type="submit" class="btn btn-fill-out btn-block hover-up font-weight-bold" name="login">Submit &amp; Register</button>
+                                        <button type="submit" class="btn btn-fill-out btn-block hover-up font-weight-bold" name="login">Ganti Password</button>
                                     </div>
                                     <p class="font-xs text-muted"><strong>Note:</strong>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy</p>
                                 </form>

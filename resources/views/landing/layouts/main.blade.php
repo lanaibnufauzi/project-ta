@@ -381,8 +381,8 @@
     <script>
         // tidak usah tombol oke, berikan waktu 1 detik
         Swal.fire({
-            icon: 'error'
-            , title: 'Link Reset Password Salah'
+            icon: 'success'
+            , title: 'Link Reset Berhasil Dikirim'
             , showConfirmButton: false
             , timer: 1000
         , });
@@ -445,6 +445,19 @@
 
     </script>
     @endif
+
+    {{-- @if(Session::get('errornisn'))
+    <script>
+        // tidak usah tombol oke, berikan waktu 1 detik
+        Swal.fire({
+            icon: 'error'
+            , title: 'Nisn Sudah Terdaftar'
+            , showConfirmButton: false
+            , timer: 1000
+        , });
+
+    </script>
+    @endif --}}
 
 </body>
 

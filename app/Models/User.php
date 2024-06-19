@@ -14,7 +14,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $table = 'users';
-    
+
 
     /**
      * The attributes that are mass assignable.
@@ -48,19 +48,19 @@ class User extends Authenticatable
     }
 
     // encrypt aes 128 name
-    public function setNameAttribute($value)
-    {
-        $iv = '1234567890123456';
-        $key = '1234567890123456';
-        $this->attributes['name'] = openssl_encrypt($value, 'AES-128-CBC', $key, 0, $iv);
-    }
+    // public function setNameAttribute($value)
+    // {
+    //     $iv = '1234567890123456';
+    //     $key = '1234567890123456';
+    //     $this->attributes['name'] = openssl_encrypt($value, 'AES-128-CBC', $key, 0, $iv);
+    // }
 
-    public function getNameAttribute($value)
-    {
-        $iv = '1234567890123456';
-        $key = '1234567890123456';
-        return openssl_decrypt($value, 'AES-128-CBC', $key, 0, $iv);
-    }
+    // public function getNameAttribute($value)
+    // {
+    //     $iv = '1234567890123456';
+    //     $key = '1234567890123456';
+    //     return openssl_decrypt($value, 'AES-128-CBC', $key, 0, $iv);
+    // }
 
     // encrypt aes 128 email
     public function setEmailAttribute($value)

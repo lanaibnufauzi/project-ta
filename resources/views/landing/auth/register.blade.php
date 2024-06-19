@@ -44,7 +44,7 @@
                                         <input type="text" required="" value="{{ Session::get('nisnRegister') }}" name="nisn" placeholder="Nisn" />
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" required="" value="{{ Session::get('nameRegister') }}" name="name" placeholder="Name" />
+                                        <input type="text" required="" value="{{ Session::get('nameRegister') }}" name="name" placeholder="Nama" />
                                     </div>
                                     <div class="form-group">
                                         <input id="email" type="email" value="{{ Session::get('emailRegister') }}" required="" name="email" placeholder="Email" />

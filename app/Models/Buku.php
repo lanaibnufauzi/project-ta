@@ -41,19 +41,19 @@ class Buku extends Model
     }
 
     // encrypt judul_buku aes 128
-    public function setJudulBukuAttribute($value)
-    {
-        $iv = '1234567890123456';
-        $key = '1234567890123456';
-        $this->attributes['judul_buku'] = openssl_encrypt($value, 'AES-128-CBC', $key, 0, $iv);
-    }
+    // public function setJudulBukuAttribute($value)
+    // {
+    //     $iv = '1234567890123456';
+    //     $key = '1234567890123456';
+    //     $this->attributes['judul_buku'] = openssl_encrypt($value, 'AES-128-CBC', $key, 0, $iv);
+    // }
 
-    public function getJudulBukuAttribute($value)
-    {
-        $iv = '1234567890123456';
-        $key = '1234567890123456';
-        return openssl_decrypt($value, 'AES-128-CBC', $key, 0, $iv);
-    }
+    // public function getJudulBukuAttribute($value)
+    // {
+    //     $iv = '1234567890123456';
+    //     $key = '1234567890123456';
+    //     return openssl_decrypt($value, 'AES-128-CBC', $key, 0, $iv);
+    // }
 
     // encrypt deskripsi aes 128
     public function setDeskripsiAttribute($value)

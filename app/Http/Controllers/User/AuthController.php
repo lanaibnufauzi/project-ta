@@ -68,13 +68,14 @@ class AuthController extends Controller
 
     public function postRegister(Request $request)
     {
-
+        // Flash input values to session
         Session::flash('nisnRegister', $request->nisn);
         Session::flash('nameRegister', $request->name);
         Session::flash('emailRegister', $request->email);
         Session::flash('no_handphoneRegister', $request->no_handphone);
         Session::flash('alamatRegister', $request->alamat);
 
+        // Validate input
         $request->validate([
             'nisn' => 'required|unique:users',
             'name' => 'required',
@@ -104,29 +105,35 @@ class AuthController extends Controller
             'repassword.same' => 'Konfirmasi password tidak sama dengan password'
         ]);
 
-        // email harus @gmail.com
+        // Email harus menggunakan @gmail.com
         $email = $request->email;
         $email_explode = explode('@', $email);
         if ($email_explode[1] != 'gmail.com') {
             return redirect('/user/register')->with('harusgmail', 'Email harus menggunakan @gmail.com');
         }
 
+        try {
+            // Create new user
+            $user = new User();
+            $user->nisn = $request->nisn;
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->no_handphone = $request->no_handphone;
+            $user->alamat = $request->alamat;
+            $user->password = bcrypt($request->password);
+            $user->id_role = '2';
+            $user->save();
 
-        $user = new User();
-        $user->nisn = $request->nisn;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->no_handphone = $request->no_handphone;
-        $user->alamat = $request->alamat;
-        $user->password = bcrypt($request->password);
-        $user->id_role = '2';
-        $user->save();
+            // Create new Anggota
+            $new = new Anggota();
+            $new->users_id = $user->id;
+            $new->save();
 
-        $new = new Anggota();
-        $new->users_id = $user->id;
-        $new->save();
-
-        return redirect('/user/register')->with('register', 'Registrasi berhasil, silahkan login');
+            return redirect('/user/register')->with('register', 'Registrasi berhasil, silahkan login');
+        } catch (\Exception $e) {
+            // Handle other exceptions
+            return redirect('/user/register')->with('errornisn', 'Nisn Sudah Terdaftar. Silahkan coba lagi.');
+        }
     }
 
     public function updateprofil(Request $request)
@@ -190,6 +197,7 @@ class AuthController extends Controller
         }
         $user->save();
         return redirect('/user/account#account-detail')->with('updateprofil', 'Profil berhasil diupdate');
+        return redirect('/')->with('linkkadaluarsa', 'Reset Password Gagal');
     }
 
     public function userLogout()

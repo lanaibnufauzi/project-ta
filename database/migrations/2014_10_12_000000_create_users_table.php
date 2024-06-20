@@ -15,11 +15,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-<<<<<<< HEAD
-            $table->longText('nisn')->nullable()->unique();
-=======
             $table->longText('nisn')->unique()->nullable();
->>>>>>> 6c6270f7b42eabfd777e870a9308a289535c463a
             $table->longText('name');
             $table->longText('email');
             $table->longText('no_handphone');
